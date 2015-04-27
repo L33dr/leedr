@@ -10,6 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
+########################################################################
+# API Keys
+# Please Do Not Share
+########################################################################
+
+# LOL Request Limit: 10/Second and 500/10 Minutes
+LOL_API_KEY = "70b12d3a-d1b4-4375-b33a-fbd34e815056"
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
