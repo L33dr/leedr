@@ -158,6 +158,10 @@ REST_FRAMEWORK = {
     )
 }
 
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'backend.apps.leaderboard.serializers.14'
+}
+
 REST_SESSION_LOGIN = False
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1

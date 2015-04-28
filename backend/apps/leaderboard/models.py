@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -21,7 +22,6 @@ class LeagueOfLegendsGameData(models.Model):
 
 
 class UserProfile(models.Model):
-    user_name = models.CharField(max_length=30)
-    email = models.EmailField()
+    user = models.OneToOneField(User)
     games = models.ManyToManyField(UserGameProfile)
     premium = models.BooleanField()
