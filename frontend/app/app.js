@@ -3,8 +3,10 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
     'ngRoute',
-    'restangular',
-    'ui.bootstrap'
+    'myApp.register',
+    'myApp.login',
+    'myApp.confirmEmail',
+    'restangular'
 ]).
     config(['$routeProvider', 'RestangularProvider', function ($routeProvider, RestangularProvider) {
         $routeProvider.otherwise({redirectTo: '/view1'});
