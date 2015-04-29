@@ -5,7 +5,7 @@ from rest_auth.serializers import UserDetailsSerializer
 #######################################################
 # Model Imports
 #######################################################
-from backend.apps.leaderboard.models import Game
+from models import Game
 
 
 class GameSerializer(ModelSerializer):
@@ -17,7 +17,7 @@ class UserSerializer(UserDetailsSerializer):
     premium = serializers.BooleanField(source="userprofile.premium")
 
     class Meta(UserDetailsSerializer.Meta):
-        fields = UserDetailsSerializer.Meta.fields + ('premium')
+        fields = UserDetailsSerializer.Meta.fields + ('premium',)
 
     def update(self, instance, validated_data):
         profile_data = validated_data.pop('userpfoile', {})
