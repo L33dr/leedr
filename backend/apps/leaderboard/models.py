@@ -17,3 +17,6 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     games = models.ManyToManyField(UserGameProfile)
     premium = models.BooleanField()
+
+    def __str__(self):
+        return self.user.get_username()
