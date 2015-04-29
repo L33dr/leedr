@@ -100,6 +100,11 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+    </div>
+    <div ng-view></div>
+    <script src="js/jquery.js"></script>
+=======
     </section>
 
     <section id="#contact">
@@ -133,6 +138,7 @@
     </section>
 </div>
 </div>
+>>>>>>> lyndsee
 
 
 <script src="js/jquery.js"></script>
