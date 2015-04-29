@@ -10,15 +10,21 @@ class Game(models.Model):
 class UserGameProfile(models.Model):
     game = models.ForeignKey(Game)
     game_user_name = models.CharField(max_length=100)
+    game_user_id = models.IntegerField()
 
 
 class LeagueOfLegendsGameData(models.Model):
     user_game_profile = models.ForeignKey(UserGameProfile)
     time_stamp = models.DateTimeField()
-    kills = models.IntegerField()
-    deaths = models.IntegerField()
+    summoner_level = models.IntegerField()
+    total_champion_kills = models.IntegerField()
+    total_assists = models.IntegerField()
+    total_turrets_killed = models.IntegerField()
+    total_minions_killed = models.IntegerField()
+    avg_assists = models.IntegerField()
+    avg_champion_kills = models.IntegerField()
+    avg_deaths = models.IntegerField()
     wins = models.IntegerField()
-    losses = models.IntegerField()
 
 
 class UserProfile(models.Model):

@@ -5,12 +5,13 @@ from rest_auth.serializers import UserDetailsSerializer
 #######################################################
 # Model Imports
 #######################################################
-from models import Game
+from backend.apps.leaderboard.models import Game
 
 
 class GameSerializer(ModelSerializer):
     class Meta:
         model = Game
+
 
 class UserSerializer(UserDetailsSerializer):
     premium = serializers.BooleanField(source="userprofile.premium")
