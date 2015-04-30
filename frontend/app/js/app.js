@@ -71,11 +71,13 @@ angular.module('myApp', [
         authService.logout = function () {
             return Restangular.one('rest-auth/logout').customPOST().then(function () {
                 // Removes local storage key for token and destroys the token.
+                Restangular.configuration.defaultHeaders.authorization = '';
                 localStorageService.remove('token');
                 Session.destroy();
                 return true
             }, function (error) {
                 // Removes it anyways as we will have them reloggin.
+                Restangular.configuration.defaultHeaders.authorization = '';
                 localStorageService.remove('token');
                 Session.destroy();
                 return error
