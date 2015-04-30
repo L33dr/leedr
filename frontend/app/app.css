@@ -89,6 +89,21 @@
     background: none;
 }
 
+#sign-up {
+    position: fixed;
+    top: 0;
+    left: -350px;
+    height: 100%;
+    background-color: #000;
+    color: #999;
+    transition: left .5s ease-in-out;
+    z-index: 1;
+}
+
+#sign-up.show {
+    left: 250px;
+}
+
 @media(min-width:700px) {
     #wrapper {
         padding-left: 200px;

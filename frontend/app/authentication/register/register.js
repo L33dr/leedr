@@ -19,6 +19,12 @@ angular.module('myApp.register', ['ngRoute'])
             $scope.checked = !$scope.checked;
         };
 
+        $scope.showSignup = false;
+
+        $scope.toggleSignup = function () {
+            $scope.showSignup = !$scope.showSignup;
+        };
+
         $scope.submit = function () {
             Restangular.one('rest-auth/registration').customPOST($scope.user).then(function (){
                 $scope.success = true;

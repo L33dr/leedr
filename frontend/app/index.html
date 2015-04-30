@@ -54,7 +54,8 @@
 </head>
 <body ng-controller="ApplicationCtrl">
 <div id="wrapper">
-    <div id="sidebar-wrapper" ng-controller="RegisterCtrl">
+    <div ng-controller="RegisterCtrl">
+    <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
                 <a href="#menu-toggle">Leedr</a>
@@ -78,10 +79,39 @@
                 <a href="#/logout">Logout</a>
             </li>
             <li ng-if="!currentUser">
-                <a href="#/register" ng-click="toggle()">Sign Up</a>
+                <a href="#/register" ng-click="toggleSignup()">Sign Up</a>
             </li>
         </ul>
+
+
     </div>
+     <div id="sign-up" ng-class="{show: showSignup}">
+        <form>
+            <label>First Name</label>
+            <input type="text" ng-model="user.first_name">
+            <br><br>
+            <label>Last Name</label>
+            <input type="text" ng-model="user.last_name">
+            <br><br>
+            <label>User Name</label>
+            <input type="text" ng-model="user.username">
+            <br><br>
+            <label>Password</label>
+            <input type="password" ng-model="user.password1">
+            <br><br>
+            <label>Verify Password</label>
+            <input type="password" ng-model="user.password2">
+            <br><br>
+            <label>Email Address</label>
+            <input type="email" ng-model="user.email">
+            <input type="submit" ng-click="submit()">
+
+            {{ sucess }}
+        </form>
+    </div>
+</div>
+
+
 
 <div id="page-content-wrapper">
     <div class="container">
@@ -142,33 +172,6 @@
         </div>
     </section>
     <div></div>
-</div>
-
-<div ng-controller="RegisterCtrl">
-    <pageslide ps-open="checked">
-        <form>
-            <label>First Name</label>
-            <input type="text" ng-model="user.first_name">
-            <br><br>
-            <label>Last Name</label>
-            <input type="text" ng-model="user.last_name">
-            <br><br>
-            <label>User Name</label>
-            <input type="text" ng-model="user.username">
-            <br><br>
-            <label>Password</label>
-            <input type="password" ng-model="user.password1">
-            <br><br>
-            <label>Verify Password</label>
-            <input type="password" ng-model="user.password2">
-            <br><br>
-            <label>Email Address</label>
-            <input type="email" ng-model="user.email">
-            <input type="submit" ng-click="submit()">
-
-            {{ sucess }}
-        </form>
-    </pageslide>
 </div>
 
 
