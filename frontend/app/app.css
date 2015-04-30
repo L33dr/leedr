@@ -117,3 +117,11 @@
     }
 }
 
+section {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+    padding: 20px;
+    margin: 50px;
+}
+
