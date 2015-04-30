@@ -4,7 +4,7 @@ angular.module('myApp.register', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/register', {
-    templateUrl: 'authentication/register/register.html',
+    //templateUrl: 'authentication/register/register.html',
     controller: 'RegisterCtrl'
   });
 }])
@@ -12,6 +12,13 @@ angular.module('myApp.register', ['ngRoute'])
 .controller('RegisterCtrl', ['$scope', 'Restangular', function($scope, Restangular) {
         // Submits the registration to the backend. If successful it will redirect to home page.
         // They will need to confirm email before they are able to sign in.
+
+        $scope.checked = false;
+
+        $scope.toggle = function () {
+            $scope.checked = !$scope.checked;
+        };
+
         $scope.submit = function () {
             Restangular.one('rest-auth/registration').customPOST($scope.user).then(function (){
                 $scope.success = true;
