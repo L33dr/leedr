@@ -25,10 +25,10 @@ angular.module('myApp.login', ['ngRoute'])
               $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
               $scope.setCurrentUser(user);
               $location.path('/');
-              // TODO: Toastr success message
+              toastr.success("You logged in successfully.")
           }, function() {
               $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-              // TODO: Toastr failure message
+              toastr.error("Please try again.")
           });
         };
 }]);
