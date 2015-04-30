@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
-<!--[if gt IE 8]><!--><html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/app.css">
 
     <title>Leedr</title>
@@ -31,107 +32,115 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body ng-controller="ApplicationCtrl">
-<div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#menu-toggle">Leedr</a>
-            </li>
-            <li>
-                <a class="page-scroll" href="#supportedGames">Supported Games</a>
-            </li>
-            <li>
-                <a class="page-scroll" href="#contact">Contact Info.</a>
-            </li>
-            <li>
-                <a class="page-scroll" href="#about">About</a>
-            </li>
-            <li>
-                <a class="page-scroll" href="#faq">FAQ</a>
-            </li>
-            <li ng-if="!currentUser">
-                <a href="#/login">Login</a>
-            </li>
-            <li ng-if="!!currentUser">
-                <a href="#/logout">Logout</a>
-            </li>
-            <li ng-if="!currentUser">
-                <a href="#/register">Sign Up</a>
-            </li>
-        </ul>
+
+<body>
+    <nav id="mainNav" class="navbar navbar-default">
+        <div class="container-fluid" align="center">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll">Leedr</a>
+            </div>
+        </div>
+
+
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <a class="page-scroll" href="#supportedGames">Supported Games</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contact Info.</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#faq">FAQ</a>
+                </li>
+                <li ng-if="!currentUser">
+                    <a href="#/login">Login</a>
+                </li>
+                <li ng-if="!!currentUser">
+                    <a href="#/logout">Logout</a>
+                </li>
+                <li ng-if="!currentUser">
+                    <a href="#/register">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="page-content-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 text-left">
+                        <a href="#menu-toggle" id="menu-toggle" ><i class="fa fa-arrow-left fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <section id="supportedGames">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 text-left">
+                        <h1>Supported Games:</h1>
+                        <ul>Diablo</ul>
+                        <ul>Call of Duty</ul>
+                        <ul>League of Legends</ul>
+                        <ul>Halo</ul>
+                        <ul>Destiny</ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div></div>
+
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 text-left">
+                        <h1>Contact Info:</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div></div>
+
+        <section id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 text-left">
+                        <h1>About Us:</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div></div>
+
+        <section id="faq">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 text-left">
+                        <h1>Frequently Asked Questions:</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div></div>
     </div>
-
-<div id="page-content-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 text-left">
-                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Navigation</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-    <section id="#supportedGames">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 text-left">
-                    <h1>Supported Games:</h1>
-                    <ul>Diablo</ul>
-                    <ul>Call of Duty</ul>
-                    <ul>League of Legends</ul>
-                    <ul>Halo</ul>
-                    <ul>Destiny</ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div></div>
-
-    <section id="#contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 text-left">
-                    <h1>Contact Info:</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div></div>
-
-    <section id="#about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 text-left">
-                    <h1>About Us:</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div></div>
-
-    <section id="#faq">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 text-left">
-                    <h1>Frequently Asked Questions:</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div></div>
-</div>
 
 <!-- NG-VIEW -- REQUIRED -->
 <div ng-view></div>
-
 <script src="js/jquery.js"></script>
-
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-
-
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
