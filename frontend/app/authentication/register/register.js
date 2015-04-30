@@ -15,11 +15,11 @@ angular.module('myApp.register', ['ngRoute'])
         $scope.submit = function () {
             Restangular.one('rest-auth/registration').customPOST($scope.user).then(function (){
                 $scope.success = true;
-                // TODO: Toastr message letting the user know they need to confirm their email.
-                // TODO: Toastr success message.
+                toastr.message("Please confirm your email.")
+                toastr.success("Your profile was created successfully.")
             }, function() {
                 $scope.success = false;
-                // TODO: Toastr failure message
+                toastr.error("There was a problem creating your account.")
             });
         };
 }]);
