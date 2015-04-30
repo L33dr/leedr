@@ -31,8 +31,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
-<body>
+<body ng-controller="ApplicationCtrl">
 <div id="wrapper">
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
@@ -51,11 +50,14 @@
             <li>
                 <a class="page-scroll" href="#faq">FAQ</a>
             </li>
-            <li>
-                <a href="#login">Login</a>
+            <li ng-if="!currentUser">
+                <a href="#/login">Login</a>
             </li>
-            <li>
-                <a href="#signup">Sign Up</a>
+            <li ng-if="!!currentUser">
+                <a href="#/logout">Logout</a>
+            </li>
+            <li ng-if="!currentUser">
+                <a href="#/register">Sign Up</a>
             </li>
         </ul>
     </div>
@@ -120,6 +122,10 @@
     </section>
     <div></div>
 </div>
+
+<!-- NG-VIEW -- REQUIRED -->
+<div ng-view></div>
+
 <script src="js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -134,12 +140,17 @@
 </script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
 <script src="bower_components/lodash/lodash.min.js"></script>
 <script src="bower_components/restangular/dist/restangular.min.js"></script>
 <script src="app.js"></script>
-<script src="register/register.js"></script>
-<script src="login/login.js"></script>
-<script src="confirm-email/confirmEmail.js"></script>
+<script src="main/main.js"></script>
+<script src="view1/view1.js"></script>
+<script src="authentication/register/register.js"></script>
+<script src="authentication/login/login.js"></script>
+<script src="authentication/logout/logout.js"></script>
+<script src="authentication/confirm-email/confirmEmail.js"></script>
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>
