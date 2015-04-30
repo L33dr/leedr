@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from backend.apps.leaderboard.views import FacebookLogin, GoogleLogin, TwitchLogin, VerifyEmail
+from apps.leaderboard.views import FacebookLogin, GoogleLogin, TwitchLogin, VerifyEmail
 urlpatterns = [
     # Examples:
     # url(r'^$', 'leaderboard.views.home', name='home'),
@@ -14,5 +14,5 @@ urlpatterns = [
     url(r'^rest-auth/facebook/$', FacebookLogin.as_view()),
     url(r'^rest-auth/google/$', GoogleLogin.as_view()),
     url(r'^rest-auth/twitch/$', TwitchLogin.as_view()),
-
+    url(r'^leedr/', include('apps.leaderboard.urls')),
 ]

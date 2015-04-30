@@ -2,13 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-class Game(models.Model):
+class GameDetail(models.Model):
     name = models.CharField(max_length=100)
     platform = models.CharField(max_length=100)
 
 
 class UserGameProfile(models.Model):
-    game = models.ForeignKey(Game)
+    game = models.ForeignKey(GameDetail)
     game_user_name = models.CharField(max_length=100)
     game_user_id = models.IntegerField()
 
