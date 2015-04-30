@@ -1,6 +1,5 @@
 from django.db import models
 
-# These may show as unresolved but they work as intended.
 from apps.leaderboard.models import UserGameProfile
 
 
