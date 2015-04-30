@@ -25,3 +25,8 @@ class VerifyEmail(View):
     def get(self, request, *args, **kwargs):
         return HttpResponse('<script>(function () {window.location.href = "http://localhost:8000/app/#/confirm-email/'
                             + kwargs['key'] + '"})();</script>')
+
+
+# TODO: Implement List View for games to get a list of all games.
+# TODO: Implement User Profile View
+# TODO: Implement User Game Profile View
