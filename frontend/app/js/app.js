@@ -111,3 +111,4 @@ angular.module('myApp', [
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+
