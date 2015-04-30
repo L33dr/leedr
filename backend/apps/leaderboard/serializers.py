@@ -6,6 +6,7 @@ from rest_auth.serializers import UserDetailsSerializer
 #######################################################
 from models import GameDetail
 from models import UserProfile
+from models import UserGameProfile
 from django.contrib.auth.models import User
 
 
@@ -18,6 +19,15 @@ class UserProfileSerializer(ModelSerializer):
     class Meta:
         model = UserProfile
         fields = ('premium',)
+
+
+class UserGameProfileSerializer(ModelSerializer):
+    user = UserProfileSerializer(required=True, many=False)
+    game = GameDetailSerializer(required=True, many=False)
+
+    class Meta:
+        model = UserGameProfile
+        fields = ('user', 'game', 'game_user_name')
 
 
 class UserSerializer(ModelSerializer):
