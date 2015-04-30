@@ -17,6 +17,16 @@ angular.module('myApp', [
         $routeProvider.otherwise({redirectTo: '/view1'});
         RestangularProvider.setBaseUrl('http://localhost:8001');
         RestangularProvider.setRequestSuffix('/');
+<<<<<<< HEAD
+    }]);
+
+       //Menu Toggle Script
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+=======
         $httpProvider.interceptors.push([
             '$injector',
             function ($injector) {
@@ -106,8 +116,4 @@ angular.module('myApp', [
         };
     })
 ;
-
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+>>>>>>> dev

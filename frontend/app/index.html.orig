@@ -3,9 +3,8 @@
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
-
+<!--[if gt IE 8]><!--><html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,17 +12,15 @@
     <meta name="author" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
     <link rel="stylesheet" href="app.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
 
     <title>Leedr</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,21 +28,19 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
-
-<body>
+<body ng-controller="ApplicationCtrl">
 <div id="wrapper">
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
-                <a href="#">Leedr</a>
+                <a href="#menu-toggle">Leedr</a>
             </li>
             <li>
                 <a class="page-scroll" href="#supportedGames">Supported Games</a>
             </li>
             <li>
-                <a class="page-scroll" href="#contact">Contact Info.</a>
+                <a class="page-scroll" href="#contact">Contact Info</a>
             </li>
             <li>
                 <a class="page-scroll" href="#about">About</a>
@@ -53,15 +48,17 @@
             <li>
                 <a class="page-scroll" href="#faq">FAQ</a>
             </li>
-            <li>
-                <a href="#login">Login</a>
+            <li ng-if="!currentUser">
+                <a href="#/login">Login</a>
             </li>
-            <li>
-                <a href="#signup">Sign Up</a>
+            <li ng-if="!!currentUser">
+                <a href="#/logout">Logout</a>
+            </li>
+            <li ng-if="!currentUser">
+                <a href="#/register">Sign Up</a>
             </li>
         </ul>
     </div>
-
 
 <div id="page-content-wrapper">
     <div class="container">
@@ -77,7 +74,7 @@
     <section id="#supportedGames">
         <div class="container">
             <div class="row">
-                <div class="col-lg-11 text-center">
+                <div class="col-lg-8 text-left">
                     <h1>Supported Games:</h1>
                     <ul>Diablo</ul>
                     <ul>Call of Duty</ul>
@@ -88,39 +85,59 @@
             </div>
         </div>
     </section>
+    <div></div>
 
     <section id="#contact">
         <div class="container">
             <div class="row">
-                <div class="col-lg-11 text-center">
+                <div class="col-lg-8 text-left">
                     <h1>Contact Info:</h1>
                 </div>
             </div>
         </div>
     </section>
+    <div></div>
 
     <section id="#about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-11 text-center">
+                <div class="col-lg-8 text-left">
                     <h1>About Us:</h1>
                 </div>
             </div>
         </div>
     </section>
+    <div></div>
 
     <section id="#faq">
         <div class="container">
             <div class="row">
-                <div class="col-lg-11 text-center">
+                <div class="col-lg-8 text-left">
                     <h1>Frequently Asked Questions:</h1>
                 </div>
             </div>
         </div>
     </section>
+    <div></div>
 </div>
 
+<!-- NG-VIEW -- REQUIRED -->
+<div ng-view></div>
 
+<<<<<<< HEAD
+
+
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/restangular/dist/restangular.min.js"></script>
+  <script src="bower_components/lodash/lodash.min.js"></script>
+  <script src="app.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+=======
 <script src="js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -132,24 +149,20 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-<<<<<<< HEAD
-
-    </script>
-
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/restangular/dist/restangular.min.js"></script>
-  <script src="bower_components/lodash/lodash.min.js"></script>
-  <script src="app.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
-=======
 </script>
-<script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+<script src="bower_components/lodash/lodash.min.js"></script>
+<script src="bower_components/restangular/dist/restangular.min.js"></script>
 <script src="app.js"></script>
+<script src="main/main.js"></script>
+<script src="view1/view1.js"></script>
+<script src="authentication/register/register.js"></script>
+<script src="authentication/login/login.js"></script>
+<script src="authentication/logout/logout.js"></script>
+<script src="authentication/confirm-email/confirmEmail.js"></script>
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>
