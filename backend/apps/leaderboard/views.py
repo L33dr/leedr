@@ -2,8 +2,11 @@ from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.twitch.views import TwitchOAuth2Adapter
 from rest_auth.registration.views import SocialLogin
+from rest_framework import generics
 from django.views.generic import View
 from django.http import HttpResponse
+from django.contrib.auth.models import User
+from serializers import UserSerializer
 
 
 class FacebookLogin(SocialLogin):
@@ -16,6 +19,7 @@ class GoogleLogin(SocialLogin):
 
 class TwitchLogin(SocialLogin):
     adapter_class = TwitchOAuth2Adapter
+
 
 class VerifyEmail(View):
     def get(self, request, *args, **kwargs):

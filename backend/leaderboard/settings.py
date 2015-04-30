@@ -143,6 +143,17 @@ CORS_ORIGIN_WHITELIST = (
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ALLOW_HEADERS = (
+    'x-requested-with',
+    'content-type',
+    'accept',
+    'origin',
+    'authorization',
+    'token',
+    'x-csrftoken'
+)
+
+
 # AUTHENTICATION_BACKENDS = (
 #     # Needed to login by username in Django admin, regardless of `allauth`
 #     'django.contrib.auth.backends.ModelBackend',
@@ -158,12 +169,11 @@ REST_FRAMEWORK = {
     )
 }
 
-# REST_AUTH_SERIALIZERS = {
-#     'USER_DETAILS_SERIALIZER': 'backend.apps.leaderboard.serializers.UserSerializer'
-# }
+ACCOUNT_SIGNUP_FORM_CLASS = 'apps.leaderboard.forms.SignupForm'
 
 REST_SESSION_LOGIN = False
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# TODO: Setup django email backend with email accounts to send email from.
 SITE_ID = "2"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
