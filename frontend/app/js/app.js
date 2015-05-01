@@ -11,7 +11,6 @@ angular.module('myApp', [
     'myApp.login',
     'myApp.logout',
     'myApp.confirmEmail',
-    'pageslide-directive',
     'restangular'
 ]).
     config(['$routeProvider', 'RestangularProvider', '$httpProvider', function ($routeProvider, RestangularProvider, $httpProvider) {
