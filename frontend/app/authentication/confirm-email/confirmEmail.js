@@ -18,9 +18,9 @@ angular.module('myApp.confirmEmail', ['ngRoute'])
             Restangular.one('rest-auth/registration/verify-email').customPOST($scope.key).then(function (){
                 // Redirect to home page.
                 $location.path('/');
-                // TODO: Toastr success message
+                toastr.success("You're email has successfully been verified.")
             }, function() {
-                // TODO: Toastr failure message
+                toastr.error("There was a problem verifying your email.")
             });
         };
 }]);
