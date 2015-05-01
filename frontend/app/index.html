@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/toastr/toastr.min.css">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/signup.css">
 
     <title>Leedr</title>
 
@@ -79,24 +80,39 @@
 
         <div id="sign-up" ng-class="{show: showSignup}">
             <form>
-                <label>First Name</label>
-                <input type="text" ng-model="user.first_name">
+                <div align="right">
+                    <label>First Name</label><input type="text" ng-model="user.first_name">
+                </div>
+
                 <br><br>
-                <label>Last Name</label>
-                <input type="text" ng-model="user.last_name">
+                <div align="right">
+                    <label>Last Name</label><input type="text" ng-model="user.last_name">
+                </div>
+
                 <br><br>
-                <label>User Name</label>
-                <input type="text" ng-model="user.username">
+                <div align="right">
+                    <label>User Name</label><input type="text" ng-model="user.username">
+                </div>
+
                 <br><br>
-                <label>Password</label>
-                <input type="password" ng-model="user.password1">
+                <div align="right">
+                    <label>Password</label><input type="password" ng-model="user.password1">
+                </div>
+
                 <br><br>
-                <label>Verify Password</label>
-                <input type="password" ng-model="user.password2">
+                <div align="right">
+                    <label>Verify Password</label><input type="password" ng-model="user.password2">
+                </div>
+
                 <br><br>
-                <label>Email Address</label>
-                <input type="email" ng-model="user.email">
-                <input type="submit" ng-click="submit()">
+                <div align="right">
+                    <label>Email Address</label><input type="email" ng-model="user.email">
+                </div>
+
+                <br>
+                <div align="center">
+                    <input type="submit" ng-click="submit()">
+                </div>
 
                 {{ sucess }}
             </form>

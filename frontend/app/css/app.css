@@ -142,5 +142,9 @@ section {
     margin: 20px;
 }
 
+form submit {
+    button: center;
+}
+
 
 
