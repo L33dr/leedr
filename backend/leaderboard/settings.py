@@ -46,7 +46,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'allauth.socialaccount.context_processors.socialaccount',
 )
 
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -68,9 +67,6 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.twitch',
     'apps.leaderboard',
 )
-
-
-
 
 MIDDLEWARE_CLASSES = (
     'corsheaders.middleware.CorsMiddleware',
@@ -140,7 +136,6 @@ CORS_ORIGIN_WHITELIST = (
     'localhost/',
 )
 
-
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_HEADERS = (
@@ -155,7 +150,7 @@ CORS_ALLOW_HEADERS = (
 
 
 # AUTHENTICATION_BACKENDS = (
-#     # Needed to login by username in Django admin, regardless of `allauth`
+# # Needed to login by username in Django admin, regardless of `allauth`
 #     'django.contrib.auth.backends.ModelBackend',
 #
 #     # `allauth` specific authentication methods, such as login by e-mail
@@ -170,6 +165,8 @@ REST_FRAMEWORK = {
 }
 
 ACCOUNT_SIGNUP_FORM_CLASS = 'apps.leaderboard.forms.SignupForm'
+
+SOCIALACCOUNT_PROVIDERS = {'google': {'SCOPE': ['profile', 'email'], 'AUTH_PARAMS': {'access_type': 'online'}}}
 
 REST_SESSION_LOGIN = False
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
