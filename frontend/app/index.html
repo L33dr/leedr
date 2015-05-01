@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/toastr/toastr.min.css">
     <link rel="stylesheet" href="css/app.css">
@@ -21,7 +22,7 @@
     <title>Leedr</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
@@ -49,31 +50,59 @@
     </div>
 </nav>
 <div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li>
-                <a class="page-scroll" href="#supportedGames">Supported Games</a>
-            </li>
-            <li>
-                <a class="page-scroll" href="#contact">Contact Info</a>
-            </li>
-            <li>
-                <a class="page-scroll" href="#about">About</a>
-            </li>
-            <li>
-                <a class="page-scroll" href="#faq">FAQ</a>
-            </li>
-            <li ng-if="!currentUser">
-                <a href="#/login">Login</a>
-            </li>
-            <li ng-if="!!currentUser">
-                <a href="#/logout">Logout</a>
-            </li>
-            <li ng-if="!currentUser">
-                <a href="#/register">Sign Up</a>
-            </li>
-        </ul>
+    <div ng-controller="RegisterCtrl">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <a class="page-scroll" href="#supportedGames">Supported Games</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contact Info</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#faq">FAQ</a>
+                </li>
+                <li ng-if="!currentUser">
+                    <a href="#/login">Login</a>
+                </li>
+                <li ng-if="!!currentUser">
+                    <a href="#/logout">Logout</a>
+                </li>
+                <li ng-if="!currentUser">
+                    <a href="#/register" ng-click="toggleSignup()">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="sign-up" ng-class="{show: showSignup}">
+            <form>
+                <label>First Name</label>
+                <input type="text" ng-model="user.first_name">
+                <br><br>
+                <label>Last Name</label>
+                <input type="text" ng-model="user.last_name">
+                <br><br>
+                <label>User Name</label>
+                <input type="text" ng-model="user.username">
+                <br><br>
+                <label>Password</label>
+                <input type="password" ng-model="user.password1">
+                <br><br>
+                <label>Verify Password</label>
+                <input type="password" ng-model="user.password2">
+                <br><br>
+                <label>Email Address</label>
+                <input type="email" ng-model="user.email">
+                <input type="submit" ng-click="submit()">
+
+                {{ sucess }}
+            </form>
+        </div>
     </div>
+
 
     <div id="page-content-wrapper">
         <div class="container">
