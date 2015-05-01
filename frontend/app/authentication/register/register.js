@@ -13,12 +13,6 @@ angular.module('myApp.register', ['ngRoute'])
         // Submits the registration to the backend. If successful it will redirect to home page.
         // They will need to confirm email before they are able to sign in.
 
-        $scope.checked = false;
-
-        $scope.toggle = function () {
-            $scope.checked = !$scope.checked;
-        };
-
         $scope.showSignup = false;
 
         $scope.toggleSignup = function () {
