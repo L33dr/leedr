@@ -11,6 +11,7 @@ angular.module('myApp', [
     'myApp.login',
     'myApp.logout',
     'myApp.confirmEmail',
+    'pageslide-directive',
     'restangular'
 ]).
     config(['$routeProvider', 'RestangularProvider', '$httpProvider', function ($routeProvider, RestangularProvider, $httpProvider) {
@@ -71,11 +72,13 @@ angular.module('myApp', [
         authService.logout = function () {
             return Restangular.one('rest-auth/logout').customPOST().then(function () {
                 // Removes local storage key for token and destroys the token.
+                Restangular.configuration.defaultHeaders.authorization = '';
                 localStorageService.remove('token');
                 Session.destroy();
                 return true
             }, function (error) {
                 // Removes it anyways as we will have them reloggin.
+                Restangular.configuration.defaultHeaders.authorization = '';
                 localStorageService.remove('token');
                 Session.destroy();
                 return error
