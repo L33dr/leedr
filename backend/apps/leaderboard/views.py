@@ -1,3 +1,6 @@
+"""
+Base views for the leaderboard application. Used primarily for user based views.
+"""
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.twitch.views import TwitchOAuth2Adapter
@@ -23,6 +26,10 @@ class VerifyEmail(View):
         return HttpResponse('<script>(function () {window.location.href = "http://localhost:8000/app/#/confirm-email/'
                             + kwargs['key'] + '"})();</script>')
 
+class GoogleCallBack(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('<script>(function () {window.location.href = "http://localhost:8000/app/#/googleCallback/'
+                            + kwargs['key'] + '"})();</script>')
 
 # TODO: Implement List View for games to get a list of all games.
 # TODO: Implement User Profile View

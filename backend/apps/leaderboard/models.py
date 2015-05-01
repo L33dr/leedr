@@ -9,6 +9,9 @@ class GameDetail(models.Model):
     name = models.CharField(max_length=100)
     platform = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name + ' on ' + self.platform
+
 
 class UserProfile(models.Model):
     """
@@ -20,15 +23,18 @@ class UserProfile(models.Model):
     premium = models.BooleanField()
 
     def __str__(self):
-        return self.user.get_username()
+        return self.user.get_username() + "'s Profile"
 
 
 class UserGameProfile(models.Model):
     """
-    Used to bind the user profile to each game.
+    Used to bind the user profile to each game the user participates in.
     """
     game = models.ForeignKey(GameDetail)
     user = models.ForeignKey(UserProfile)
     game_user_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.user.user.get_username() + "'s " + self.game.name + ' profile'
 
 
