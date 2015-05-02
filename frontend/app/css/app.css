@@ -135,16 +135,14 @@
 }
 
 section {
-    border-width: 2px;
+    border-width: 1px;
     border-style: solid;
     border-color: #000000;
     padding: 20px;
     margin: 20px;
 }
 
-form submit {
-    button: center;
-}
+
 
 
 

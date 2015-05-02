@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,36 +85,27 @@
 
         <div id="sign-up" ng-class="{show: showSignup}">
             <form>
-                <div align="right">
-                    <label>First Name</label><input type="text" ng-model="user.first_name">
-                </div>
-
-                <br><br>
-                <div align="right">
-                    <label>Last Name</label><input type="text" ng-model="user.last_name">
-                </div>
-
-                <br><br>
-                <div align="right">
-                    <label>User Name</label><input type="text" ng-model="user.username">
-                </div>
-
-                <br><br>
-                <div align="right">
-                    <label>Password</label><input type="password" ng-model="user.password1">
-                </div>
-
-                <br><br>
-                <div align="right">
-                    <label>Verify Password</label><input type="password" ng-model="user.password2">
-                </div>
-
-                <br><br>
-                <div align="right">
-                    <label>Email Address</label><input type="email" ng-model="user.email">
-                </div>
+                <header>Create a Profile:</header>
 
                 <br>
+                <label>First Name</label><input type="text" ng-model="user.first_name">
+
+                <br><br>
+                <label>Last Name</label><input type="text" ng-model="user.last_name">
+
+                <br><br>
+                <label>User Name</label><input type="text" ng-model="user.username">
+
+                <br><br>
+                <label>Password</label><input type="password" ng-model="user.password1">
+
+                <br><br>
+                <label>Verify Password</label><input type="password" ng-model="user.password2">
+
+                <br><br>
+                <label>Email Address</label><input type="email" ng-model="user.email">
+
+                <br><br>
                 <div align="center">
                     <input type="submit" ng-click="submit()">
                 </div>
@@ -161,25 +157,56 @@
     <section id="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 text-left">
-                    <h1>About Us:</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div></div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <header>About Us:</header>
+                    </div>
+                    <div class="col-lg-2 col-sm-6 text-center">
+                        <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
 
-    <section id="faq">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 text-left">
-                    <h1>Frequently Asked Questions:</h1>
+                        <h3>John Smith
+                            <small>Job Title</small>
+                        </h3>
+                    </div>
+                    <div class="col-lg-2 col-sm-6 text-center">
+                        <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+
+                        <h3>John Smith
+                            <small>Job Title</small>
+                        </h3>
+                    </div>
+                    <div class="col-lg-2 col-sm-6 text-center">
+                        <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+
+                        <h3>John Smith
+                            <small>Job Title</small>
+                        </h3>
+                    </div>
+                    <div class="col-lg-2 col-sm-6 text-center">
+                        <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+
+                        <h3>John Smith
+                            <small></small>
+                        </h3>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- NG-VIEW -- REQUIRED -->
-    <div ng-view></div>
+</div>
+</section>
+<div></div>
+
+<section id="faq">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 text-left">
+                <h1>Frequently Asked Questions:</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- NG-VIEW -- REQUIRED -->
+<div ng-view></div>
 </div>
 <!-- Bootstrap Core JavaScript -->
 <script src="bower_components/angular/angular.js"></script>
