@@ -3,7 +3,7 @@ from django.db import models
 from apps.leaderboard.models import UserGameProfile
 
 
-class AggregatedStats(models.Model):
+class LOLAggregatedStats(models.Model):
     average_node_capture_assist = models.IntegerField()
     max_node_neutralize_assist = models.IntegerField()
     total_minion_kills = models.IntegerField()
@@ -33,16 +33,34 @@ class AggregatedStats(models.Model):
     total_node_neutralize = models.IntegerField()
     total_node_capture = models.IntegerField()
 
+    def __str__(self):
+        return "LOL Aggregated Stats Object"
 
-class PlayerStatSummary(models.Model):
-    player_stat_summary_type = models.CharField()
-    stats = models.OneToOneField(AggregatedStats)
+    class Meta:
+        verbose_name_plural = "LOL Summary Aggregated Stats"
+
+
+class LOLPlayerStatSummary(models.Model):
+    player_stat_summary_type = models.CharField(max_length=100)
+    stats = models.OneToOneField(LOLAggregatedStats)
     wins = models.IntegerField()
     losses = models.IntegerField()
 
+    def __str__(self):
+        return "LOL Player Stat Summary Object"
 
-class LeagueOfLegendsGameData(models.Model):
+    class Meta:
+        verbose_name_plural = "LOL Player Profile Stat Summaries"
+
+
+class LOLGameData(models.Model):
     user_game_profile = models.ForeignKey(UserGameProfile)
     time_stamp = models.DateTimeField()
     summoner_id = models.IntegerField()
-    player_stat_summary = models.ManyToManyField(PlayerStatSummary)
+    player_stat_summary = models.ManyToManyField(LOLPlayerStatSummary)
+
+    def __str__(self):
+        return str(self.user_game_profile) + "'s LOL Game Data"
+
+    class Meta:
+        verbose_name_plural = "LOL Game Data Profiles"
