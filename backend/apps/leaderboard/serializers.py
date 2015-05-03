@@ -15,10 +15,18 @@ class GameDetailSerializer(ModelSerializer):
         model = GameDetail
 
 
+class UserSerializer(ModelSerializer):
+
+    class Meta(UserDetailsSerializer.Meta):
+        model = User
+
+
 class UserProfileSerializer(ModelSerializer):
+    user = UserSerializer(required=True, many=False)
+
     class Meta:
         model = UserProfile
-        fields = ('premium',)
+        fields = ('premium', 'user')
 
 
 class UserGameProfileSerializer(ModelSerializer):
@@ -28,11 +36,3 @@ class UserGameProfileSerializer(ModelSerializer):
     class Meta:
         model = UserGameProfile
         fields = ('user', 'game', 'game_user_name')
-
-
-class UserSerializer(ModelSerializer):
-    profile = UserProfileSerializer(required=False, many=False)
-
-    class Meta(UserDetailsSerializer.Meta):
-        model = User
-        fields = UserDetailsSerializer.Meta.fields + ('profile',)
