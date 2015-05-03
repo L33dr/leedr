@@ -55,11 +55,3 @@ class UserProfileView(generics.ListAPIView):
 class UserGameProfileView(generics.ListAPIView):
     serializer_class = UserGameProfileSerializer
     queryset = UserGameProfile.objects.all()
-
-
-# TODO: Implement List View for games to get a list of all games.
-# TODO: Implement User Profile View
-# TODO: Implement User Game Profile View
-
-
-
