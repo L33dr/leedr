@@ -13,6 +13,7 @@ class GameDetail(models.Model):
         return self.name + ' on ' + self.platform
 
 
+
 class UserProfile(models.Model):
     """
     Base user profile. This will bind to a registered user and bind all the related data to them.

@@ -5,8 +5,15 @@ from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.twitch.views import TwitchOAuth2Adapter
 from rest_auth.registration.views import SocialLogin
+from rest_framework import generics
 from django.views.generic import View
 from django.http import HttpResponse
+from django.views.generic.edit import FormView
+from forms import SignupForm
+from models import GameDetail, UserProfile, UserGameProfile
+
+from django.contrib.auth.models import User
+from serializers import GameDetailSerializer, UserProfileSerializer, UserGameProfileSerializer
 
 
 class FacebookLogin(SocialLogin):
@@ -31,6 +38,20 @@ class GoogleCallBack(View):
         return HttpResponse('<script>(function () {window.location.href = "http://localhost:8000/app/#/googleCallback/'
                             + kwargs['key'] + '"})();</script>')
 
-# TODO: Implement List View for games to get a list of all games.
-# TODO: Implement User Profile View
-# TODO: Implement User Game Profile View
+class SignupView(FormView):
+    form_class = SignupForm
+
+
+class GameListView(generics.ListAPIView):
+    serializer_class = GameDetailSerializer
+    queryset = GameDetail.objects.all()
+
+
+class UserProfileView(generics.ListAPIView):
+    serializer_class = UserProfileSerializer
+    queryset = UserProfile.objects.all()
+
+
+class UserGameProfileView(generics.ListAPIView):
+    serializer_class = UserGameProfileSerializer
+    queryset = UserGameProfile.objects.all()

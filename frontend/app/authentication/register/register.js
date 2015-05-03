@@ -22,7 +22,9 @@ angular.module('myApp.register', ['ngRoute'])
         $scope.submit = function () {
             Restangular.one('rest-auth/registration').customPOST($scope.user).then(function (){
                 $scope.success = true;
-                toastr.message("Please confirm your email.")
+                $scope.user = null;
+                $scope.showSignup = !$scope.showSignup;
+                toastr.info("Please confirm your email.")
                 toastr.success("Your profile was created successfully.")
             }, function() {
                 $scope.success = false;
