@@ -5,6 +5,7 @@ from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.twitch.views import TwitchOAuth2Adapter
 from rest_auth.registration.views import SocialLogin
+from rest_framework import generics
 from django.views.generic import View
 from django.http import HttpResponse
 from django.views.generic.edit import FormView
@@ -41,17 +42,19 @@ class SignupView(FormView):
     form_class = SignupForm
 
 
-class GameList(View):
+class GameListView(generics.ListAPIView):
     serializer_class = GameDetailSerializer
+    queryset = GameDetail.objects.all()
 
 
-class UserProfile(View):
+class UserProfileView(generics.ListAPIView):
     serializer_class = UserProfileSerializer
+    queryset = UserGameProfile.objects.all()
 
 
-class UserGameProfile(View):
+class UserGameProfileView(generics.ListAPIView):
     serializer_class = UserGameProfileSerializer
-
+    queryset = UserGameProfile.objects.all()
 
 
 # TODO: Implement List View for games to get a list of all games.

@@ -2,37 +2,9 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/pageSlide/jquery.pageslide.css">
-    <link rel="stylesheet" href="app.css">
-    <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/pageSlide/jquery.pageslide.min.js"></script>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-=======
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
-<!--[if gt IE 8]><!--><html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
->>>>>>> dev
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +14,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
-    <link rel="stylesheet" href="app.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/toastr/toastr.min.css">
+    <link rel="stylesheet" href="css/app.css">
 
     <title>Leedr</title>
 
+<<<<<<< HEAD
+=======
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
-
-
+>>>>>>> dev
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -60,8 +36,8 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
-<<<<<<< HEAD
 <body ng-controller="ApplicationCtrl">
 <nav id="mainNav" class="navbar navbar-default">
     <div class="container-fluid" align="center">
@@ -74,32 +50,18 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand page-scroll">Leedr</a>
-=======
-
-<body>
-    <nav id="mainNav" class="navbar navbar-default navbar-header">
-        <div class="container-fluid" align="center">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll">Leedr</a>
-            </div>
         </div>
-    </nav>
-
-
-    <div id="wrapper">
+    </div>
+</nav>
+<div id="wrapper">
+    <div ng-controller="RegisterCtrl">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li>
                     <a class="page-scroll" href="#supportedGames">Supported Games</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#contact">Contact Info.</a>
+                    <a class="page-scroll" href="#contact">Contact Info</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#about">About</a>
@@ -114,42 +76,37 @@
                     <a href="#/logout">Logout</a>
                 </li>
                 <li ng-if="!currentUser">
-                    <a href="#/register">Sign Up</a>
+                    <a href="#/register" ng-click="toggleSignup()">Sign Up</a>
                 </li>
             </ul>
->>>>>>> lyndsee
+        </div>
+
+        <div id="sign-up" ng-class="{show: showSignup}">
+            <form>
+                <label>First Name</label>
+                <input type="text" ng-model="user.first_name">
+                <br><br>
+                <label>Last Name</label>
+                <input type="text" ng-model="user.last_name">
+                <br><br>
+                <label>User Name</label>
+                <input type="text" ng-model="user.username">
+                <br><br>
+                <label>Password</label>
+                <input type="password" ng-model="user.password1">
+                <br><br>
+                <label>Verify Password</label>
+                <input type="password" ng-model="user.password2">
+                <br><br>
+                <label>Email Address</label>
+                <input type="email" ng-model="user.email">
+                <input type="submit" ng-click="submit()">
+
+                {{ sucess }}
+            </form>
         </div>
     </div>
-</nav>
-<div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#menu-toggle">Leedr</a>
-            </li>
-            <li>
-                <a class="page-scroll" href="#supportedGames">Supported Games</a>
-            </li>
-            <li>
-                <a class="page-scroll" href="#contact">Contact Info</a>
-            </li>
-            <li>
-                <a class="page-scroll" href="#about">About</a>
-            </li>
-            <li>
-                <a class="page-scroll" href="#faq">FAQ</a>
-            </li>
-            <li ng-if="!currentUser">
-                <a href="#/login">Login</a>
-            </li>
-            <li ng-if="!!currentUser">
-                <a href="#/logout">Logout</a>
-            </li>
-            <li ng-if="!currentUser">
-                <a href="#/register">Sign Up</a>
-            </li>
-        </ul>
-    </div>
+
 
     <div id="page-content-wrapper">
         <div class="container">
@@ -162,57 +119,7 @@
     </div>
 
 
-<<<<<<< HEAD
-<div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#">
-                    Leedr
-                </a>
-            </li>
-            <li>
-                <a href="#">Supported Games</a>
-            </li>
-            <li>
-                <a href="#">Contact Info.</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">FAQ</a>
-            </li>
-            <li>
-                <a href="#">Login</a>
-            </li>
-            <li>
-                <a href="#/sign_up" class="first">Sign Up</a>
-            </li>
-        </ul>
-
-    </div>
-
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Navigation Bar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<script src="js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-
-=======
-    <section id="#supportedGames">
+    <section id="supportedGames">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 text-left">
@@ -282,7 +189,6 @@
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>
->>>>>>> dev
 
 </body>
 </html>
