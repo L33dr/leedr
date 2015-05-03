@@ -12,3 +12,4 @@ db.sqlite3
 =======
 npm-debug.log
 >>>>>>> 35dbd6ee57c50147017dcb6696244636633e8914
+migrations/

@@ -1,0 +1,37 @@
+form {
+    font-family: sans-serif;
+    font-size: 12px;
+    padding: 5px;
+    margin: 20px;
+}
+
+input[type="text"] {
+    width: 120px;
+    border: 1px solid;
+    padding: 2px;
+    float: right;
+}
+
+input[type="password"] {
+    width: 120px;
+    border: 1px solid;
+    padding: 2px;
+    float: right;
+}
+
+input[type="email"] {
+    width: 120px;
+    border: 1px solid;
+    padding: 2px;
+    float: right;
+}
+
+label {
+    float: left;
+    margin-right: 10px;
+}
+
+header {
+    text-align: center;
+    font-size: 16px;
+}
