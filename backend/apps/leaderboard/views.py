@@ -49,7 +49,7 @@ class GameListView(generics.ListAPIView):
 
 class UserProfileView(generics.ListAPIView):
     serializer_class = UserProfileSerializer
-    queryset = UserGameProfile.objects.all()
+    queryset = UserProfile.objects.all()
 
 
 class UserGameProfileView(generics.ListAPIView):
