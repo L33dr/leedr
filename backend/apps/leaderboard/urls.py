@@ -6,7 +6,7 @@ from views import GoogleCallBack, GameListView, UserProfileView, UserGameProfile
 
 urlpatterns = [
     url(r'^googleCallBack/(?P<key>[.*]+)/$', GoogleCallBack.as_view()),
-    url(r'^gameList/$', GameListView.as_view(), name='game_list'),
-    url(r'^userProfile/$', UserProfileView.as_view(), name='user_profile'),
-    url(r'^userGameProfile/$', UserGameProfileView.as_view(), name='user_game_profile'),
+    url(r'^game-list/$', GameListView.as_view()),
+    url(r'^user-profile/$', UserProfileView.as_view()),
+    url(r'^user-game-profile/$', UserGameProfileView.as_view()),
 ]
