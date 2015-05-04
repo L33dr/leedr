@@ -2,13 +2,6 @@
 
 angular.module('myApp.login', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/login', {
-    templateUrl: 'authentication/login/login.html',
-    controller: 'LoginCtrl'
-  });
-}])
-
 .controller('LoginCtrl', ['$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService', '$location', function($scope, $rootScope, AUTH_EVENTS, AuthService, $location) {
         // Initializes the credential fields
         $scope.credentials = {
@@ -25,7 +18,8 @@ angular.module('myApp.login', ['ngRoute'])
               $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
               $scope.setCurrentUser(user);
               $location.path('/');
-              toastr.success("You logged in successfully.")
+              toastr.success("You logged in successfully.");
+              $scope.closePopOuts();
           }, function() {
               $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
               toastr.error("Please try again.")

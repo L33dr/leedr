@@ -57,63 +57,36 @@
     </div>
 </nav>
 <div id="wrapper">
-    <div ng-controller="RegisterCtrl">
+    <div>
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li>
-                    <a class="page-scroll" href="#/home/#supportedGames">Supported Games</a>
+                    <a class="page-scroll" href="#/home/#supportedGames" ng-click="closePopOuts()">Supported Games</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#/home/#contact">Contact Info</a>
+                    <a class="page-scroll" href="#/home/#contact" ng-click="closePopOuts()">Contact Info</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#/home/#about">About</a>
+                    <a class="page-scroll" href="#/home/#about" ng-click="closePopOuts()">About</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#/home/#faq">FAQ</a>
+                    <a class="page-scroll" href="#/home/#faq" ng-click="closePopOuts()">FAQ</a>
                 </li>
                 <li ng-if="!currentUser">
-                    <a href="#/login">Login</a>
+                    <a href="" ng-click="toggleLogin()">Login</a>
                 </li>
                 <li ng-if="!!currentUser">
-                    <a href="#/logout">Logout</a>
+                    <a href="" ng-click="toggleLogout()">Logout</a>
                 </li>
-                <li ng-if="!currentUser">
-                    <a href="#/register" ng-click="toggleSignup()">Sign Up</a>
+                <li ng-if="!currentUser" >
+                    <a href="" ng-click="toggleSignup()">Sign Up</a>
                 </li>
             </ul>
         </div>
 
-        <div id="sign-up" ng-class="{show: showSignup}">
-            <form>
-                <header>Create a Profile:</header>
-
-                <br>
-                <label>First Name</label><input type="text" ng-model="user.first_name">
-
-                <br><br>
-                <label>Last Name</label><input type="text" ng-model="user.last_name">
-
-                <br><br>
-                <label>User Name</label><input type="text" ng-model="user.username">
-
-                <br><br>
-                <label>Password</label><input type="password" ng-model="user.password1">
-
-                <br><br>
-                <label>Verify Password</label><input type="password" ng-model="user.password2">
-
-                <br><br>
-                <label>Email Address</label><input type="email" ng-model="user.email">
-
-                <br><br>
-                <div align="center">
-                    <input type="submit" ng-click="submit()">
-                </div>
-
-                {{ sucess }}
-            </form>
-        </div>
+        <div id="sign-up" ng-class="{show: showSignup}" ng-include="url='authentication/register/register.html'"></div>
+        <div id="login" ng-class="{show: showLogin}" ng-include="url='authentication/login/login.html'"></div>
+        <div id="logout" ng-class="{show: showLogout}" ng-include="url='authentication/logout/logout.html'"></div>
     </div>
 
 
