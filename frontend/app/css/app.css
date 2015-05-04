@@ -91,51 +91,6 @@
     background: none;
 }
 
-#sign-up {
-    position: fixed;
-    top: 52px;
-    left: -350px;
-    height: 100%;
-    background-color: #000;
-    color: #999;
-    transition: left .5s ease-in-out;
-    z-index: 1;
-}
-
-#sign-up.show {
-    left: 250px;
-}
-
-#login {
-    position: fixed;
-    top: 52px;
-    left: -350px;
-    height: 100%;
-    background-color: #000;
-    color: #999;
-    transition: left .5s ease-in-out;
-    z-index: 1;
-}
-
-#login.show {
-    left: 250px;
-}
-
-#logout {
-    position: fixed;
-    top: 52px;
-    left: -350px;
-    height: 100%;
-    background-color: #000;
-    color: #999;
-    transition: left .5s ease-in-out;
-    z-index: 1;
-}
-
-#logout.show {
-    left: 250px;
-}
-
 @media(min-width:700px) {
     #wrapper {
         padding-left: 200px;
@@ -170,6 +125,7 @@ section {
     border-color: #000000;
     padding: 20px;
     margin: 20px;
+    background-color: #d6d6d6;
 }
 
 
