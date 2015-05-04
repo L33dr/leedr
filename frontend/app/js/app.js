@@ -6,6 +6,7 @@ angular.module('myApp', [
     'ngCookies',
     'LocalStorageModule',
     'myApp.main',
+    'myApp.home',
     'myApp.register',
     'myApp.view1',
     'myApp.login',
@@ -14,7 +15,7 @@ angular.module('myApp', [
     'restangular'
 ]).
     config(['$routeProvider', 'RestangularProvider', '$httpProvider', function ($routeProvider, RestangularProvider, $httpProvider) {
-        $routeProvider.otherwise({redirectTo: '/view1'});
+        $routeProvider.otherwise({redirectTo: '/home'});
         RestangularProvider.setBaseUrl('http://localhost:8001');
         RestangularProvider.setRequestSuffix('/');
         $httpProvider.interceptors.push([
