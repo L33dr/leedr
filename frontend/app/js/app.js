@@ -107,11 +107,4 @@ angular.module('myApp', [
                 return $q.reject(response);
             }
         };
-    })
-;
-
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
     });
-
