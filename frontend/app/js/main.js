@@ -33,5 +33,31 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             });
         }
 
+        $scope.closePopOuts = function() {
+            $scope.showSignup = false;
+            $scope.showLogin = false;
+            $scope.showLogout = false;
+        };
+
+        $scope.showSignup = false;
+
+        $scope.toggleSignup = function () {
+            $scope.closePopOuts();
+            $scope.showSignup = !$scope.showSignup;
+        };
+
+        $scope.showLogin = false;
+
+        $scope.toggleLogin = function () {
+            $scope.closePopOuts();
+            $scope.showLogin = !$scope.showLogin;
+        };
+
+        $scope.showLogout = false;
+
+        $scope.toggleLogout = function () {
+            $scope.closePopOuts();
+            $scope.showLogout = !$scope.showLogout;
+        };
 
     }]);
