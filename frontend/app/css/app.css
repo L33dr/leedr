@@ -1,6 +1,30 @@
 .navbar {
-    margin-bottom: 0;
+    margin-bottom: 0px;
+
+
+
 }
+
+.navbar-brand {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  width: 110%;
+  height: 50px;
+  background-color: #d3d3d3;
+}
+
+.leedr {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  z-index: 9999999999;
+  width: 10%;
+  height: 20px;
+
+}
+
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
