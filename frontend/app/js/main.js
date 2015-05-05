@@ -60,3 +60,8 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
         };
 
     }]);
+
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
