@@ -79,21 +79,11 @@
             </ul>
         </div>
 
-        <div id="sign-up" ng-class="{show: showSignup}" ng-include="url='authentication/register/register.html'"></div>
-        <div id="login" ng-class="{show: showLogin}" ng-include="url='authentication/login/login.html'"></div>
-        <div id="logout" ng-class="{show: showLogout}" ng-include="url='authentication/logout/logout.html'"></div>
+        <div id="sign-up" ng-class="{show: showSignup}" ng-include="url='authentication/register/register.html'" style="margin-top: 40px"></div>
+        <div id="login" ng-class="{show: showLogin}" ng-include="url='authentication/login/login.html'" style="margin-top: 40px"></div>
+        <div id="logout" ng-class="{show: showLogout}" ng-include="url='authentication/logout/logout.html'" style="margin-top: 40px"></div>
     </div>
 
-
-    <div id="page-content-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 text-left">
-                    <a href="#menu-toggle" id="menu-toggle"><i class="fa fa-arrow-left fa-2x"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
 
 <!-- NG-VIEW -- REQUIRED -->
 <div ng-view></div>
