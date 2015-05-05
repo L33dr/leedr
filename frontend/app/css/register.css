@@ -48,5 +48,9 @@ label {
     left: 250px;
 }
 
+#contact .form {
+    float: left;
+}
+
 
 
