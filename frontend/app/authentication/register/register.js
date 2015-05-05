@@ -19,4 +19,7 @@ angular.module('myApp.register', ['ngRoute'])
                 toastr.error("There was a problem creating your account.")
             });
         };
+
+
+
 }]);

@@ -4,10 +4,14 @@ angular.module('myApp.login', ['ngRoute'])
 
 .controller('LoginCtrl', ['$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService', '$location', function($scope, $rootScope, AUTH_EVENTS, AuthService, $location) {
         // Initializes the credential fields
-        $scope.credentials = {
-            username: '',
-            password: ''
+        $scope.resetLoginField = function () {
+            $scope.credentials = {
+                username: '',
+                password: ''
+            };
         };
+
+        $scope.resetLoginField();
 
         $scope.submit = function (credentials) {
 
@@ -20,9 +24,11 @@ angular.module('myApp.login', ['ngRoute'])
               $location.path('/');
               toastr.success("You logged in successfully.");
               $scope.closePopOuts();
-          }, function() {
+              $scope.resetLoginField();
+          }, function(data) {
               $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-              toastr.error("Please try again.")
+              toastr.error(data.data.non_field_errors[0]);
+              $scope.resetLoginField();
           });
         };
 }]);

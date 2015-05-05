@@ -8,6 +8,7 @@ angular.module('myApp', [
     'myApp.main',
     'myApp.home',
     'myApp.register',
+    'myApp.test',
     'myApp.view1',
     'myApp.login',
     'myApp.logout',
@@ -36,22 +37,28 @@ angular.module('myApp', [
     }).
 
     service('Session', function () {
-        this.create = function (username) {
+        this.create = function (username, first_name, last_name, email) {
             this.username = username;
+            this.first_name = first_name;
+            this.last_name = last_name;
+            this.email = email;
         };
 
         this.destroy = function () {
             this.username = null;
+            this.first_name = null;
+            this.last_name = null;
+            this.email = null;
         }
     }).
 
     factory('AuthService', ['$http', 'Session', 'Restangular', 'localStorageService', function
+        ($http, Session, Restangular, localStorageService) {
 
         /*
          This is the base authentication service. This will reach out to the backend and do the authentication.
          This is where the MainCtrl looks to see if a user is authenticated. Services come here to run the login and logout functions.
          */
-        ($http, Session, Restangular, localStorageService) {
         var authService = {};
 
         authService.login = function (credentials) {
@@ -62,7 +69,7 @@ angular.module('myApp', [
                     // Save key to local storage once it works.
                     localStorageService.add('token', key.key);
                     // Create session.
-                    Session.create(res.username);
+                    Session.create(res.username, res.first_name, res.last_name, res.email);
                     return res;
                 });
 
@@ -87,7 +94,7 @@ angular.module('myApp', [
 
         authService.isAuthenticated = function () {
             // Doesn't do a whole lot yet.
-            return !!Session.username;
+            return Session.username !== null && typeof Session.username !== 'undefined';
         };
 
 

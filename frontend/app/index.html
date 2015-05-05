@@ -7,8 +7,6 @@
 <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +21,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/toastr/toastr.min.css">
     <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/signup.css">
+
 
     <title>Leedr</title>
 
@@ -52,7 +50,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll">Leedr</a>
+            <nav class="navbar-brand"></nav>
+            <h2 class="leedr">Leedr<h2>
+
         </div>
     </div>
 </nav>
@@ -75,7 +75,7 @@
                 <li ng-if="!currentUser">
                     <a href="" ng-click="toggleLogin()">Login</a>
                 </li>
-                <li ng-if="!!currentUser">
+                <li ng-if="currentUser">
                     <a href="" ng-click="toggleLogout()">Logout</a>
                 </li>
                 <li ng-if="!currentUser" >
@@ -116,6 +116,7 @@
 <script src="js/app.js"></script>
 <script src="js/main.js"></script>
 <script src="home/home.js"></script>
+<script src="test/test.js"></script>
 <script src="view1/view1.js"></script>
 <script src="authentication/register/register.js"></script>
 <script src="authentication/login/login.js"></script>
