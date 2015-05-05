@@ -1,28 +1,5 @@
 .navbar {
-    margin-bottom: 0px;
-
-
-
-}
-
-.navbar-brand {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999999;
-  width: 110%;
-  height: 50px;
-  background-color: #d3d3d3;
-}
-
-.leedr {
-  position: fixed;
-  top: 0;
-  left: 0px;
-  z-index: 9999999999;
-  width: 10%;
-  height: 20px;
-
+    margin-bottom: 0;
 }
 
 #wrapper {
@@ -39,7 +16,7 @@
 
 #sidebar-wrapper {
     z-index: 1000;
-    position: fixed;
+    margin-top: 51px;
     left: 200px;
     width: 0;
     height: 100%;
@@ -71,7 +48,7 @@
 
 .sidebar-nav {
     position: absolute;
-    top: 0;
+    top: 51px;
     width: 200px;
     margin: 0;
     padding: 0;
@@ -115,51 +92,6 @@
     background: none;
 }
 
-#sign-up {
-    position: fixed;
-    top: 52px;
-    left: -350px;
-    height: 100%;
-    background-color: #000;
-    color: #999;
-    transition: left .5s ease-in-out;
-    z-index: 1;
-}
-
-#sign-up.show {
-    left: 250px;
-}
-
-#login {
-    position: fixed;
-    top: 52px;
-    left: -350px;
-    height: 100%;
-    background-color: #000;
-    color: #999;
-    transition: left .5s ease-in-out;
-    z-index: 1;
-}
-
-#login.show {
-    left: 250px;
-}
-
-#logout {
-    position: fixed;
-    top: 52px;
-    left: -350px;
-    height: 100%;
-    background-color: #000;
-    color: #999;
-    transition: left .5s ease-in-out;
-    z-index: 1;
-}
-
-#logout.show {
-    left: 250px;
-}
-
 @media(min-width:700px) {
     #wrapper {
         padding-left: 200px;
@@ -194,7 +126,62 @@ section {
     border-color: #000000;
     padding: 20px;
     margin: 20px;
+    background-color: #d6d6d6;
 }
+
+#homepage {
+    margin-top: 52px;
+}
+
+#logout {
+    position: fixed;
+    top: 52px;
+    left: -350px;
+    height: 100%;
+    background-color: #000;
+    color: #999;
+    transition: left .5s ease-in-out;
+    z-index: 1;
+}
+
+#logout.show {
+    left: 250px;
+}
+
+#login {
+    position: fixed;
+    top: 52px;
+    left: -350px;
+    height: 100%;
+    background-color: #000;
+    color: #999;
+    transition: left .5s ease-in-out;
+    z-index: 1;
+}
+
+#login.show {
+    left: 250px;
+}
+
+#login.h3 {
+    font-family: sans-serif;
+    font-size: 22px;
+    padding: 5px;
+    margin: 20px;
+
+}
+
+#login.p {
+    font-family: sans-serif;
+    font-size: 12px;
+    padding: 5px;
+    margin: 20px;
+}
+
+
+
+
+
 
 
 
