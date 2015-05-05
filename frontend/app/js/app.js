@@ -49,6 +49,15 @@ angular.module('myApp', [
             this.first_name = null;
             this.last_name = null;
             this.email = null;
+        };
+
+        this.get = function () {
+            return {
+                'username': this.username,
+                'first_name': this.first_name,
+                'last_name': this.last_name,
+                'email': this.email
+            }
         }
     }).
 
@@ -117,8 +126,8 @@ angular.module('myApp', [
     })
 ;
 
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+$("#menu-toggle").click(function (e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
 
