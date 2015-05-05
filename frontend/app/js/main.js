@@ -10,7 +10,6 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
         // Initializes variables used throughout whole application.
 
         $scope.currentUser = null;
-        $scope.isAuthorized = AuthService.isAuthorized;
         $scope.setCurrentUser = function (user) {
             $scope.currentUser = user;
         };
@@ -22,9 +21,9 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             // Add token to default headers.
             Restangular.configuration.defaultHeaders.authorization = 'Token ' + token;
             Restangular.all('rest-auth/user').customGET().then(function (res) {
-                console.log(res);
                 Session.create(res.username);
                 $scope.setCurrentUser(res);
+                $scope.isAuthorized = AuthService.isAuthenticated();
 
             }, function (error) {
                 // ERROR with token. Remove it from local storage.
