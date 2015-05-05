@@ -1,6 +1,7 @@
 .navbar {
     margin-bottom: 0;
 }
+
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
@@ -15,7 +16,7 @@
 
 #sidebar-wrapper {
     z-index: 1000;
-    position: fixed;
+    margin-top: 51px;
     left: 200px;
     width: 0;
     height: 100%;
@@ -47,7 +48,7 @@
 
 .sidebar-nav {
     position: absolute;
-    top: 0;
+    top: 51px;
     width: 200px;
     margin: 0;
     padding: 0;
@@ -127,6 +128,14 @@ section {
     margin: 20px;
     background-color: #d6d6d6;
 }
+
+#homepage {
+    margin-top: 52px;
+}
+
+
+
+
 
 
 
