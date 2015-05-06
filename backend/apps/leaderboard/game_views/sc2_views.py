@@ -74,8 +74,8 @@ class UserAchievementView(generics.RetrieveAPIView):
     queryset = UserAchievement.objects.all()
 
 
-class SC2GameDataView(generics.RetrieveAPIView):
-    authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = (permissions.IsAuthenticated,)
+class SC2GameDataView(generics.ListAPIView):
+    #authentication_classes = (authentication.TokenAuthentication,)
+    #permission_classes = (permissions.IsAuthenticated,)
     serializer_class = SC2GameDataSerializer
     queryset = SC2GameData.objects.all()
