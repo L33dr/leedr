@@ -245,12 +245,21 @@ label {
     margin-top: 50px;
 }
 
-.main-body {
-    margin-left: 250px;
-}
 
 #menu-toggle {
      margin-left: 250px;
+}
+
+#main-body {
+    margin-left: 250px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#main-body.toggled {
+    margin-left: 51px;
 }
 
 

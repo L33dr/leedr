@@ -45,9 +45,11 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
                 $scope.showLogout = false;
                 setTimeout(function () {
                     $("#wrapper").toggleClass("toggled");
+                    $("#main-body").toggleClass("toggled");
                 }, 500);
             } else {
                 $("#wrapper").toggleClass("toggled");
+                $("#main-body").toggleClass("toggled");
             }
         };
 
