@@ -38,6 +38,19 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             $scope.showLogout = false;
         };
 
+        $scope.toggleEntireNav = function() {
+            if ($scope.showSignup || $scope.showLogin || $scope.showLogout) {
+                $scope.showSignup = false;
+                $scope.showLogin = false;
+                $scope.showLogout = false;
+                setTimeout(function () {
+                    $("#wrapper").toggleClass("toggled");
+                }, 500);
+            } else {
+                $("#wrapper").toggleClass("toggled");
+            }
+        };
+
         $scope.showSignup = false;
 
         $scope.toggleSignup = function () {
@@ -61,7 +74,3 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
 
     }]);
 
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
