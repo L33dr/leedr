@@ -36,13 +36,13 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             $scope.showSignup = false;
             $scope.showLogin = false;
             $scope.showLogout = false;
+            $("#main-body").removeClass("toggledPopOut");
+            $("#menu-toggle").removeClass("toggledPopOut");
         };
 
         $scope.toggleEntireNav = function() {
             if ($scope.showSignup || $scope.showLogin || $scope.showLogout) {
-                $scope.showSignup = false;
-                $scope.showLogin = false;
-                $scope.showLogout = false;
+                $scope.closePopOuts();
                 setTimeout(function () {
                     $("#wrapper").toggleClass("toggled");
                     $("#main-body").toggleClass("toggled");
@@ -60,6 +60,8 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
         $scope.toggleSignup = function () {
             if (!$scope.showSignup) {
                 $scope.closePopOuts();
+                $("#main-body").addClass("toggledPopOut");
+                $("#menu-toggle").addClass("toggledPopOut");
                 $scope.showSignup = !$scope.showSignup;
             } else {
                 $scope.closePopOuts();
@@ -71,6 +73,8 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
         $scope.toggleLogin = function () {
             if (!$scope.showLogin) {
                 $scope.closePopOuts();
+                $("#main-body").addClass("toggledPopOut");
+                $("#menu-toggle").addClass("toggledPopOut");
                 $scope.showLogin = !$scope.showLogin;
             } else {
                 $scope.closePopOuts();
@@ -82,6 +86,8 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
         $scope.toggleLogout = function () {
             if (!$scope.showLogout) {
                 $scope.closePopOuts();
+                $("#main-body").addClass("toggledPopOut");
+                $("#menu-toggle").addClass("toggledPopOut");
                 $scope.showLogout = !$scope.showLogout;
             } else {
                 $scope.closePopOuts();
