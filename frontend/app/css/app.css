@@ -259,6 +259,10 @@ label {
 
 }
 
+#menu-toggle.toggledPopOut {
+    margin-left: 500px;
+}
+
 #main-body {
     margin-left: 250px;
     -webkit-transition: all 0.5s ease;
@@ -269,6 +273,10 @@ label {
 
 #main-body.toggled {
     margin-left: 51px;
+}
+
+#main-body.toggledPopOut {
+    margin-left: 500px;
 }
 
 
