@@ -54,22 +54,34 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
         $scope.showSignup = false;
 
         $scope.toggleSignup = function () {
-            $scope.closePopOuts();
-            $scope.showSignup = !$scope.showSignup;
+            if (!$scope.showSignup) {
+                $scope.closePopOuts();
+                $scope.showSignup = !$scope.showSignup;
+            } else {
+                $scope.closePopOuts();
+            }
         };
 
         $scope.showLogin = false;
 
         $scope.toggleLogin = function () {
-            $scope.closePopOuts();
-            $scope.showLogin = !$scope.showLogin;
+            if (!$scope.showLogin) {
+                $scope.closePopOuts();
+                $scope.showLogin = !$scope.showLogin;
+            } else {
+                $scope.closePopOuts();
+            }
         };
 
         $scope.showLogout = false;
 
         $scope.toggleLogout = function () {
-            $scope.closePopOuts();
-            $scope.showLogout = !$scope.showLogout;
+            if (!$scope.showLogout) {
+                $scope.closePopOuts();
+                $scope.showLogout = !$scope.showLogout;
+            } else {
+                $scope.closePopOuts();
+            }
         };
 
     }]);
