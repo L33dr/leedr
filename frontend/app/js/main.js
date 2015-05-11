@@ -46,10 +46,12 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
                 setTimeout(function () {
                     $("#wrapper").toggleClass("toggled");
                     $("#main-body").toggleClass("toggled");
+                    $("#menu-toggle").toggleClass("toggled");
                 }, 500);
             } else {
                 $("#wrapper").toggleClass("toggled");
                 $("#main-body").toggleClass("toggled");
+                $("#menu-toggle").toggleClass("toggled");
             }
         };
 
