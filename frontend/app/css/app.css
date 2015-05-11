@@ -20,13 +20,14 @@
 }
 
 #wrapper.toggled {
-    padding-left: 200px;
+    padding-left: 250px;
 }
 
 #sidebar-wrapper {
     z-index: 1000;
     margin-top: 51px;
-    left: 200px;
+    position: fixed;
+    left: 250px;
     width: 0;
     height: 100%;
     margin-left: -250px;
@@ -242,6 +243,14 @@ label {
 
 .bring-button-down {
     margin-top: 50px;
+}
+
+.main-body {
+    margin-left: 250px;
+}
+
+#menu-toggle {
+     margin-left: 250px;
 }
 
 
