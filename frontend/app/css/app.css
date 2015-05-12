@@ -134,11 +134,22 @@
     color: #999999;
 }
 
+.li-arrow {
+    line-height: 1px !important;
+}
+
+.li-arrow a:hover {
+    text-decoration: none !important;
+    color: #fff !important;
+    background: rgba(255,255,255, 0) !important;
+}
+
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #fff;
     background: rgba(255,255,255,0.2);
 }
+
 
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
@@ -303,8 +314,7 @@ label {
 
 #menu-toggle-in-nav {
     margin: auto;
-    left: 215px;
-    top: 43.5%;
+    left: 170px;
     bottom: 50%;
     position: relative;
     -webkit-transition: all 0.5s ease;
@@ -315,9 +325,8 @@ label {
 
 #menu-toggle-in-nav-sm {
     margin: auto;
-    right: 0;
-    top: 50%;
-    bottom: 50%;
+    left: 10px;
+    top: 50px;
     position: relative;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
