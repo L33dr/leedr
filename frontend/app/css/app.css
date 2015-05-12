@@ -284,31 +284,7 @@ section {
 }
 
 form {
-    font-family: sans-serif;
-    font-size: 12px;
-    padding: 5px;
-    margin: 20px;
-}
-
-input[type="text"] {
-    width: 120px;
-    border: 1px solid;
-    padding: 3px;
-    float: right;
-}
-
-input[type="password"] {
-    width: 120px;
-    border: 1px solid;
-    padding: 3px;
-    float: right;
-}
-
-input[type="email"] {
-    width: 120px;
-    border: 1px solid;
-    padding: 3px;
-    float: right;
+    padding: 15px;
 }
 
 label {

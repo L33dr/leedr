@@ -37,8 +37,8 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             $scope.showSignup = false;
             $scope.showLogin = false;
             $scope.showLogout = false;
+            $("#menu-toggle-in-nav").toggleClass("hidden");
             $("#main-body").removeClass("toggledPopOut");
-            $("#menu-toggle").removeClass("toggledPopOut");
         };
 
         $scope.toggleEntireNav = function () {
@@ -55,7 +55,6 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
                     }
                     $("#wrapper").toggleClass("toggled");
                     $("#main-body").toggleClass("toggled");
-                    $("#menu-toggle").toggleClass("toggled");
 
                 }, 500);
             } else {
@@ -69,7 +68,6 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
                     }
                     $("#wrapper").toggleClass("toggled");
                     $("#main-body").toggleClass("toggled");
-                    $("#menu-toggle").toggleClass("toggled");
 
                 }, 500);
             }
@@ -81,7 +79,6 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             if (!$scope.showSignup) {
                 $scope.closePopOuts();
                 $("#main-body").addClass("toggledPopOut");
-                $("#menu-toggle").addClass("toggledPopOut");
                 $scope.showSignup = !$scope.showSignup;
             } else {
                 $scope.closePopOuts();
@@ -94,7 +91,6 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             if (!$scope.showLogin) {
                 $scope.closePopOuts();
                 $("#main-body").addClass("toggledPopOut");
-                $("#menu-toggle").addClass("toggledPopOut");
                 $scope.showLogin = !$scope.showLogin;
             } else {
                 $scope.closePopOuts();
@@ -107,7 +103,6 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             if (!$scope.showLogout) {
                 $scope.closePopOuts();
                 $("#main-body").addClass("toggledPopOut");
-                $("#menu-toggle").addClass("toggledPopOut");
                 $scope.showLogout = !$scope.showLogout;
             } else {
                 $scope.closePopOuts();

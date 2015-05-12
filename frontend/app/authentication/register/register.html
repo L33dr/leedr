@@ -1,26 +1,32 @@
 <div id="register">
-<form ng-controller="RegisterCtrl">
-    <label>First Name</label>
-    <input type="text" ng-model="user.first_name">
-    <br><br>
-    <label>Last Name</label>
-    <input type="text" ng-model="user.last_name">
-    <br><br>
-    <label>User Name</label>
-    <input type="text" ng-model="user.username">
-    <br><br>
-    <label>Password</label>
-    <input type="password" ng-model="user.password1">
-    <br><br>
-    <label>Verify Password</label>
-    <input type="password" ng-model="user.password2">
-    <br><br>
-    <label>Email Address</label>
-    <input type="email" ng-model="user.email">
-    <br><br>
-    <div>
-        <button type="submit" ng-click="submit()">Register</button>
-        <button type="button" ng-click="closePopOuts()" class="btn-flt-right">Close</button>
-    </div>
-</form>
+    <form ng-controller="RegisterCtrl">
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" ng-model="user.first_name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" ng-model="user.last_name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>User Name</label>
+            <input type="text" ng-model="user.username" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" ng-model="user.password1" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Verify Password</label>
+            <input type="password" ng-model="user.password2" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" ng-model="user.email" class="form-control">
+        </div>
+        <div>
+            <button type="submit" ng-click="submit()" class="btn btn-info">Register</button>
+            <button type="button" ng-click="closePopOuts()" class="btn-flt-right btn btn-danger">Close</button>
+        </div>
+    </form>
 </div>
