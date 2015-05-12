@@ -50,9 +50,12 @@ class GameListView(generics.ListAPIView):
 
 
 class UserProfileView(generics.ListAPIView):
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
     serializer_class = UserProfileSerializer
-    queryset = UserProfile.objects.all()
 
+    def get_queryset(self):
+        return UserProfile.objects.filter(user__username__exact=self.request.user).all()
 
 class UserGameProfileView(generics.ListAPIView):
     authentication_classes = (authentication.TokenAuthentication,)

@@ -9,6 +9,7 @@ angular.module('myApp', [
     'myApp.home',
     'myApp.register',
     'myApp.test',
+    'myApp.dashboardHome',
     'myApp.view1',
     'myApp.login',
     'myApp.logout',
