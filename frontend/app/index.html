@@ -51,6 +51,7 @@
 
 <div id="wrapper">
         <div id="sidebar-wrapper">
+            <a href="" id="menu-toggle-in-nav" ng-click="toggleEntireNav()"><i class="fa fa-arrow-left fa-2x"></i></a>
             <ul class="sidebar-nav">
                 <li>
                     <a class="page-scroll" href="#/home/#supportedGames" ng-click="closePopOuts()">Supported Games</a>
@@ -74,6 +75,7 @@
                     <a href="" ng-click="toggleSignup()">Sign Up</a>
                 </li>
             </ul>
+
         </div>
 
         <div id="sign-up" ng-class="{show: showSignup}" ng-include="url='authentication/register/register.html'"></div>
@@ -81,16 +83,11 @@
         <div id="logout" ng-class="{show: showLogout}" ng-include="url='authentication/logout/logout.html'"></div>
     </div>
 
-    <div id="page-content-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-1 text-left">
-                    <a href="" id="menu-toggle" ng-click="toggleEntireNav()"><i class="fa fa-arrow-left fa-2x bring-button-down"></i></a>
-                </div>
-            </div>
+    <div id="wrapper-sm" class="toggled">
+        <div id="sidebar-wrapper-sm">
+            <a href="" id="menu-toggle-in-nav-sm" ng-click="toggleEntireNav()"><i class="fa fa-arrow-right fa-2x"></i></a>
         </div>
     </div>
-
 
 <!-- NG-VIEW -- REQUIRED -->
 <div ng-view id="main-body"></div>

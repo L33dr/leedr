@@ -82,6 +82,21 @@
     transition: all 0.5s ease;
 }
 
+#sidebar-wrapper-sm {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;
 }
@@ -171,7 +186,25 @@
         position: relative;
         margin-right: 0;
     }
+
+    #wrapper-sm {
+        padding-left: 40px;
+    }
+
+    #wrapper-sm.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper-sm {
+        width: 40px;
+    }
+
+    #wrapper-sm.toggled #sidebar-wrapper-sm {
+        width: 0;
+    }
+
 }
+
 
 section {
     border-width: 1px;
@@ -292,24 +325,32 @@ label {
 }
 
 
-#menu-toggle {
-     margin-left: 250px;
+#menu-toggle-in-nav {
+    margin: auto;
+    left: 225px;
+    top: 43.5%;
+    bottom: 50%;
+    position: relative;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
 
-#menu-toggle.toggled {
-    margin-left: 51px;
-
-}
-
-#menu-toggle.toggledPopOut {
-    margin-left: 500px;
+#menu-toggle-in-nav-sm {
+    margin: auto;
+    right: 0;
+    top: 50%;
+    bottom: 50%;
+    position: relative;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 #main-body {
+    padding-top: 50px;
     margin-left: 250px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;

@@ -1,7 +1,7 @@
 'use strict';
 /*
-This is the main controller for the front end application. use this controller to make changes to navbar/home page.
-Active user will be set on this scope as it will be the highest on the DOM.
+ This is the main controller for the front end application. use this controller to make changes to navbar/home page.
+ Active user will be set on this scope as it will be the highest on the DOM.
  */
 
 angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope', 'AuthService', 'Restangular', 'Session', 'localStorageService',
@@ -10,6 +10,7 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
         // Initializes variables used throughout whole application.
 
         $scope.currentUser = null;
+        $scope.smWrapper = false;
         $scope.setCurrentUser = function (user) {
             $scope.currentUser = user;
         };
@@ -32,7 +33,7 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             });
         }
 
-        $scope.closePopOuts = function() {
+        $scope.closePopOuts = function () {
             $scope.showSignup = false;
             $scope.showLogin = false;
             $scope.showLogout = false;
@@ -40,18 +41,37 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             $("#menu-toggle").removeClass("toggledPopOut");
         };
 
-        $scope.toggleEntireNav = function() {
+        $scope.toggleEntireNav = function () {
             if ($scope.showSignup || $scope.showLogin || $scope.showLogout) {
                 $scope.closePopOuts();
+                var smallNavOpen = $("#wrapper-sm").hasClass("toggled");
                 setTimeout(function () {
+                    if (!smallNavOpen) {
+                        $("#wrapper-sm").toggleClass("toggled");
+                    } else {
+                        setTimeout(function () {
+                            $("#wrapper-sm").toggleClass("toggled");
+                        }, 250);
+                    }
                     $("#wrapper").toggleClass("toggled");
                     $("#main-body").toggleClass("toggled");
                     $("#menu-toggle").toggleClass("toggled");
+
                 }, 500);
             } else {
-                $("#wrapper").toggleClass("toggled");
-                $("#main-body").toggleClass("toggled");
-                $("#menu-toggle").toggleClass("toggled");
+                setTimeout(function () {
+                    if (!smallNavOpen) {
+                        $("#wrapper-sm").toggleClass("toggled");
+                    } else {
+                        setTimeout(function () {
+                            $("#wrapper-sm").toggleClass("toggled");
+                        }, 250);
+                    }
+                    $("#wrapper").toggleClass("toggled");
+                    $("#main-body").toggleClass("toggled");
+                    $("#menu-toggle").toggleClass("toggled");
+
+                }, 500);
             }
         };
 
