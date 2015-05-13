@@ -12,6 +12,7 @@ from apps.leaderboard.game_serializers.sc2_serializers import SC2CareerSerialize
     CampaignSerializer, SeasonSerializer, RewardsListSerializer, UserCategoryPointsSerializer,\
     UserAchievementPointsSerializer, UserAchievementListSerializer,\
     UserAchievementSerializer, SC2GameDataSerializer
+from apps.leaderboard.models import UserProfile
 
 
 class SC2CareerView(generics.RetrieveAPIView):
@@ -75,7 +76,16 @@ class UserAchievementView(generics.RetrieveAPIView):
 
 
 class SC2GameDataView(generics.ListAPIView):
-    #authentication_classes = (authentication.TokenAuthentication,)
-    #permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
     serializer_class = SC2GameDataSerializer
-    queryset = SC2GameData.objects.all()
+
+    def get_queryset(self):
+        profile = UserProfile.objects.filter(user=self.request.user).first()
+        data = SC2GameData.objects.filter(user_game_profile__userprofile__user=self.request.user)
+        # Non-premium members only get the first result
+        if profile.premium:
+            return data.all()
+        else:
+            # Needs to return a list type
+            return [data.first(), ]
