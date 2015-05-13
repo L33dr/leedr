@@ -24,8 +24,3 @@ angular.module('myApp.dashboardGameDetail', ['ngRoute'])
 
 
         }]);
-
-
-//# Games service
-//# Filter based on service
-//# get urls out of controller
