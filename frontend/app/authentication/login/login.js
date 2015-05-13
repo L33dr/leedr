@@ -2,7 +2,8 @@
 
 angular.module('myApp.login', ['ngRoute'])
 
-.controller('LoginCtrl', ['$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService', '$location', function($scope, $rootScope, AUTH_EVENTS, AuthService, $location) {
+.controller('LoginCtrl', ['$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService', '$location', 'Session',
+        function($scope, $rootScope, AUTH_EVENTS, AuthService, $location, Session) {
         // Initializes the credential fields
         $scope.resetLoginField = function () {
             $scope.credentials = {
@@ -18,9 +19,8 @@ angular.module('myApp.login', ['ngRoute'])
             // Calls the login function, passing the credentials.
             // On success it will broadcast the login success event
             // set the current user then redirect to home page.
-          AuthService.login(credentials).then(function (user) {
+          AuthService.login(credentials).then(function () {
               $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-              $scope.setCurrentUser(user);
               $location.path('/');
               toastr.success("You logged in successfully.");
               $scope.closePopOuts();

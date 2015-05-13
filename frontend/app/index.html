@@ -68,13 +68,13 @@
                 <li>
                     <a class="page-scroll" href="#/home/#faq" ng-click="closePopOuts()">FAQ</a>
                 </li>
-                <li ng-if="!currentUser">
+                <li ng-if="!user.username">
                     <a href="" ng-click="toggleLogin()">Login</a>
                 </li>
-                <li ng-if="currentUser">
+                <li ng-if="user.username">
                     <a href="" ng-click="toggleLogout()">Logout</a>
                 </li>
-                <li ng-if="!currentUser" >
+                <li ng-if="!user.username" >
                     <a href="" ng-click="toggleSignup()">Sign Up</a>
                 </li>
             </ul>

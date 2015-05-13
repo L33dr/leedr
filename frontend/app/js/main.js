@@ -4,16 +4,13 @@
  Active user will be set on this scope as it will be the highest on the DOM.
  */
 
-angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope', 'AuthService', 'Restangular', 'Session', 'localStorageService',
-    function ($scope, AuthService, Restangular, Session, localStorageService) {
+angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope', '$rootScope', 'AuthService', 'Restangular', 'Session', 'localStorageService',
+    function ($scope, $rootScope, AuthService, Restangular, Session, localStorageService) {
 
         // Initializes variables used throughout whole application.
 
         $scope.currentUser = null;
         $scope.smWrapper = false;
-        $scope.setCurrentUser = function (user) {
-            $scope.currentUser = user;
-        };
 
         // This will load the current user if they are still signed in.
         var token = localStorageService.get('token');
@@ -21,10 +18,13 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
         if (token) {
             // Add token to default headers.
             Restangular.configuration.defaultHeaders.authorization = 'Token ' + token;
-            Restangular.all('rest-auth/user').customGET().then(function (res) {
-                Session.create(res.username);
-                $scope.setCurrentUser(res);
-                $scope.isAuthorized = AuthService.isAuthenticated();
+
+            // Get the user profile data using the existing token from previous login
+            Restangular.all('leedr/user-profile').customGET().then(function (res) {
+                var user_data = res[0];
+                Session.create(user_data.user.username, user_data.user.first_name, user_data.user.last_name,
+                        user_data.user.email, user_data.premium, user_data.games);
+                Session.get();
 
             }, function (error) {
                 // ERROR with token. Remove it from local storage.

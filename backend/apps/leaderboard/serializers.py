@@ -19,6 +19,8 @@ class UserSerializer(ModelSerializer):
 
     class Meta(UserDetailsSerializer.Meta):
         model = User
+        fields = ('username', 'email', 'first_name', 'last_name')
+        read_only_fields = ('email', )
 
 
 class UserGameProfileSerializer(ModelSerializer):

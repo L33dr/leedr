@@ -7,9 +7,9 @@ angular.module('myApp.register', ['ngRoute'])
         // They will need to confirm email before they are able to sign in.
 
         $scope.submit = function () {
-            Restangular.one('rest-auth/registration').customPOST($scope.user).then(function (){
+            Restangular.one('rest-auth/registration').customPOST($scope.registerUser).then(function (){
                 $scope.success = true;
-                $scope.user = null;
+                $scope.registerUser = null;
                 $scope.showSignup = !$scope.showSignup;
                 toastr.info("Please confirm your email.");
                 toastr.success("Your profile was created successfully.");
@@ -19,7 +19,4 @@ angular.module('myApp.register', ['ngRoute'])
                 toastr.error("There was a problem creating your account.")
             });
         };
-
-
-
 }]);

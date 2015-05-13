@@ -1,10 +1,12 @@
 angular.module('myApp.auth', ['ngRoute']).
-    service('Session', function () {
-        this.create = function (username, first_name, last_name, email) {
+    service('Session', ['$rootScope', function ($rootScope) {
+        this.create = function (username, first_name, last_name, email, premium, games) {
             this.username = username;
             this.first_name = first_name;
             this.last_name = last_name;
             this.email = email;
+            this.premium = premium;
+            this.games = games;
         };
 
         this.destroy = function () {
@@ -12,17 +14,22 @@ angular.module('myApp.auth', ['ngRoute']).
             this.first_name = null;
             this.last_name = null;
             this.email = null;
+            this.premium = null;
+            this.games = null;
         };
 
         this.get = function () {
-            return {
+            $rootScope.user =  {
                 'username': this.username,
                 'first_name': this.first_name,
                 'last_name': this.last_name,
-                'email': this.email
-            }
+                'email': this.email,
+                'premium': this.premium,
+                'games': this.games
+            };
+            return $rootScope.user
         }
-    }).
+    }]).
     factory('AuthService', ['$http', 'Session', 'Restangular', 'localStorageService', function
         ($http, Session, Restangular, localStorageService) {
 
@@ -36,12 +43,14 @@ angular.module('myApp.auth', ['ngRoute']).
             return Restangular.one('rest-auth/login').customPOST(credentials).then(function (key) {
                 // Sets the default header so the backend knows which user is authenticated.
                 Restangular.configuration.defaultHeaders.authorization = 'Token ' + key.key;
-                return Restangular.all('rest-auth/user').customGET().then(function (res) {
+                return Restangular.all('leedr/user-profile').customGET().then(function (res) {
                     // Save key to local storage once it works.
                     localStorageService.add('token', key.key);
                     // Create session.
-                    console.log(res);
-                    Session.create(res.username, res.first_name, res.last_name, res.email);
+                    var user_data = res[0];
+                    Session.create(user_data.user.username, user_data.user.first_name, user_data.user.last_name,
+                        user_data.user.email, user_data.premium, user_data.games);
+                    Session.get();
                     return res;
                 });
 
@@ -54,20 +63,19 @@ angular.module('myApp.auth', ['ngRoute']).
                 Restangular.configuration.defaultHeaders.authorization = '';
                 localStorageService.remove('token');
                 Session.destroy();
+                Session.get();
                 return true
             }, function (error) {
                 // Removes it anyways as we will have them reloggin.
                 Restangular.configuration.defaultHeaders.authorization = '';
                 localStorageService.remove('token');
                 Session.destroy();
+                Session.get();
                 return error
             });
         };
 
-        authService.isAuthenticated = function () {
-            // Doesn't do a whole lot yet.
-            return Session.username !== null && typeof Session.username !== 'undefined';
-        };
+        authService.isAuthenticated = Session.username !== null && typeof Session.username !== 'undefined';
 
 
         return authService;
