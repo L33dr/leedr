@@ -1,0 +1,12 @@
+<div>
+    Welcome, {{ userprofile.user.username }}!
+    <br>
+    You have these games:
+    <ul>
+        <li ng-repeat="usergame in userprofile.games">
+            <img ng-if="usergame.game.thumbnail" ng-src="{{ usergame.game.thumbnail }}" class="img-circle" height="100">
+            <br ng-if="usergame.game.thumbnail">
+            {{ usergame.game.name }}
+        </li>
+    </ul>
+</div>

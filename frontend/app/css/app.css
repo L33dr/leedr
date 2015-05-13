@@ -2,6 +2,15 @@
     margin-bottom: 0;
 }
 
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 28px;
+  line-height: 20px;
+}
+
+
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
@@ -11,13 +20,14 @@
 }
 
 #wrapper.toggled {
-    padding-left: 200px;
+    padding-left: 250px;
 }
 
 #sidebar-wrapper {
     z-index: 1000;
     margin-top: 51px;
-    left: 200px;
+    position: fixed;
+    left: 250px;
     width: 0;
     height: 100%;
     margin-left: -250px;
@@ -45,11 +55,69 @@
 }
 
 /* Sidebar Styles */
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper-sm {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
 
 .sidebar-nav {
     position: absolute;
-    top: 51px;
-    width: 200px;
+    top: 0;
+    width: 250px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -66,11 +134,22 @@
     color: #999999;
 }
 
+.li-arrow {
+    line-height: 1px !important;
+}
+
+.li-arrow a:hover {
+    text-decoration: none !important;
+    color: #fff !important;
+    background: rgba(255,255,255, 0) !important;
+}
+
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #fff;
     background: rgba(255,255,255,0.2);
 }
+
 
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
@@ -92,9 +171,9 @@
     background: none;
 }
 
-@media(min-width:700px) {
+@media(min-width:768px) {
     #wrapper {
-        padding-left: 200px;
+        padding-left: 250px;
     }
 
     #wrapper.toggled {
@@ -118,7 +197,25 @@
         position: relative;
         margin-right: 0;
     }
+
+    #wrapper-sm {
+        padding-left: 40px;
+    }
+
+    #wrapper-sm.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper-sm {
+        width: 40px;
+    }
+
+    #wrapper-sm.toggled #sidebar-wrapper-sm {
+        width: 0;
+    }
+
 }
+
 
 section {
     border-width: 1px;
@@ -135,9 +232,10 @@ section {
 
 #logout {
     position: fixed;
-    top: 52px;
+    top: 50px;
     left: -350px;
     height: 100%;
+    width: 275px;
     background-color: #000;
     color: #999;
     transition: left .5s ease-in-out;
@@ -150,9 +248,10 @@ section {
 
 #login {
     position: fixed;
-    top: 52px;
+    top: 50px;
     left: -350px;
     height: 100%;
+    width: 275px;
     background-color: #000;
     color: #999;
     transition: left .5s ease-in-out;
@@ -178,10 +277,85 @@ section {
     margin: 20px;
 }
 
+#sign-up {
+    position: fixed;
+    top: 50px;
+    left: -350px;
+    height: 100%;
+    width: 275px;
+    background-color: #000;
+    color: #999;
+    transition: left .5s ease-in-out;
+    z-index: 1;
+}
 
 
+#sign-up.show {
+    left: 250px;
+}
+
+form {
+    padding: 15px;
+}
+
+label {
+    float: left;
+    margin-right: 10px;
+}
+
+.btn-flt-right {
+    float: right;
+}
+
+.bring-button-down {
+    margin-top: 50px;
+}
 
 
+#menu-toggle-in-nav {
+    margin: auto;
+    left: 170px;
+    bottom: 50%;
+    position: relative;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#menu-toggle-in-nav-sm {
+    color: #999999;
+    margin: auto;
+    left: 10px;
+    top: 50px;
+    position: relative;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#menu-toggle-in-nav-sm:hover{
+    color: #fff;
+    background: rgba(255,255,255, 0);
+}
+
+#main-body {
+    padding-top: 50px;
+    margin-left: 250px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#main-body.toggled {
+    margin-left: 51px;
+}
+
+#main-body.toggledPopOut {
+    margin-left: 525px;
+}
 
 
 

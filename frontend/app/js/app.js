@@ -9,6 +9,7 @@ angular.module('myApp', [
     'myApp.home',
     'myApp.register',
     'myApp.test',
+    'myApp.dashboardHome',
     'myApp.view1',
     'myApp.login',
     'myApp.logout',
@@ -123,11 +124,5 @@ angular.module('myApp', [
                 return $q.reject(response);
             }
         };
-    })
-;
-
-$("#menu-toggle").click(function (e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-});
+    });
 

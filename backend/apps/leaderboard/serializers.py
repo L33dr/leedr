@@ -21,18 +21,17 @@ class UserSerializer(ModelSerializer):
         model = User
 
 
-class UserProfileSerializer(ModelSerializer):
-    user = UserSerializer(required=True, many=False)
-
-    class Meta:
-        model = UserProfile
-        fields = ('premium', 'user')
-
-
 class UserGameProfileSerializer(ModelSerializer):
-    user = UserProfileSerializer(required=True, many=False)
     game = GameDetailSerializer(required=True, many=False)
 
     class Meta:
         model = UserGameProfile
-        fields = ('user', 'game', 'game_user_name')
+        fields = ('game', 'game_user_name')
+
+class UserProfileSerializer(ModelSerializer):
+    user = UserSerializer(required=True, many=False)
+    games = UserGameProfileSerializer(required=False, many=True)
+
+    class Meta:
+        model = UserProfile
+        fields = ('premium', 'user', 'games')

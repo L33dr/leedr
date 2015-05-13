@@ -1,7 +1,7 @@
 'use strict';
 /*
-This is the main controller for the front end application. use this controller to make changes to navbar/home page.
-Active user will be set on this scope as it will be the highest on the DOM.
+ This is the main controller for the front end application. use this controller to make changes to navbar/home page.
+ Active user will be set on this scope as it will be the highest on the DOM.
  */
 
 angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope', 'AuthService', 'Restangular', 'Session', 'localStorageService',
@@ -10,6 +10,7 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
         // Initializes variables used throughout whole application.
 
         $scope.currentUser = null;
+        $scope.smWrapper = false;
         $scope.setCurrentUser = function (user) {
             $scope.currentUser = user;
         };
@@ -32,36 +33,84 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             });
         }
 
-        $scope.closePopOuts = function() {
+        $scope.closePopOuts = function () {
             $scope.showSignup = false;
             $scope.showLogin = false;
             $scope.showLogout = false;
+            $("#menu-toggle-in-nav").removeClass("hidden");
+            $("#main-body").removeClass("toggledPopOut");
+        };
+
+        $scope.toggleEntireNav = function () {
+            if ($scope.showSignup || $scope.showLogin || $scope.showLogout) {
+                $scope.closePopOuts();
+                var smallNavOpen = $("#wrapper-sm").hasClass("toggled");
+                setTimeout(function () {
+                    if (!smallNavOpen) {
+                        $("#wrapper-sm").toggleClass("toggled");
+                    } else {
+                        setTimeout(function () {
+                            $("#wrapper-sm").toggleClass("toggled");
+                        }, 250);
+                    }
+                    $("#wrapper").toggleClass("toggled");
+                    $("#main-body").toggleClass("toggled");
+
+                }, 500);
+            } else {
+                setTimeout(function () {
+                    if (!smallNavOpen) {
+                        $("#wrapper-sm").toggleClass("toggled");
+                    } else {
+                        setTimeout(function () {
+                            $("#wrapper-sm").toggleClass("toggled");
+                        }, 250);
+                    }
+                    $("#wrapper").toggleClass("toggled");
+                    $("#main-body").toggleClass("toggled");
+
+                }, 500);
+            }
         };
 
         $scope.showSignup = false;
 
         $scope.toggleSignup = function () {
-            $scope.closePopOuts();
-            $scope.showSignup = !$scope.showSignup;
+            if (!$scope.showSignup) {
+                $scope.closePopOuts();
+                $("#main-body").addClass("toggledPopOut");
+                $("#menu-toggle-in-nav").addClass("hidden");
+                $scope.showSignup = !$scope.showSignup;
+            } else {
+                $scope.closePopOuts();
+            }
         };
 
         $scope.showLogin = false;
 
         $scope.toggleLogin = function () {
-            $scope.closePopOuts();
-            $scope.showLogin = !$scope.showLogin;
+            if (!$scope.showLogin) {
+                $scope.closePopOuts();
+                $("#main-body").addClass("toggledPopOut");
+                $("#menu-toggle-in-nav").addClass("hidden");
+                $scope.showLogin = !$scope.showLogin;
+            } else {
+                $scope.closePopOuts();
+            }
         };
 
         $scope.showLogout = false;
 
         $scope.toggleLogout = function () {
-            $scope.closePopOuts();
-            $scope.showLogout = !$scope.showLogout;
+            if (!$scope.showLogout) {
+                $scope.closePopOuts();
+                $("#main-body").addClass("toggledPopOut");
+                $("#menu-toggle-in-nav").addClass("hidden");
+                $scope.showLogout = !$scope.showLogout;
+            } else {
+                $scope.closePopOuts();
+            }
         };
 
     }]);
 
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });

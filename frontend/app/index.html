@@ -19,18 +19,11 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome-animation.css">
     <link rel="stylesheet" href="bower_components/toastr/toastr.min.css">
     <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/register.css">
-
 
     <title>Leedr</title>
-
-    <!-- Bootstrap Core CSS -->
-
-
-    <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,16 +44,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <nav class="navbar-brand"></nav>
-            <h2 class="leedr">Leedr<h2>
-
+            <nav class="navbar-brand">Leedr</nav>
         </div>
     </div>
 </nav>
+
 <div id="wrapper">
-    <div>
         <div id="sidebar-wrapper">
+
             <ul class="sidebar-nav">
+                <li class="li-arrow">
+                    <a href="" id="menu-toggle-in-nav" ng-click="toggleEntireNav()" class="custom-arrow-color"><i class="fa fa-arrow-left fa-2x faa-horizontal animated"></i></a>
+                </li>
                 <li>
                     <a class="page-scroll" href="#/home/#supportedGames" ng-click="closePopOuts()">Supported Games</a>
                 </li>
@@ -83,6 +78,7 @@
                     <a href="" ng-click="toggleSignup()">Sign Up</a>
                 </li>
             </ul>
+
         </div>
 
         <div id="sign-up" ng-class="{show: showSignup}" ng-include="url='authentication/register/register.html'"></div>
@@ -90,20 +86,15 @@
         <div id="logout" ng-class="{show: showLogout}" ng-include="url='authentication/logout/logout.html'"></div>
     </div>
 
-
-    <div id="page-content-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 text-left">
-                    <a href="#menu-toggle" id="menu-toggle"><i class="fa fa-arrow-left fa-2x"></i></a>
-                </div>
-            </div>
+    <div id="wrapper-sm" class="toggled">
+        <div id="sidebar-wrapper-sm">
+            <a href="" id="menu-toggle-in-nav-sm" ng-click="toggleEntireNav()"><i class="fa fa-arrow-right fa-2x faa-horizontal animated"></i></a>
         </div>
     </div>
 
 <!-- NG-VIEW -- REQUIRED -->
-<div ng-view></div>
-</div>
+<div ng-view id="main-body"></div>
+
 <!-- Bootstrap Core JavaScript -->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
@@ -118,6 +109,7 @@
 <script src="js/main.js"></script>
 <script src="home/home.js"></script>
 <script src="test/test.js"></script>
+<script src="dashboard/dashboard-home/dashboardHome.js"></script>
 <script src="view1/view1.js"></script>
 <script src="authentication/register/register.js"></script>
 <script src="authentication/login/login.js"></script>
