@@ -56,6 +56,9 @@
                 <li class="li-arrow">
                     <a href="" id="menu-toggle-in-nav" ng-click="toggleEntireNav()" class="custom-arrow-color"><i class="fa fa-arrow-left fa-2x faa-horizontal animated"></i></a>
                 </li>
+                <li ng-if="user.username">
+                    <a href="#/dashboard">Dashboard</a>
+                </li>
                 <li>
                     <a class="page-scroll" href="#/home/#supportedGames" ng-click="closePopOuts()">Supported Games</a>
                 </li>
