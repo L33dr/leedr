@@ -4,6 +4,7 @@ URLS specific to the leaderboard app. User authentication URL's should be in mai
 from django.conf.urls import url
 from views import GoogleCallBack, GameListView, UserProfileView, UserGameProfileView
 from game_views.sc2_views import SC2GameDataView
+from game_views.lol_views import LOLAllStats
 
 urlpatterns = [
     url(r'^googleCallBack/(?P<key>[.*]+)/$', GoogleCallBack.as_view()),
@@ -11,4 +12,5 @@ urlpatterns = [
     url(r'^user-profile/$', UserProfileView.as_view()),
     url(r'^user-game-profile/$', UserGameProfileView.as_view()),
     url(r'^SC2/user-data/$', SC2GameDataView.as_view()),
+    url(r'^LOL/user-data/$', LOLAllStats.as_view()),
 ]

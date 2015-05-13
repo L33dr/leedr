@@ -9,6 +9,7 @@ class GameDetail(models.Model):
     name = models.CharField(max_length=100)
     platform = models.CharField(max_length=100)
     thumbnail = models.URLField()
+    shorthand_name = models.CharField(max_length=10)
 
     def __str__(self):
         return self.name + ' on ' + self.platform
