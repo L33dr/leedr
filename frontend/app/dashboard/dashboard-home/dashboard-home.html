@@ -6,7 +6,7 @@
         <li ng-repeat="usergame in userprofile.games">
             <img ng-if="usergame.game.thumbnail" ng-src="{{ usergame.game.thumbnail }}" class="img-circle" height="100">
             <br ng-if="usergame.game.thumbnail">
-            {{ usergame.game.name }}
+                <a href="#/dashboard/game-detail/{{ usergame.game.shorthand_name }}">{{ usergame.game.name }}</a>
         </li>
     </ul>
 </div>

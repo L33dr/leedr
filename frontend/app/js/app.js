@@ -10,6 +10,7 @@ angular.module('myApp', [
     'myApp.register',
     'myApp.test',
     'myApp.dashboardHome',
+    'myApp.dashboardGameDetail',
     'myApp.view1',
     'myApp.login',
     'myApp.logout',
