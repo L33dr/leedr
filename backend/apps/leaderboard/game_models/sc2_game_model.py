@@ -109,6 +109,7 @@ class UserAchievement(models.Model):
 
 class SC2GameData(models.Model):
     user_game_profile = models.ForeignKey(UserGameProfile)
+    time_stamp = models.DateTimeField(auto_now_add=True)
     profile_id = models.IntegerField()
     realm = models.IntegerField()
     display_name = models.CharField(max_length=200)
