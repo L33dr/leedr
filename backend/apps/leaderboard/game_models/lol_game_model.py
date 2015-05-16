@@ -55,7 +55,7 @@ class LOLPlayerStatSummary(models.Model):
 
 class LOLGameData(models.Model):
     user_game_profile = models.ForeignKey(UserGameProfile)
-    time_stamp = models.DateTimeField()
+    time_stamp = models.DateTimeField(auto_now_add=True)
     summoner_id = models.IntegerField()
     player_stat_summary = models.ManyToManyField(LOLPlayerStatSummary)
 
