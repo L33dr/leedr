@@ -19,14 +19,14 @@ class LOLAllStats(generics.ListAPIView):
     serializer_class = LeagueOfLegendsGameDataSerializer
 
     def get_queryset(self):
-        profile = UserProfile.objects.filter(user=self.request.user).first()
-        data = LOLGameData.objects.filter(user_game_profile__userprofile__user=self.request.user)
+        is_premium = UserProfile.objects.filter(user=self.request.user).first().is_premium()
+        # Ordering by most recently added so that the user gets the most up to date stats first.
+        data = LOLGameData.objects.filter(user_game_profile__user__user=self.request.user).order_by("-time_stamp")
         # Non-premium members only get the first result
-        if profile.premium:
+        if is_premium:
             return data.all()
         else:
             # Needs to return a list type
             return [data.first(), ]
-
 
 # class LOLStatSummary(generics.)

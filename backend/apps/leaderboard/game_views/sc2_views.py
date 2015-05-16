@@ -81,10 +81,10 @@ class SC2GameDataView(generics.ListAPIView):
     serializer_class = SC2GameDataSerializer
 
     def get_queryset(self):
-        profile = UserProfile.objects.filter(user=self.request.user).first()
-        data = SC2GameData.objects.filter(user_game_profile__userprofile__user=self.request.user)
+        is_premium = UserProfile.objects.filter(user=self.request.user).first().is_premium()
+        data = SC2GameData.objects.filter(user_game_profile__user__user=self.request.user).order_by("-time_stamp")
         # Non-premium members only get the first result
-        if profile.premium:
+        if is_premium:
             return data.all()
         else:
             # Needs to return a list type
