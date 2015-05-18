@@ -12,6 +12,7 @@ angular.module('myApp.dashboardGameDetail', ['ngRoute'])
     .controller('DashboardGameDetailCtrl', ['$scope', '$routeParams', '$location', 'Restangular', 'gameService', 'Session',
         function ($scope, $routeParams, $location, Restangular, gameService, Session) {
 
+
             if (Session.requireLogin()) {
                 // Will set the base template to use for this game we are loading.
                 $scope.templateUrl = 'dashboard/dashboard-game-views/' + $routeParams.gameShorthand + '.html';

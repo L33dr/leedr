@@ -134,9 +134,9 @@
     color: #999999;
 }
 
-.li-arrow {
-    line-height: 1px !important;
-}
+/*.li-arrow {*/
+    /*line-height: 1px !important;*/
+/*}*/
 
 .li-arrow a:hover {
     text-decoration: none !important;
@@ -313,6 +313,7 @@ label {
 
 
 #menu-toggle-in-nav {
+    float:left;
     margin: auto;
     left: 170px;
     bottom: 50%;
