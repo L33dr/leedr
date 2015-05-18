@@ -88,6 +88,11 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
 
         $scope.showLogin = false;
 
+        $rootScope.forceShowLogin = function() {
+            $scope.closePopOuts();
+            $scope.showLogin = true;
+        };
+
         $scope.toggleLogin = function () {
             if (!$scope.showLogin) {
                 $scope.closePopOuts();

@@ -9,8 +9,10 @@ angular.module('myApp.dashboardHome', ['ngRoute'])
         });
     }])
 
-    .controller('DashboardHomeCtrl', ['$scope', 'Restangular', function ($scope, Restangular) {
-        Restangular.all('/leedr/user-profile').customGET().then(function(data) {
-            $scope.userprofile = data[0];
-        });
+    .controller('DashboardHomeCtrl', ['$scope', '$location', 'Restangular', 'Session', function ($scope, $location, Restangular, Session) {
+        if (Session.requireLogin()) {
+            Restangular.all('/leedr/user-profile').customGET().then(function (data) {
+                $scope.userprofile = data[0];
+            });
+        }
     }]);

@@ -1,5 +1,5 @@
 angular.module('myApp.auth', ['ngRoute']).
-    service('Session', ['$rootScope', function ($rootScope) {
+    service('Session', ['$rootScope', '$location', function ($rootScope, $location) {
         this.create = function (username, first_name, last_name, email, premium, games) {
             this.username = username;
             this.first_name = first_name;
@@ -28,6 +28,17 @@ angular.module('myApp.auth', ['ngRoute']).
                 'games': this.games
             };
             return $rootScope.user
+        };
+
+        this.requireLogin = function () {
+            if (!$rootScope.user || !$rootScope.user.username) {
+                $location.path("/");
+                $rootScope.forceShowLogin();
+                toastr.error("You must be logged in to view this page.");
+                return false
+            } else {
+                return true
+            }
         }
     }]).
     factory('AuthService', ['$http', 'Session', 'Restangular', 'localStorageService', function
