@@ -21,7 +21,7 @@ angular.module('myApp.login', ['ngRoute'])
             // set the current user then redirect to home page.
           AuthService.login(credentials).then(function () {
               $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-              $location.path('/');
+              $location.path('/dashboard');
               toastr.success("You logged in successfully.");
               $scope.closePopOuts();
               $scope.resetLoginField();
