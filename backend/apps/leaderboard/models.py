@@ -16,6 +16,7 @@ class GameDetail(models.Model):
     def __str__(self):
         return self.name + ' on ' + self.platform
 
+
 class UserProfile(models.Model):
     """
     Base user profile. This will bind to a registered user and bind all the related data to them.
@@ -39,6 +40,7 @@ class UserProfile(models.Model):
         if created:
             profile, new = UserProfile.objects.get_or_create(user=instance, premium=False)
 
+
 class UserGameProfile(models.Model):
     """
     Used to bind the user profile to each game the user participates in.
@@ -50,5 +52,13 @@ class UserGameProfile(models.Model):
 
     def __str__(self):
         return self.game_user_name + "'s " + self.game.name + ' profile'
+
+
+class Comment(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    comment = models.CharField(max_length=2000)
+    ip_address = models.IPAddressField(default="0.0.0.0")
+    date = models.DateField(auto_now_add=True)
 
 

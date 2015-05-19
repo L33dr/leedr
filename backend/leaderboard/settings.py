@@ -20,6 +20,7 @@ LOL_API_KEY = "70b12d3a-d1b4-4375-b33a-fbd34e815056"
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -131,6 +132,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+TEMPLATE_DIRS = (
+    BASE_DIR + "apps/leaderboard/templates",
+)
+
 CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
     'localhost/',
@@ -169,9 +174,15 @@ ACCOUNT_SIGNUP_FORM_CLASS = 'apps.leaderboard.forms.SignupForm'
 SOCIALACCOUNT_PROVIDERS = {'google': {'SCOPE': ['profile', 'email'], 'AUTH_PARAMS': {'access_type': 'online'}}}
 
 REST_SESSION_LOGIN = False
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # TODO: Setup django email backend with email accounts to send email from.
 SITE_ID = "2"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+ADMIN_EMAIL = config.EMAIL_HOST_USER
+EMAIL_HOST_USER = config.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = config.EMAIL_HOST_PASSWORD
+EMAIL_HOST = config.EMAIL_HOST
+EMAIL_PORT = config.EMAIL_PORT
+EMAIL_USE_TLS = config.EMAIL_USE_TLS
