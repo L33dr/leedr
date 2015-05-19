@@ -11,3 +11,4 @@ db.sqlite3
 *npm-debug.log.*
 *npm-debug.log
 migrations/
+config.py

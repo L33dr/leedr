@@ -7,7 +7,9 @@ from rest_auth.serializers import UserDetailsSerializer
 from models import GameDetail
 from models import UserProfile
 from models import UserGameProfile
+from models import Comment
 from django.contrib.auth.models import User
+
 
 
 class GameDetailSerializer(ModelSerializer):
@@ -37,3 +39,7 @@ class UserProfileSerializer(ModelSerializer):
     class Meta:
         model = UserProfile
         fields = ('premium', 'user', 'games')
+
+class CommentSerializer(ModelSerializer):
+    class Meta:
+        model = Comment
