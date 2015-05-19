@@ -20,19 +20,77 @@
 }
 
 #wrapper.toggled {
-    padding-left: 250px;
+    padding-left: 200px;
 }
 
 #sidebar-wrapper {
     z-index: 1000;
     margin-top: 51px;
     position: fixed;
-    left: 250px;
+    left: 200px;
     width: 0;
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #000;
+    background: #2f2b30;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 150px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -200px;
+}
+
+/* Sidebar Styles */
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 200px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 200px;
+    width: 0;
+    height: 100%;
+    margin-left: -200px;
+    overflow-y: auto;
+    background: #2f2b30;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper-sm {
+    z-index: 1000;
+    position: fixed;
+    left: 200px;
+    width: 0;
+    height: 100%;
+    margin-left: -200px;
+    overflow-y: auto;
+    background: #2f2b30;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -51,65 +109,7 @@
 
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
-    margin-right: -250px;
-}
-
-/* Sidebar Styles */
-#wrapper {
-    padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled {
-    padding-left: 250px;
-}
-
-#sidebar-wrapper {
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: #000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#sidebar-wrapper-sm {
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: #000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-}
-
-#page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 15px;
-}
-
-#wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -250px;
+    margin-right: -200px;
 }
 
 /* Sidebar Styles */
@@ -117,7 +117,7 @@
 .sidebar-nav {
     position: absolute;
     top: 0;
-    width: 250px;
+    width: 200px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -173,7 +173,7 @@
 
 @media(min-width:768px) {
     #wrapper {
-        padding-left: 250px;
+        padding-left: 200px;
     }
 
     #wrapper.toggled {
@@ -181,7 +181,7 @@
     }
 
     #sidebar-wrapper {
-        width: 250px;
+        width: 200px;
     }
 
     #wrapper.toggled #sidebar-wrapper {
@@ -216,14 +216,9 @@
 
 }
 
-
 section {
-    border-width: 1px;
-    border-style: solid;
-    border-color: #000000;
-    padding: 20px;
-    margin: 20px;
-    background-color: #d6d6d6;
+    background-color: #edb300;
+    padding: 30px
 }
 
 #homepage {
@@ -236,30 +231,30 @@ section {
     left: -350px;
     height: 100%;
     width: 275px;
-    background-color: #000;
-    color: #999;
+    background-color: #edb300;
+    color: #000000;
     transition: left .5s ease-in-out;
     z-index: 1;
 }
 
 #logout.show {
-    left: 250px;
+    left: 200px;
 }
 
 #login {
     position: fixed;
     top: 50px;
-    left: -350px;
+    left: -300px;
     height: 100%;
     width: 275px;
-    background-color: #000;
-    color: #999;
+    background-color: #edb300;
+    color: #000000;
     transition: left .5s ease-in-out;
     z-index: 1;
 }
 
 #login.show {
-    left: 250px;
+    left: 200px;
 }
 
 #login.h3 {
@@ -280,18 +275,18 @@ section {
 #sign-up {
     position: fixed;
     top: 50px;
-    left: -350px;
+    left: -300px;
     height: 100%;
     width: 275px;
-    background-color: #000;
-    color: #999;
+    background-color: #0f555b;
+    color: #dae4e6;
     transition: left .5s ease-in-out;
     z-index: 1;
 }
 
 
 #sign-up.show {
-    left: 250px;
+    left: 200px;
 }
 
 form {
@@ -300,7 +295,7 @@ form {
 
 label {
     float: left;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .btn-flt-right {
@@ -311,11 +306,10 @@ label {
     margin-top: 50px;
 }
 
-
 #menu-toggle-in-nav {
     float:left;
     margin: auto;
-    left: 170px;
+    left: 130px;
     bottom: 50%;
     position: relative;
     -webkit-transition: all 0.5s ease;
@@ -325,10 +319,10 @@ label {
 }
 
 #menu-toggle-in-nav-sm {
-    color: #999999;
+    color: #dae4e6;
     margin: auto;
-    left: 10px;
-    top: 50px;
+    left: 5px;
+    top: 60px;
     position: relative;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -337,13 +331,13 @@ label {
 }
 
 #menu-toggle-in-nav-sm:hover{
-    color: #fff;
+    color: #dae4e6;
     background: rgba(255,255,255, 0);
 }
 
 #main-body {
     padding-top: 50px;
-    margin-left: 250px;
+    margin-left: 200px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -351,13 +345,72 @@ label {
 }
 
 #main-body.toggled {
-    margin-left: 51px;
+    margin-left: 40px;
 }
 
 #main-body.toggledPopOut {
-    margin-left: 525px;
+    margin-left: 470px;
 }
 
+.form-group {
+    padding-right: 60px;
+}
 
+#supportedGames {
+    background-color: #484c4f;
+}
 
+#supportedGames h1 {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 40px;
+    color: #16b7c2;
+}
+
+#supportedGames ul {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #d6d6d6;
+}
+
+#about {
+    background-color: #888c8d;
+}
+
+#about h1 {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #edb300;
+}
+
+#faq {
+    background-color: #10686f;
+}
+
+#faq h1 {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #dae4e6;
+}
+
+#contact {
+    background-color: #484c4f;
+}
+
+#contact h1 {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #edb300;
+}
+
+#contact label {
+    color: #d6d6d6;
+}
+
+#welcome-page {
+    background-color: #484c4f;
+}
+
+#welcome-page h1 {
+    color: #edb300;
+}
+
+#welcome-page p {
+    color: #dae4e6;
+}
 

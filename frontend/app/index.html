@@ -44,7 +44,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <nav class="navbar-brand">Leedr</nav>
+            <nav class="navbar-brand" href="#/home">Leedr</nav>
         </div>
     </div>
 </nav>
@@ -58,6 +58,9 @@
                 </li>
                 <li ng-if="user.username">
                     <a href="#/dashboard">Dashboard</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#/home" ng-click="closePopOuts()">Home</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#/home/#supportedGames" ng-click="closePopOuts()">Supported Games</a>

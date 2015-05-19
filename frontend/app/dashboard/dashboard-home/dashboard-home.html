@@ -1,12 +1,28 @@
-<div>
-    Welcome, {{ userprofile.user.username }}!
-    <br>
-    You have these games:
-    <ul>
-        <li ng-repeat="usergame in userprofile.games">
-            <img ng-if="usergame.game.thumbnail" ng-src="{{ usergame.game.thumbnail }}" class="img-circle" height="100">
-            <br ng-if="usergame.game.thumbnail">
-                <a href="#/dashboard/game-detail/{{ usergame.game.shorthand_name }}">{{ usergame.game.name }}</a>
-        </li>
-    </ul>
-</div>
+<section id="welcome-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 text-left">
+                <h1>Welcome, {{ userprofile.user.username }}!</h1>
+                <br>
+                <p>You have these games:</p>
+                <ul>
+                    <li ng-repeat="usergame in userprofile.games">
+                        <img ng-if="usergame.game.thumbnail" ng-src="{{ usergame.game.thumbnail }}" class="img-circle" height="100">
+                        <br ng-if="usergame.game.thumbnail">
+                        <a href="#/dashboard/game-detail/{{ usergame.game.shorthand_name }}">{{ usergame.game.name }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="stats">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 text-left">
+
+            </div>
+        </div>
+    </div>
+</section>
