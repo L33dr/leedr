@@ -131,11 +131,21 @@
     background: rgba(255,255,255, 0) !important;
 }
 
-.li-arrow div {
-    color: #484c4f;
-    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
+.animate-show {
+    opacity: 1;
 }
+
+.animate-show.ng-hide {
+    opacity: 0;
+    display: block;
+}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+  -webkit-transition: all linear 1s;
+  transition: all linear 1s;
+}
+
 
 .sidebar-nav li a:hover {
     text-decoration: none;

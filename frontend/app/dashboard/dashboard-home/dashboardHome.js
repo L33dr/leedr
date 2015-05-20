@@ -9,12 +9,19 @@ angular.module('myApp.dashboardHome', ['ngRoute'])
         });
     }])
 
-    .controller('DashboardHomeCtrl', ['$scope', '$location', 'Restangular', 'Session', function ($scope, $location, Restangular, Session) {
+    .controller('DashboardHomeCtrl', ['$scope', '$location', '$timeout', 'Restangular', 'Session', function ($scope, $location, $timeout, Restangular, Session) {
+        $scope.isLoggedIn = false;
 
         // User is required to be logged in before they can view this page.
-        if (Session.requireLogin()) {
-            Restangular.all('/leedr/user-profile').customGET().then(function (data) {
-                $scope.userprofile = data[0];
-            });
-        }
+        $timeout(function () {
+            $scope.isLoggedIn = Session.requireLogin();
+        }, 100).then(function () {
+            if ($scope.isLoggedIn) {
+                Restangular.all('/leedr/user-profile').customGET().then(function (data) {
+                    $scope.userprofile = data[0];
+                });
+            }
+        });
+
+
     }]);

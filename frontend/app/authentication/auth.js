@@ -19,7 +19,7 @@ angular.module('myApp.auth', ['ngRoute']).
         };
 
         this.get = function () {
-            $rootScope.user =  {
+            $rootScope.user = {
                 'username': this.username,
                 'first_name': this.first_name,
                 'last_name': this.last_name,
@@ -31,10 +31,12 @@ angular.module('myApp.auth', ['ngRoute']).
         };
 
         this.requireLogin = function () {
-            if (!$rootScope.user || !$rootScope.user.username) {
+            if ((!$rootScope.user || !$rootScope.user.username) && !$rootScope.loginInProcess) {
                 $location.path("/");
-                $rootScope.forceShowLogin();
-                toastr.error("You must be logged in to view this page.");
+                setTimeout(function () {
+                    $rootScope.toggleLogin(true);
+                    toastr.error("You must be logged in to view this page.");
+                }, 100);
                 return false
             } else {
                 return true

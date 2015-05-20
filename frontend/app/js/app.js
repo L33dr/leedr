@@ -4,6 +4,7 @@
 angular.module('myApp', [
     'ngRoute',
     'ngCookies',
+    'ngAnimate',
     'LocalStorageModule',
     'myApp.main',
     'myApp.auth',
