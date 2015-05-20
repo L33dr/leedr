@@ -3,13 +3,12 @@
 }
 
 .navbar-brand {
-  float: left;
-  height: 50px;
-  padding: 15px 15px;
-  font-size: 28px;
-  line-height: 20px;
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 28px;
+    line-height: 20px;
 }
-
 
 #wrapper {
     padding-left: 0;
@@ -121,14 +120,10 @@
     color: #2f2b30;
 }
 
-/*.li-arrow {*/
-    /*line-height: 1px !important;*/
-/*}*/
-
 .li-arrow a:hover {
     text-decoration: none !important;
     color: #16b7c2 !important;
-    background: rgba(255,255,255, 0) !important;
+    background: rgba(255, 255, 255, 0) !important;
 }
 
 .animate-show {
@@ -142,17 +137,15 @@
 
 .animate-show.ng-hide-add,
 .animate-show.ng-hide-remove {
-  -webkit-transition: all linear 1s;
-  transition: all linear 1s;
+    -webkit-transition: all linear 1s;
+    transition: all linear 1s;
 }
-
 
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #dae4e6;
     background: rgba(72, 76, 79, 0.36);
 }
-
 
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
@@ -174,7 +167,7 @@
     background: none;
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
     #wrapper {
         padding-left: 200px;
     }
@@ -236,7 +229,7 @@ section {
     width: 275px;
     background-color: #ebecec;
     color: #3e3b40;
-    transition: left .5s ease-in-out;
+    transition: left .2s ease-in-out;
     z-index: 1;
 }
 
@@ -252,7 +245,7 @@ section {
     width: 275px;
     background-color: #ebecec;
     color: #2f2b30;
-    transition: left .5s ease-in-out;
+    transition: left .2s ease-in-out;
     z-index: 1;
 }
 
@@ -283,10 +276,9 @@ section {
     width: 275px;
     background-color: #ebecec;
     color: #2f2b30;
-    transition: left .5s ease-in-out;
+    transition: left .2s ease-in-out;
     z-index: 1;
 }
-
 
 #sign-up.show {
     left: 200px;
@@ -310,15 +302,15 @@ label {
 }
 
 #menu-toggle-in-nav {
-    float:left;
+    float: left;
     margin: auto;
     left: 130px;
     bottom: 50%;
     position: relative;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 #menu-toggle-in-nav-sm {
@@ -333,18 +325,18 @@ label {
     transition: all 0.5s ease;
 }
 
-#menu-toggle-in-nav-sm:hover{
+#menu-toggle-in-nav-sm:hover {
     color: #16b7c2;
-    background: rgba(255,255,255, 0);
+    background: rgba(255, 255, 255, 0);
 }
 
 #main-body {
     padding-top: 50px;
     margin-left: 200px;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 #main-body.toggled {

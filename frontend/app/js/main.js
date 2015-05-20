@@ -35,6 +35,10 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             });
         }
 
+        $rootScope.$on('$locationChangeSuccess', function(event) {
+            $scope.closePopOuts();
+        });
+
         $scope.closePopOuts = function () {
             $scope.showSignup = false;
             $scope.showLogin = false;

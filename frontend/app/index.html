@@ -70,13 +70,13 @@
                     <a class="page-scroll" href="#/home/#supportedGames" ng-click="closePopOuts()">Supported Games</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#/home/#contact" ng-click="closePopOuts()">Contact Info</a>
+                    <a class="page-scroll" href="#/home/#faq" ng-click="closePopOuts()">FAQ</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#/home/#about" ng-click="closePopOuts()">About</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#/home/#faq" ng-click="closePopOuts()">FAQ</a>
+                    <a class="page-scroll" href="#/home/#contact" ng-click="closePopOuts()">Contact Info</a>
                 </li>
                 <li ng-if="!user.username">
                     <a href="" ng-click="toggleLogin()">Login</a>
@@ -103,7 +103,7 @@
     </div>
 
 <!-- NG-VIEW -- REQUIRED -->
-<div ng-view id="main-body"></div>
+<div ng-view></div>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="bower_components/angular/angular.js"></script>
