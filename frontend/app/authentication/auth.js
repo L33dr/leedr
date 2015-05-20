@@ -1,5 +1,5 @@
 angular.module('myApp.auth', ['ngRoute']).
-    service('Session', ['$rootScope', '$location', function ($rootScope, $location) {
+    service('Session', ['$rootScope', '$location', '$timeout', function ($rootScope, $location, $timeout) {
         this.create = function (username, first_name, last_name, email, premium, games) {
             this.username = username;
             this.first_name = first_name;
@@ -30,19 +30,22 @@ angular.module('myApp.auth', ['ngRoute']).
             return $rootScope.user
         };
 
-        this.requireLogin = function () {
-            if ((!$rootScope.user || !$rootScope.user.username) && !$rootScope.loginInProcess) {
-                $location.path("/");
-                setTimeout(function () {
-                    $rootScope.toggleLogin(true);
-                    toastr.error("You must be logged in to view this page.");
-                }, 100);
-                return false
-            } else {
-                return true
-            }
-        }
-    }]).
+        $rootScope.$on('$routeChangeStart', function (event, next, current) {
+                try {
+                    if ((/\/dashboard([A-Za-z0-9-/:]*)/.test(next.$$route.originalPath)) && !$rootScope.user) {
+                        event.preventDefault();
+                        $location.path("/");
+
+                        $timeout(function () {
+                            $rootScope.toggleLogin(true);
+                            toastr.error("You must be logged in to view this page.");
+                        }, 100);
+                    }
+                } catch (err) { }
+            });
+
+    }
+    ]).
     factory('AuthService', ['$http', 'Session', 'Restangular', 'localStorageService', function
         ($http, Session, Restangular, localStorageService) {
 

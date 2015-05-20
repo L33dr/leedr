@@ -52,7 +52,7 @@ angular.module('myApp.dashboardUserProfile', ['ngRoute'])
                         },
                         games: $scope.user.games
                     };
-                    delete user['games'];
+                    console.log(user.games);
                     Restangular.one('/leedr/user-profile/update').patch(user).then(function () {
                         $modalInstance.close('submitted!');
                         toastr.success("Profile updated!");

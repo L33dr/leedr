@@ -35,7 +35,7 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             });
         }
 
-        $rootScope.$on('$locationChangeSuccess', function(event) {
+        $rootScope.$on('$routeChangeStart', function (event) {
             $scope.closePopOuts();
         });
 
