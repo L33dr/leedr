@@ -17,9 +17,11 @@ angular.module('myApp.dashboardHome', ['ngRoute'])
             $scope.isLoggedIn = Session.requireLogin();
         }, 100).then(function () {
             if ($scope.isLoggedIn) {
-                Restangular.all('/leedr/user-profile').customGET().then(function (data) {
-                    $scope.userprofile = data[0];
-                });
+                if (!$scope.user.username) {
+                    Restangular.all('/leedr/user-profile').customGET().then(function (data) {
+                        $scope.user = data[0];
+                    });
+                }
             }
         });
 
