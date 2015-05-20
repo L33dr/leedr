@@ -421,3 +421,12 @@ label {
 #confirm-email h1 a {
     color: #edb300;
 }
+
+.dashboard-icons {
+    float: right;
+}
+
+.dashboard-icons li {
+    list-style: none;
+    display: block;
+}

@@ -14,11 +14,13 @@ angular.module('myApp', [
     'myApp.gameService',
     'myApp.dashboardHome',
     'myApp.dashboardGameDetail',
+    'myApp.dashboardUserProfile',
     'myApp.view1',
     'myApp.login',
     'myApp.logout',
     'myApp.confirmEmail',
-    'restangular'
+    'restangular',
+    'ui.bootstrap'
 ]).
     config(['$routeProvider', 'RestangularProvider', '$httpProvider', function ($routeProvider, RestangularProvider, $httpProvider) {
         $routeProvider.otherwise({redirectTo: '/home'});

@@ -57,6 +57,24 @@ class UserProfileView(generics.ListAPIView):
     def get_queryset(self):
         return UserProfile.objects.filter(user__username__exact=self.request.user).all()
 
+class UserProfileUpdateView(generics.UpdateAPIView):
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def patch(self, request, *args, **kwargs):
+        user_profile = UserProfile.objects.filter(user__username__exact=self.request.user).get()
+        # if request.data['user']['username'] == user_profile.user.username:
+        #     del request.data['user']['username']
+        serializer = UserProfileSerializer(data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.update(user_profile, serializer.validated_data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_object(self):
+        print "Getting object"
+        return UserProfile.objects.filter(user__username__exact=self.request.user).get()
+
 class UserGameProfileView(generics.ListAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)

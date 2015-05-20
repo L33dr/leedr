@@ -44,6 +44,9 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
             $scope.showLogin = false;
             $scope.showLogout = false;
             $scope.popoutNavOpen = false;
+            if ($("#login").hasClass("show")) {
+                $("#login").removeClass("show");
+            }
             $("#main-body").removeClass("toggledPopOut");
         };
 
@@ -72,7 +75,7 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
                 $scope.closePopOuts();
                 $scope.popoutNavOpen = true;
                 $("#main-body").addClass("toggledPopOut");
-                $scope.showSignup = !$scope.showSignup;
+                $scope.showSignup = true;
             } else {
                 $scope.closePopOuts();
             }
@@ -85,10 +88,9 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
                 $scope.closePopOuts();
                 $scope.popoutNavOpen = true;
                 $("#main-body").addClass("toggledPopOut");
+                $scope.showLogin = true;
                 if (force) {
-                    $scope.showLogin = true;
-                } else {
-                    $scope.showLogin = !$scope.showLogin;
+                    $("#login").addClass("show");
                 }
             } else {
                 $scope.closePopOuts();
@@ -102,7 +104,7 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
                 $scope.closePopOuts();
                 $scope.popoutNavOpen = true;
                 $("#main-body").addClass("toggledPopOut");
-                $scope.showLogout = !$scope.showLogout;
+                $scope.showLogout = true;
             } else {
                 $scope.closePopOuts();
             }
