@@ -58,7 +58,7 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
 
         $scope.showLogin = false;
 
-        $rootScope.toggleLogin = function (force) {
+        $rootScope.toggleLogin = function (force, path) {
             if (!$scope.showLogin) {
                 $scope.closePopOuts();
                 $scope.popoutNavOpen = true;
@@ -66,6 +66,9 @@ angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope
                 $scope.showLogin = true;
                 if (force) {
                     $("#login").addClass("show");
+                }
+                if (path) {
+                    $rootScope.redirectLoginPath = path;
                 }
             } else {
                 $scope.closePopOuts();

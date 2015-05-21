@@ -82,19 +82,31 @@ angular.module('myApp.auth', ['ngRoute']).
     }])
     .service('RequireLogin', ['$rootScope', '$location', '$timeout', 'Restangular', 'localStorageService', 'Session', function ($rootScope, $location, $timeout, Restangular, localStorageService, Session) {
 
-        var redirect = function () {
+        var redirect = function (path) {
+            // This will redirect the user to the home page and open up the login popout.
             $location.path("/");
             $timeout(function () {
-                $rootScope.toggleLogin(true);
+                $rootScope.toggleLogin(true, path);
                 toastr.error("You must be logged in to view this page.");
             }, 100);
         };
 
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
             // The regex below matches anything that starts with /dashboard
-            // This will redirect the user to the home page and open up the login popout.
             if ((/\/dashboard([A-Za-z0-9-/:]*)/.test(next.$$route.originalPath)) && !$rootScope.user) {
+                // Stopping the route from continuing
                 event.preventDefault();
+                var path = '';
+                if (next.$$route.keys[0]) {
+                    path = next.$$route.originalPath;
+                    path = path.slice(1, path.indexOf(':')) + next.params[next.$$route.keys[0]['name']];
+                } else {
+                    path = next.$$route.originalPath.slice(1, next.$$route.originalPath.length) + '/';
+                }
+
+                // Seeing if user is still 'logged in' by grabbing the token.
+                // If they are logged in we will grab their profile information and setup the session.
+                // Finally we redirect them back to their original path, if possible.
                 var token = localStorageService.get('token');
                 if (token) {
                     Restangular.configuration.defaultHeaders.authorization = 'Token ' + token;
@@ -103,21 +115,18 @@ angular.module('myApp.auth', ['ngRoute']).
                         Session.create(user_data.user.username, user_data.user.first_name, user_data.user.last_name,
                             user_data.user.email, user_data.premium, user_data.games);
                         Session.get();
-                        if (next.$$route.keys[0]){
-                            var path = next.$$route.originalPath;
-                            var newPath = path.slice(1, path.indexOf(':')) + next.params[next.$$route.keys[0]['name']];
-                            $location.path(newPath);
-                        } else {
-                            var path = next.$$route.originalPath.slice(1, next.$$route.originalPath.length) + '/';
-                            $location.path(path);
-                        }
+                        $location.path(path);
+                        // If their token is invalid we simply redirect them to the login.
+                        // Once they complete the login they will then be redirected back to original requested page.
                     }, function (error) {
                         localStorageService.remove('token');
-                        redirect();
+                        redirect(path);
                     });
+                    // If they are not logged in, we simply redirect them to the login.
+                    // Once they complete the login they will then be redirected back to original requested page.
                 } else {
                     event.preventDefault();
-                    redirect();
+                    redirect(path);
                 }
             }
         });
