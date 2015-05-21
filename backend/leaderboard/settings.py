@@ -16,7 +16,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 ########################################################################
 
 # LOL Request Limit: 10/Second and 500/10 Minutes
-LOL_API_KEY = "70b12d3a-d1b4-4375-b33a-fbd34e815056"
+LOL_API_KEY = config.LOL_API_KEY
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -35,6 +35,26 @@ SECRET_KEY = '@-v5%2w^5(#&6wmzph-x4h=jirrjt*8rdi+r08%yd82n%%um*8'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': True,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'django.db.backends': {
+#             'handlers': ['console'],
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+#         },
+#         'django.request': {
+#             'handlers': ['console'],
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
+#         },
+#     },
+# }
 
 
 # Application definition
