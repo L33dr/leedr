@@ -1,13 +1,11 @@
 from __future__ import absolute_import
-from leaderboard.celery import get_app
 from django.core.mail import EmailMessage
 from leaderboard.config import EMAIL_HOST_USER
 from django.template import Context, loader
+from celery import shared_task
 
-app = get_app()
 
-
-@app.task()
+@shared_task()
 def send_contact_request_reply_task(first_name, email):
     """
 
@@ -22,7 +20,7 @@ def send_contact_request_reply_task(first_name, email):
     msg.content_subtype = "html"
     msg.send()
 
-@app.task()
+@shared_task()
 def send_contact_request_alert_task(first_name, reply_email, comment, ip_address):
     """
     Alerting the admin that there was a new comment.
