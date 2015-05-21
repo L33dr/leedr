@@ -19,7 +19,12 @@ angular.module('myApp.dashboardGameDetail', ['ngRoute'])
             //      gameService and pull in the data and assign it to the scope.
             if (gameService[$routeParams.gameShorthand] && $scope.user) {
                 Restangular.all(gameService[$routeParams.gameShorthand].url).customGET().then(function (data) {
-                    $scope.GameData = data;
+                    if (data[0]) {
+                        $scope.GameData = data[0];
+                    } else {
+                        $location.path("/dashboard");
+                        toastr.error("We are still updating your data. Please check back later.");
+                    }
                 }, function (error) {
                     toastr.error("Something went wrong retrieving your data. Here is the error message: " + error);
                     $location.path("/dashboard");

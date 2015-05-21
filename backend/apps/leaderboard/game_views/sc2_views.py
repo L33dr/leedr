@@ -84,8 +84,11 @@ class SC2GameDataView(generics.ListAPIView):
         is_premium = UserProfile.objects.filter(user=self.request.user).first().is_premium()
         data = SC2GameData.objects.filter(user_game_profile__user__user=self.request.user).order_by("-time_stamp")
         # Non-premium members only get the first result
-        if is_premium:
-            return data.all()
+        if data.first():
+            if is_premium:
+                return data.all()
+            else:
+                # Needs to return a list type
+                return [data.first(), ]
         else:
-            # Needs to return a list type
-            return [data.first(), ]
+            return None

@@ -23,10 +23,13 @@ class LOLAllStats(generics.ListAPIView):
         # Ordering by most recently added so that the user gets the most up to date stats first.
         data = LOLGameData.objects.filter(user_game_profile__user__user=self.request.user).order_by("-time_stamp")
         # Non-premium members only get the first result
-        if is_premium:
-            return data.all()
+        if data.first() is not None:
+            if is_premium:
+                return data.all()
+            else:
+                # Needs to return a list type
+                return [data.first(), ]
         else:
-            # Needs to return a list type
-            return [data.first(), ]
+            return None
 
 # class LOLStatSummary(generics.)
