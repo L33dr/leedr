@@ -89,6 +89,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.twitch',
     'apps.leaderboard',
+    'djcelery',
 )
 
 MIDDLEWARE_CLASSES = (
