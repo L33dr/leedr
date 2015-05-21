@@ -14,6 +14,8 @@ import os
 import config
 
 
+
+
 ########################################################################
 # API Keys
 # Please Do Not Share
@@ -89,7 +91,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.twitch',
     'apps.leaderboard',
-    'djcelery',
+    'kombu.transport.django',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -105,6 +107,8 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'leaderboard.urls'
+
+BROKER_URL = 'django://'
 
 TEMPLATES = [
     {

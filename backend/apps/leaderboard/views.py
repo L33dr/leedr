@@ -15,7 +15,8 @@ from forms import SignupForm
 from models import GameDetail, UserProfile, UserGameProfile
 from rest_framework import authentication, permissions
 from serializers import GameDetailSerializer, UserProfileSerializer, UserGameProfileSerializer, CommentSerializer
-from apps.leaderboard.services.SendMail import send_thank_you, send_alert
+from apps.leaderboard.tasks import send_contact_request_alert_task, send_contact_request_reply_task
+from celery import shared_task
 
 
 class FacebookLogin(SocialLogin):
@@ -83,8 +84,8 @@ class Comment(APIView):
             request.data['ip_address'] = request.META.get('REMOTE_ADDR')
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
-            send_thank_you(request.data['name'], request.data['email'])
-            send_alert(request.data['name'], request.data['email'], request.data['comment'],
+            send_contact_request_reply_task.delay(request.data['name'], request.data['email'])
+            send_contact_request_alert_task.delay(request.data['name'], request.data['email'], request.data['comment'],
                        request.data['ip_address'])
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
