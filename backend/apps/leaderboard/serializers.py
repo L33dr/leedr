@@ -51,7 +51,7 @@ class UserProfileSerializer(ModelSerializer):
         if user_serializer.is_valid():
             user_serializer.update(user, user_data)
 
-        # update games some how
+        # TODO: Update games
 
         instance.save()
         return instance
