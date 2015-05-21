@@ -1,9 +1,14 @@
+from __future__ import absolute_import
+from leaderboard.celery import get_app
 from django.core.mail import EmailMessage
 from leaderboard.config import EMAIL_HOST_USER
 from django.template import Context, loader
 
+app = get_app()
 
-def send_thank_you(first_name, email):
+
+@app.task()
+def send_contact_request_reply_task(first_name, email):
     """
 
     """
@@ -17,8 +22,8 @@ def send_thank_you(first_name, email):
     msg.content_subtype = "html"
     msg.send()
 
-
-def send_alert(first_name, reply_email, comment, ip_address):
+@app.task()
+def send_contact_request_alert_task(first_name, reply_email, comment, ip_address):
     """
     Alerting the admin that there was a new comment.
     """
