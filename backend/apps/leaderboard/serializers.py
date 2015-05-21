@@ -22,7 +22,7 @@ class UserSerializer(ModelSerializer):
     class Meta(UserDetailsSerializer.Meta):
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')
-        read_only_fields = ('email', )
+        read_only_fields = ('email', 'username')
 
 
 class UserGameProfileSerializer(ModelSerializer):
@@ -39,6 +39,22 @@ class UserProfileSerializer(ModelSerializer):
     class Meta:
         model = UserProfile
         fields = ('premium', 'user', 'games')
+        read_only_fields = ('premium', )
+
+    def update(self, instance, validated_data):
+        user_data = validated_data.pop('user')
+        game_data = validated_data.pop('games')
+        username = self.data['user']['username']
+        user = User.objects.get(username=username)
+        print user
+        user_serializer = UserSerializer(data=user_data)
+        if user_serializer.is_valid():
+            user_serializer.update(user, user_data)
+
+        # update games some how
+
+        instance.save()
+        return instance
 
 class CommentSerializer(ModelSerializer):
     class Meta:
