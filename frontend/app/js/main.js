@@ -4,36 +4,11 @@
  Active user will be set on this scope as it will be the highest on the DOM.
  */
 
-angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope', '$rootScope', 'AuthService', 'Restangular', 'Session', 'localStorageService',
-    function ($scope, $rootScope, AuthService, Restangular, Session, localStorageService) {
+angular.module('myApp.main', ['ngRoute']).controller('ApplicationCtrl', ['$scope', '$rootScope', 'RequireLogin', function ($scope, $rootScope, RequireLogin) {
 
         // Initializes variables used throughout whole application.
-
         $scope.currentUser = null;
         $scope.smWrapper = false;
-
-        // This will load the current user if they are still signed in.
-        var token = localStorageService.get('token');
-
-        if (token) {
-            // Add token to default headers.
-            Restangular.configuration.defaultHeaders.authorization = 'Token ' + token;
-            $rootScope.loginInProcess = true;
-            // Get the user profile data using the existing token from previous login
-            Restangular.all('leedr/user-profile').customGET().then(function (res) {
-                $rootScope.loginInProcess = false;
-                var user_data = res[0];
-                Session.create(user_data.user.username, user_data.user.first_name, user_data.user.last_name,
-                    user_data.user.email, user_data.premium, user_data.games);
-                Session.get();
-
-            }, function (error) {
-                $rootScope.loginInProcess = false;
-                // ERROR with token. Remove it from local storage.
-                localStorageService.remove('token');
-
-            });
-        }
 
         $rootScope.$on('$routeChangeStart', function (event) {
             $scope.closePopOuts();

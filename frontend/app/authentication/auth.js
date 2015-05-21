@@ -1,5 +1,5 @@
 angular.module('myApp.auth', ['ngRoute']).
-    service('Session', ['$rootScope', '$location', '$timeout', function ($rootScope, $location, $timeout) {
+    service('Session', ['$rootScope', function ($rootScope) {
         this.create = function (username, first_name, last_name, email, premium, games) {
             this.username = username;
             this.first_name = first_name;
@@ -29,20 +29,6 @@ angular.module('myApp.auth', ['ngRoute']).
             };
             return $rootScope.user
         };
-
-        $rootScope.$on('$routeChangeStart', function (event, next, current) {
-                try {
-                    if ((/\/dashboard([A-Za-z0-9-/:]*)/.test(next.$$route.originalPath)) && !$rootScope.user) {
-                        event.preventDefault();
-                        $location.path("/");
-
-                        $timeout(function () {
-                            $rootScope.toggleLogin(true);
-                            toastr.error("You must be logged in to view this page.");
-                        }, 100);
-                    }
-                } catch (err) { }
-            });
 
     }
     ]).
@@ -92,8 +78,48 @@ angular.module('myApp.auth', ['ngRoute']).
         };
 
         authService.isAuthenticated = Session.username !== null && typeof Session.username !== 'undefined';
-
-
         return authService;
-    }
-    ]);
+    }])
+    .service('RequireLogin', ['$rootScope', '$location', '$timeout', 'Restangular', 'localStorageService', 'Session', function ($rootScope, $location, $timeout, Restangular, localStorageService, Session) {
+
+        var redirect = function () {
+            $location.path("/");
+            $timeout(function () {
+                $rootScope.toggleLogin(true);
+                toastr.error("You must be logged in to view this page.");
+            }, 100);
+        };
+
+        $rootScope.$on('$routeChangeStart', function (event, next, current) {
+            // The regex below matches anything that starts with /dashboard
+            // This will redirect the user to the home page and open up the login popout.
+            if ((/\/dashboard([A-Za-z0-9-/:]*)/.test(next.$$route.originalPath)) && !$rootScope.user) {
+                event.preventDefault();
+                var token = localStorageService.get('token');
+                if (token) {
+                    Restangular.configuration.defaultHeaders.authorization = 'Token ' + token;
+                    Restangular.all('leedr/user-profile').customGET().then(function (res) {
+                        var user_data = res[0];
+                        Session.create(user_data.user.username, user_data.user.first_name, user_data.user.last_name,
+                            user_data.user.email, user_data.premium, user_data.games);
+                        Session.get();
+                        if (next.$$route.keys[0]){
+                            var path = next.$$route.originalPath;
+                            var newPath = path.slice(1, path.indexOf(':')) + next.params[next.$$route.keys[0]['name']];
+                            $location.path(newPath);
+                        } else {
+                            var path = next.$$route.originalPath.slice(1, next.$$route.originalPath.length) + '/';
+                            $location.path(path);
+                        }
+                    }, function (error) {
+                        localStorageService.remove('token');
+                        redirect();
+                    });
+                } else {
+                    event.preventDefault();
+                    redirect();
+                }
+            }
+        });
+
+    }]);
