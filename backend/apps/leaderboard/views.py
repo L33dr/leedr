@@ -16,8 +16,6 @@ from models import GameDetail, UserProfile, UserGameProfile
 from rest_framework import authentication, permissions
 from serializers import GameDetailSerializer, UserProfileSerializer, UserGameProfileSerializer, CommentSerializer
 from apps.leaderboard.tasks import send_contact_request_alert_task, send_contact_request_reply_task
-from celery import shared_task
-
 
 class FacebookLogin(SocialLogin):
     adapter_class = FacebookOAuth2Adapter
