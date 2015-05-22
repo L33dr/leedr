@@ -45,8 +45,11 @@ class UserProfileSerializer(ModelSerializer):
         user_data = validated_data.pop('user')
         game_data = validated_data.pop('games')
         username = self.data['user']['username']
+
+        # Querying for the current user object. Will be used to update the user object defined by django.
         user = User.objects.get(username=username)
-        print user
+        # Creating a new serializer, this is so we can validate the data and call update
+        # and do the actual updating of the user object.
         user_serializer = UserSerializer(data=user_data)
         if user_serializer.is_valid():
             user_serializer.update(user, user_data)
