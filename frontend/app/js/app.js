@@ -24,7 +24,7 @@ angular.module('myApp', [
 ]).
     config(['$routeProvider', 'RestangularProvider', '$httpProvider', function ($routeProvider, RestangularProvider, $httpProvider) {
         $routeProvider.otherwise({redirectTo: '/home'});
-        RestangularProvider.setBaseUrl('http://localhost:8001');
+        RestangularProvider.setBaseUrl('/api');
         RestangularProvider.setRequestSuffix('/');
         $httpProvider.interceptors.push([
             '$injector',
