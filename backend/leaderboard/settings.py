@@ -25,7 +25,6 @@ import config
 LOL_API_KEY = config.LOL_API_KEY
 
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -108,7 +107,8 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'leaderboard.urls'
 
-BROKER_URL = 'django://'
+
+BROKER_URL = config.BROKER_URL
 
 TEMPLATES = [
     {
