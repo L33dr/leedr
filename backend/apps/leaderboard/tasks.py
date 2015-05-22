@@ -9,26 +9,36 @@ from celery import shared_task
 
 """
 Shared tasks can be called throughout the application and ran asynchronously by importing the task name,
-    then calling taskname.delay(parameters). The delay function will add it into the queue to be processed as soon as possible.
+then calling taskname.delay(). The delay function will add it into the queue to be processed as soon as possible.
 
 For more information see: https://celery.readthedocs.org/en/latest/userguide/calling.html
 
-You can also call a shared task directly and have it executed in a serial manor by just calling it as if were any other function.
+You can also call a shared task directly and have it executed in serial by just calling it as if were any other function.
 """
 
-@shared_task()
-def get_LOL_id_by_username(username):
+class ServiceUnavailable(Exception):
+    pass
+
+def get_LOL_id_by_username(username, region):
     """
     Returns LOL ID by performing a query on their api by LOL username.
     This would generally be ran right as a user requests we add their game.
+    :param username: String.
+    :param region: String. Specifying which region they are participating in the game. Only used to gather their info.
+    :return: Integer
+    :raises NameError: Raised if username is not found on 3rd party API (404)
+    :raises Exception: Raised if 400 or 500 error from server.
     """
-    request_URL = 'https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/' + username + '?api_key=' + LOL_API_KEY
+    request_URL = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + \
+                  username + '?api_key=' + LOL_API_KEY
     request = get(request_URL)
-    if request.status_code not in [400, 404, 500]:
+    if request.status_code not in [400, 404, 429, 500, 503]:
         data = yaml.load(request.content)
         return data[username]['id']
     elif request.status_code == 404:
         raise NameError("API returned 404. Name not found or is incorrect")
+    elif request.status_code in [429, 503]:
+        raise ServiceUnavailable("Status code: {}".format(request.status_code))
     else:
         raise Exception("LOL API returned status code: {} ".format(request.status_code))
 
