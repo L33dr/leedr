@@ -347,6 +347,12 @@ label {
     margin-left: 470px;
 }
 
+#main-body. welcome-page li {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #dae4e6;
+}
+
 .form-group {
     padding-right: 60px;
 }
@@ -433,4 +439,16 @@ label {
 .dashboard-icons li {
     list-style: none;
     display: block;
+}
+
+#LOL-stats {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #484c4f;
+    color: #dae4e6
+}
+
+#SC2-stats {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #484c4f;
+    color: #dae4e6
 }
