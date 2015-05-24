@@ -49,6 +49,9 @@ class UserGameProfile(models.Model):
     game = models.ForeignKey(GameDetail)
     game_user_name = models.CharField(max_length=100)
     user = models.ForeignKey(UserProfile, related_name="games")
+    region = models.CharField(max_length=10)
+    external_user_id = models.IntegerField(null=True, blank=True)
+    is_in_error_state = models.BooleanField(default=0)
 
     def __str__(self):
         return self.game_user_name + "'s " + self.game.name + ' profile'
