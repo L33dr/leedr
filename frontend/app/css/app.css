@@ -415,6 +415,13 @@ label {
     color: #edb300;
 }
 
+#welcome-page li a {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #dae4e6;
+    align-content: center;
+}
+
 #welcome-page p {
     color: #dae4e6;
 }
@@ -447,8 +454,38 @@ label {
     color: #dae4e6
 }
 
+#LOL-stats label {
+    color: #dae4e6
+}
+
+#LOL-stats ul {
+    color: #edb300
+}
+
+#LOL-stats h2 {
+    color: #edb300
+}
+
+#LOL-stats h4 {
+    color: #16b7c2
+}
+
+#LOL-final-stats h4 {
+    color: #dae4e6
+}
+
 #SC2-stats {
     font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #484c4f;
     color: #dae4e6
 }
+
+#SC2-stats label {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #484c4f;
+    color: #edb300
+}
+
+
+
+

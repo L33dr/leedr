@@ -21,6 +21,7 @@ angular.module('myApp.dashboardGameDetail', ['ngRoute'])
                 Restangular.all(gameService[$routeParams.gameShorthand].url).customGET().then(function (data) {
                     if (data[0]) {
                         $scope.GameData = data[0];
+
                     } else {
                         $location.path("/dashboard");
                         toastr.error("We are still updating your data. Please check back later.");
