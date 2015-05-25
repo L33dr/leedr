@@ -17,9 +17,10 @@
                     <ul>
                         <li ng-repeat="usergame in user.games">
                             <img ng-if="usergame.game.thumbnail" ng-src="{{ usergame.game.thumbnail }}"
-                                 class="img-circle" height="100">
+                                 class="img-square img-responsive img-center" style="width: 350px;height: 180px;">
                             <br ng-if="usergame.game.thumbnail">
                             <a href="#/dashboard/game-detail/{{ usergame.game.shorthand_name }}">{{ usergame.game.name }}</a>
+                            <br>
                         </li>
                     </ul>
                 </div>
