@@ -12,14 +12,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 text-left">
-                        <h1>Supported Games:</h1>
+                        <h1>Currently Supported Games:</h1>
 
-                        <div class="col-sm-3 col-lg-6 text-left" ng-repeat="game in games">
-                            <img ng-src="{{ game.thumbnail }}" class="img-square img-responsive img-left"
-                                 style="width: auto;height: 200px;">
-                        </div>
-                        <div class="col-sm-3 col-lg-6 text-center">
-                            <h4>More Coming Soon...</h4>
+                        <div class="col-sm-3 supported-games" ng-repeat="game in games">
+                            <img ng-src="{{ game.thumbnail }}" class="img-square img-responsive img-left" width="200px">
                         </div>
                     </div>
                 </div>
@@ -31,10 +27,28 @@
                 <div class="row">
                     <div class="col-lg-8 text-left">
                         <h1>Frequently Asked Questions:</h1>
-                        <ul>Question #1</ul>
-                        <ul>Question #2</ul>
-                        <ul>Question #3</ul>
-                        <ul>Question #4</ul>
+                        <ol>
+                            <li><h3>How does your service work?</h3>
+                                <ol>
+                                    <li>You signup and determine which games you would like to track.</li>
+                                    <li>When adding a game you give us the identifying information we need to get the stats from the game.</li>
+                                    <li>Every hour* we reach out to the game provider and get updated stats.</li>
+                                    <li>We then store those stats in our database for future reference.</li>
+                                </ol></li>
+
+                            <li><h3>Can I request for a game to be added?</h3>
+                            <ul><li>Yes. Submit a contact request below and we will take a look at it.
+                                If possible, please include a link to the game's API.</li></ul>
+                            </li>
+
+                            <li><h3>Will there be a premium service?</h3>
+                            <ul>
+                                <li>This is currently up in the air depending on how popular the website gets.</li>
+                                <li>We were thinking services like on demand updates, graphing over time and such would be great premium features.</li>
+                                <li>Have a feature you want? Please let us know by using the contact form below!</li>
+                            </ul>
+                            </li>
+                        </ol>
                     </div>
                 </div>
             </div>

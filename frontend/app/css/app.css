@@ -488,6 +488,19 @@ label {
     color: #edb300
 }
 
+.supported-games {
+    height: 100px;
+}
+
+.supported-games img {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+}
+
 
 
 
