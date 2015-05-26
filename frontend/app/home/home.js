@@ -9,8 +9,9 @@ angular.module('myApp.home', ['ngRoute'])
   });
 }])
 
-.controller('HomeCtrl', ['$scope', 'Restangular', function($scope, Restangular) {
+.controller('HomeCtrl', ['$scope', 'Restangular', 'gameService', function($scope, Restangular, gameService) {
         $scope.comment = {};
+        $scope.games = gameService;
         $scope.submit = function() {
             Restangular.all("leedr/comment").customPOST($scope.comment).then(function () {
                     toastr.success("Your comment was successfully submitted.");

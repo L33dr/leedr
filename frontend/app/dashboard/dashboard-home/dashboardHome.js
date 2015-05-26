@@ -9,7 +9,10 @@ angular.module('myApp.dashboardHome', ['ngRoute'])
         });
     }])
 
-    .controller('DashboardHomeCtrl', ['$scope', '$location', '$timeout', '$modal', 'Restangular', 'Session', function ($scope, $location, $timeout, $modal, Restangular, Session) {
+    .controller('DashboardHomeCtrl', ['$scope', '$location', '$timeout', '$modal', 'Restangular', 'Session', 'gameService',
+        function ($scope, $location, $timeout, $modal, Restangular, Session, gameService) {
+
+        $scope.supportedGames = gameService;
 
         // User is required to be logged in before they can view this page.
         if (!$scope.user.username) {

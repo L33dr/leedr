@@ -13,10 +13,11 @@
                 <div class="col-lg-8 text-left">
                     <h1 ng-show="user.username" class="animate-show">Welcome, {{ user.username }}!</h1>
                     <br>
+
                     <p>You have these games:</p>
                     <ul>
                         <li ng-repeat="usergame in user.games">
-                            <img ng-if="usergame.game.thumbnail" ng-src="{{ usergame.game.thumbnail }}"
+                            <img ng-src="{{ supportedGames[usergame.game.shorthand_name].thumbnail }}"
                                  class="img-square img-responsive img-center" style="width: 350px;height: 180px;">
                             <br ng-if="usergame.game.thumbnail">
                             <a href="#/dashboard/game-detail/{{ usergame.game.shorthand_name }}">{{ usergame.game.name }}</a>

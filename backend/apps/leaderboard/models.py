@@ -10,7 +10,6 @@ class GameDetail(models.Model):
     """
     name = models.CharField(max_length=100)
     platform = models.CharField(max_length=100)
-    thumbnail = models.URLField()
     shorthand_name = models.CharField(max_length=10)
 
     def __str__(self):
@@ -53,7 +52,6 @@ class UserGameProfile(models.Model):
     external_user_id = models.IntegerField(null=True, blank=True)
     is_in_error_state = models.BooleanField(default=0)
     updates_on_demand = models.IntegerField(default=1)
-
 
     def __str__(self):
         return self.game_user_name + "'s " + self.game.name + ' profile'

@@ -13,13 +13,10 @@
                 <div class="row">
                     <div class="col-lg-8 text-left">
                         <h1>Supported Games:</h1>
-                        <div class="col-sm-3 col-lg-6 text-left">
-                            <img class="img-square img-responsive img-left" src="img/LOL.jpeg"
-                                 style="width: 350px;height: 180px;">
-                        </div>
-                        <div class="col-sm-3 col-lg-6 text-left">
-                            <img class="img-square img-responsive img-left" src="img/SC2.jpeg"
-                                 style="width: 350px;height: 180px;">
+
+                        <div class="col-sm-3 col-lg-6 text-left" ng-repeat="game in games">
+                            <img ng-src="{{ game.thumbnail }}" class="img-square img-responsive img-left"
+                                 style="width: auto;height: 200px;">
                         </div>
                         <div class="col-sm-3 col-lg-6 text-center">
                             <h4>More Coming Soon...</h4>
