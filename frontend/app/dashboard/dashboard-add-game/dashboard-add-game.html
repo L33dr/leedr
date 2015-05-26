@@ -1,0 +1,55 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add a Game</h3>
+</div>
+<div class="model-body">
+    <div ng-if="usergame.game" style="text-align: center;">
+        <img ng-src="{{ usergame.game.thumbnail }}" height="150px">
+    </div>
+    <div ng-show="sc2Help" class="table-bordered">
+            <img src="img/SC2-Instructions.png" width="100%">
+            <h3>User ID</h3>
+            <div>
+                The User ID is your unique identifier for that region according to Star Craft 2.
+                We need this so we are able to get your stats. Please see the image above for finding your user id.
+            </div>
+            <h3>Region</h3>
+            <div>
+                The realm is something we are not able to obtain on our own given any of your other information.
+                You can find this information by visiting your profile on battle.net and in the URL there is your realm.
+                The picture above shows you exactly where it is.
+            </div>
+            <h3>Username</h3>
+            <div>
+                Your username is another way to uniquely identify you within the Star Craft system.
+                Please see the image above for details on finding your username.
+            </div>
+            <br>
+            <button class="btn btn-block btn-success" ng-click="toggleSc2Help()">Done</button>
+        </div>
+    <form ng-show="!sc2Help">
+        <div class="form-group">
+            <label>Game</label>
+            <select ng-model="usergame.game" ng-options="game as game.name for game in games"></select>
+        </div>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" ng-model="usergame.username" class="form-control">
+        </div>
+        <div ng-if="usergame.game.name == 'Star Craft 2'" class="form-group">
+            <label>User ID</label>
+            <input type="number" ng-model="usergame.userid" class="form-control">
+        </div>
+        <div ng-if="usergame.game.name == 'Star Craft 2'" class="form-group">
+            <label>Region</label>
+            <input type="number" ng-model="usergame.region" class="form-control">
+
+        </div>
+
+        <div class="modal-footer">
+            <button ng-click="toggleSc2Help()" ng-if="usergame.game.name == 'Star Craft 2'" class="btn btn-default btn-info" style="float:left;">Need help?</button>
+            <button type="submit" ng-click="submit()" class="btn btn-success">Add</button>
+            <button type="button" ng-click="cancel()" class="btn-flt-right btn btn-danger">Close</button>
+        </div>
+    </form>
+</div>
+
