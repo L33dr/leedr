@@ -52,6 +52,8 @@ class UserGameProfile(models.Model):
     region = models.CharField(max_length=10)
     external_user_id = models.IntegerField(null=True, blank=True)
     is_in_error_state = models.BooleanField(default=0)
+    updates_on_demand = models.IntegerField(default=1)
+
 
     def __str__(self):
         return self.game_user_name + "'s " + self.game.name + ' profile'

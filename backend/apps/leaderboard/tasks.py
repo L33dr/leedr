@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 
 import re
+
 import yaml
 
 
@@ -12,10 +13,11 @@ from django.utils import timezone
 from django.utils.datetime_safe import time
 from django.template import Context, loader
 
+
 from celery import shared_task
 
 from apps.leaderboard.game_models.lol_game_model import LOLPlayerStatSummary, LOLAggregatedStats, LOLGameData
-from apps.leaderboard.models import UserGameProfile, GameDetail
+from apps.leaderboard.models import UserGameProfile, GameDetail, UserProfile
 from leaderboard.settings import EMAIL_HOST_USER, LOL_API_KEY
 
 """
@@ -169,3 +171,16 @@ def find_LOL_users_to_update():
         get_stats_by_id.apply_async((user_id, game_profile), eta=next_update_time)
         next_update_time += timedelta(seconds=2.5)
 
+
+@shared_task()
+def give_updates_on_demand():
+    game_profiles = UserGameProfile.objects.filter(is_in_error_state=False).all()
+    print game_profiles
+    for profile in game_profiles:
+        if profile.user.is_premium():
+            print profile.updates_on_demand
+            profile.updates_on_demand = 5
+        else:
+            print profile.updates_on_demand
+            profile.updates_on_demand = 1
+        profile.save()
