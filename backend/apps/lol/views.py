@@ -2,8 +2,8 @@
 Base views for LOL.
 """
 from rest_framework import generics
-from apps.leaderboard.game_models.lol_game_model import LOLAggregatedStats, LOLGameData
-from apps.leaderboard.game_serializers.lol_serializers import AggregatedStatsSerializer, \
+from apps.lol.models import LOLAggregatedStats, LOLGameData
+from apps.lol.serializers import AggregatedStatsSerializer, \
     LeagueOfLegendsGameDataSerializer
 from rest_framework import authentication, permissions
 from apps.leaderboard.models import UserProfile

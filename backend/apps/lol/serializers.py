@@ -1,7 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from apps.leaderboard.game_models.lol_game_model import LOLGameData
-from apps.leaderboard.game_models.lol_game_model import LOLAggregatedStats
-from apps.leaderboard.game_models.lol_game_model import LOLPlayerStatSummary
+from apps.lol.models import LOLGameData, LOLAggregatedStats, LOLPlayerStatSummary
 
 
 class AggregatedStatsSerializer(ModelSerializer):

@@ -90,6 +90,8 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.twitch',
     'apps.leaderboard',
+    'apps.lol',
+    'apps.sc2',
     'kombu.transport.django',
 )
 

@@ -15,4 +15,6 @@ urlpatterns = [
     url(r'^rest-auth/google/$', GoogleLogin.as_view()),
     url(r'^rest-auth/twitch/$', TwitchLogin.as_view()),
     url(r'^leedr/', include('apps.leaderboard.urls')),
+    url(r'^leedr/SC2/', include('apps.sc2.urls')),
+    url(r'^leedr/LOL/', include('apps.lol.urls')),
 ]

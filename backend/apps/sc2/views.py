@@ -3,11 +3,11 @@ Base views for SC2.
 """
 from rest_framework import generics
 from rest_framework import authentication, permissions
-from apps.leaderboard.game_models.sc2_game_model import SC2Career,\
+from apps.sc2.models import SC2Career,\
     Terran, Zerg, Protoss, SwarmLevels, Campaign, Season, RewardsList,\
     UserCategoryPoints, UserAchievementPoints, UserAchievementList,\
     UserAchievement, SC2GameData
-from apps.leaderboard.game_serializers.sc2_serializers import SC2CareerSerializer,\
+from apps.sc2.serializers import SC2CareerSerializer,\
     TerranSerializer, ZergSerializer, ProtossSerializer, SwarmLevelsSerializer,\
     CampaignSerializer, SeasonSerializer, RewardsListSerializer, UserCategoryPointsSerializer,\
     UserAchievementPointsSerializer, UserAchievementListSerializer,\
