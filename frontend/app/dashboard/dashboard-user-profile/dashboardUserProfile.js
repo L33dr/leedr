@@ -13,36 +13,23 @@ angular.module('myApp.dashboardUserProfile', ['ngRoute'])
         function ($scope, $modalInstance, Restangular) {
             $scope.userUpdate = angular.copy($scope.user);
 
-            var getChanges = function (prev, now) {
-                var changes = {};
-                var prop = {};
-                var c = {};
-
-                for (prop in now) { //ignore jslint
-                    if (prop.indexOf("_KO") > -1) {
-                        continue; //ignore jslint
-                    }
-
-                    if (!prev || prev[prop] !== now[prop]) {
-                        if (_.isArray(now[prop])) {
-                            changes[prop] = now[prop];
-                        }
-                        else if (_.isObject(now[prop])) {
-                            // Recursion alert
-                            c = um.utils.getChanges(prev[prop], now[prop]);
-                            if (!_.isEmpty(c)) {
-                                changes[prop] = c;
-                            }
-                        } else {
-                            changes[prop] = now[prop];
-                        }
-                    }
-                }
-
-                return changes;
-            };
-
             $scope.submit = function () {
+                if ($scope.userUpdate.password1 && $scope.userUpdate.password2 && $scope.userUpdate.password1 == $scope.userUpdate.password2) {
+                    var data = {
+                        new_password1: $scope.userUpdate.password1,
+                        new_password2: $scope.userUpdate.password2
+                    };
+                    Restangular.one('/rest-auth/password/change/')
+                        .customPOST(data).then(function () {
+                            toastr.success("Password updated!");
+                        }, function (error) {
+                            console.log(error);
+                            toastr.error('Password change error! Please double check fields.');
+                        }
+                    )
+                }
+                delete $scope.userUpdate.password1;
+                delete $scope.userUpdate.password2;
                 if ($scope.userUpdate !== $scope.user) {
                     var user = {
                         user: {
@@ -52,7 +39,6 @@ angular.module('myApp.dashboardUserProfile', ['ngRoute'])
                         },
                         games: $scope.user.games
                     };
-                    console.log(user.games);
                     Restangular.one('/leedr/user-profile/update').patch(user).then(function () {
                         $modalInstance.close('submitted!');
                         toastr.success("Profile updated!");
