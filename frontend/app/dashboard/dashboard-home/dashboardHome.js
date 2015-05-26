@@ -12,26 +12,47 @@ angular.module('myApp.dashboardHome', ['ngRoute'])
     .controller('DashboardHomeCtrl', ['$scope', '$location', '$timeout', '$modal', 'Restangular', 'Session', 'gameService',
         function ($scope, $location, $timeout, $modal, Restangular, Session, gameService) {
 
-        $scope.supportedGames = gameService;
+            $scope.supportedGames = gameService;
 
-        // User is required to be logged in before they can view this page.
-        if (!$scope.user.username) {
-            // The likeliness of this being called is very slim.
-            // However, in the case that the user is not logged in or does not have the data on the scope it will call it here.
-            Restangular.all('/leedr/user-profile').customGET().then(function (data) {
-                $scope.user = data[0];
-            });
-        }
+            // User is required to be logged in before they can view this page.
+            try {
+                var username = $scope.user.username
+            } catch (ex) {
 
-        $scope.openSettings = function () {
-            $scope.closePopOuts();
-            var modalInstance = $modal.open({
-                templateUrl: 'dashboard/dashboard-user-profile/dashboard-user-profile.html',
-                controller: 'DashboardUserProfileCtrl',
-                size: 'lg'
-            });
+            }
 
-        }
+            if (!username) {
+                // The likeliness of this being called is very slim.
+                // However, in the case that the user is not logged in or does not have the data on the scope it will call it here.
+                Restangular.all('/leedr/user-profile').customGET().then(function (data) {
+                    $scope.user = data[0];
+                });
+            }
+
+            $scope.openSettings = function () {
+                $scope.closePopOuts();
+                var modalInstance = $modal.open({
+                    templateUrl: 'dashboard/dashboard-user-profile/dashboard-user-profile.html',
+                    controller: 'DashboardUserProfileCtrl',
+                    size: 'lg'
+                });
+
+            };
+
+            $scope.openGameModal = function () {
+                $scope.closePopOuts();
+                var modalInstance = $modal.open({
+                    templateUrl: 'dashboard/dashboard-add-game/dashboard-add-game.html',
+                    controller: 'DashboardAddGameCtrl',
+                    size: 'lg'
+                });
+            };
+
+            try {
+                $scope.hasGames = $scope.user.games != 0;
+            } catch (ex) {
+                // If the user has no games it will show undefined and throw an error.
+            }
 
 
-    }]);
+        }]);

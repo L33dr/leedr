@@ -446,6 +446,8 @@ label {
 .dashboard-icons li {
     list-style: none;
     display: block;
+    float: left;
+    padding-right: 1em;
 }
 
 #LOL-stats {

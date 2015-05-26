@@ -3,6 +3,9 @@
         <div class="dashboard-icons">
             <ul>
                 <li>
+                     <a href="" ng-click="openGameModal()"><i class="fa fa-plus fa-2x"></i></a>
+                </li>
+                <li>
                     <a href="" ng-click="openSettings()"><i class="fa fa-cogs fa-2x"></i></a>
                 </li>
             </ul>
@@ -14,7 +17,7 @@
                     <h1 ng-show="user.username" class="animate-show">Welcome, {{ user.username }}!</h1>
                     <br>
 
-                    <p>You have these games:</p>
+                    <p ng-if="hasGames">You have these games:</p>
                     <ul>
                         <li ng-repeat="usergame in user.games">
                             <img ng-src="{{ supportedGames[usergame.game.shorthand_name].thumbnail }}"
@@ -24,6 +27,8 @@
                             <br>
                         </li>
                     </ul>
+
+                    <p ng-if="!hasGames">Oh noes! You have no games! To get started click on the plus sign on the top right.</p>
                 </div>
             </div>
         </div>

@@ -93,15 +93,21 @@ angular.module('myApp.auth', ['ngRoute']).
 
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
             // The regex below matches anything that starts with /dashboard
-            if ((/\/dashboard([A-Za-z0-9-/:]*)/.test(next.$$route.originalPath)) && !$rootScope.user) {
+
+            try {
+                var nextPath = next.$$route.originalPath;
+            } catch (ex) {
+                // Sometimes it says it is undefined even when it is. Catching harmless error.
+            }
+
+            if ((/\/dashboard([A-Za-z0-9-/:]*)/.test(nextPath)) && !$rootScope.user) {
                 // Stopping the route from continuing
                 event.preventDefault();
                 var path = '';
                 if (next.$$route.keys[0]) {
-                    path = next.$$route.originalPath;
-                    path = path.slice(1, path.indexOf(':')) + next.params[next.$$route.keys[0]['name']];
+                    nextPath = nextPath.slice(1, path.indexOf(':')) + next.params[next.$$route.keys[0]['name']];
                 } else {
-                    path = next.$$route.originalPath.slice(1, next.$$route.originalPath.length) + '/';
+                    path = nextPath.slice(1, nextPath.length) + '/';
                 }
 
                 // Seeing if user is still 'logged in' by grabbing the token.

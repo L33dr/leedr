@@ -1,14 +1,6 @@
 'use strict';
 
 angular.module('myApp.dashboardUserProfile', ['ngRoute'])
-
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/dashboard/user-profile/', {
-            templateUrl: 'dashboard/dashboard-user-profile/dashboard-user-profile.html',
-            controller: 'DashboardUserProfileCtrl'
-        });
-    }])
-
     .controller('DashboardUserProfileCtrl', ['$scope', '$modalInstance', 'Restangular',
         function ($scope, $modalInstance, Restangular) {
             $scope.userUpdate = angular.copy($scope.user);

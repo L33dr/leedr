@@ -15,6 +15,7 @@ angular.module('myApp', [
     'myApp.dashboardHome',
     'myApp.dashboardGameDetail',
     'myApp.dashboardUserProfile',
+    'myApp.dashboardAddGame',
     'myApp.view1',
     'myApp.login',
     'myApp.logout',

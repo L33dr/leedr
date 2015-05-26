@@ -8,7 +8,6 @@ angular.module('myApp.logout', ['ngRoute'])
             $scope.submit = function () {
                 AuthService.logout();
                 $location.path('/');
-                console.log($scope.user);
                 toastr.success("You logged out successfully.");
                 $scope.closePopOuts();
             };
