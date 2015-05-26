@@ -174,6 +174,11 @@ def find_LOL_users_to_update():
 
 @shared_task()
 def give_updates_on_demand():
+    """
+    This task should be ran daily to give users their updates on demand.
+    If they are premium they will get 5 daily, else they will get 1 daily.
+    These updates are PER GAME PROFILE. Each game a user plays will get their own updates on demand.
+    """
     game_profiles = UserGameProfile.objects.filter(is_in_error_state=False).all()
     print game_profiles
     for profile in game_profiles:
