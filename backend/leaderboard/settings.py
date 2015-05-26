@@ -39,25 +39,26 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': True,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     'loggers': {
-#         'django.db.backends': {
-#             'handlers': ['console'],
-#             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-#         },
-#         'django.request': {
-#             'handlers': ['console'],
-#             'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
-#         },
-#     },
-# }
+if DEBUG:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': True,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'loggers': {
+            'django.db.backends': {
+                'handlers': ['console'],
+                'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
+            },
+            'django.request': {
+                'handlers': ['console'],
+                'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
+            },
+        },
+    }
 
 
 # Application definition
@@ -199,14 +200,15 @@ REST_FRAMEWORK = {
 }
 
 ACCOUNT_SIGNUP_FORM_CLASS = 'apps.leaderboard.forms.SignupForm'
-
 SOCIALACCOUNT_PROVIDERS = {'google': {'SCOPE': ['profile', 'email'], 'AUTH_PARAMS': {'access_type': 'online'}}}
-
 REST_SESSION_LOGIN = False
-# TODO: Setup django email backend with email accounts to send email from.
+
+if not DEBUG:
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+
 SITE_ID = "2"
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = ('email', 'username', 'username_email')
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ADMIN_EMAIL = config.EMAIL_HOST_USER
