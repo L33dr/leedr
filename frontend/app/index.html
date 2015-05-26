@@ -34,30 +34,20 @@
 
 </head>
 <body ng-controller="ApplicationCtrl">
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid" align="center">
-        <div class="navbar-header">
-            <nav class="navbar-brand" href="#/home">Leedr</nav>
-        </div>
-    </div>
-</nav>
-
 <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="li-arrow">
                     <div>
-                        <span style="margin: 50px; position:relative;"></span>
-                    <a href="" id="menu-toggle-in-nav" ng-click="toggleEntireNav()" class="animate-show" ng-hide="popoutNavOpen">
 
+                    <a href="" id="menu-toggle-in-nav" ng-click="toggleEntireNav()" class="animate-show" ng-hide="popoutNavOpen">
+                        Close
                         <i class="fa fa-arrow-left fa-2x faa-horizontal animated"></i>
                     </a>
                 </div></li>
+                <span style="margin: 50px; position:relative;"></span>
                 <li ng-if="user.username">
                     <a href="#/dashboard">Dashboard</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#/home" ng-click="closePopOuts()">Home</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#/home/#supportedGames" ng-click="closePopOuts()">Supported Games</a>
