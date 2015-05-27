@@ -349,6 +349,14 @@ h1 {
     color: #EDB300;
 }
 
+li > h3 {
+  color: rgb(237, 156, 61);
+}
+
+.modal {
+    color: #000;
+}
+
 #supportedGames, #about {
     background-color: #484C4F;
 }
