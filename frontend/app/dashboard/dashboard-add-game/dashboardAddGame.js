@@ -14,6 +14,15 @@ angular.module('myApp.dashboardAddGame', ['ngRoute'])
 
             $scope.submit = function () {
               toastr.error("Not implemented yet!");
+              console.log($scope.usergame);
+                $scope.usergame.game.shorthand_name = Object.keys(gameService).filter(function(key) {return gameService[key] === $scope.usergame.game})[0];
+
+              Restangular.all("leedr/user-game-profile").customPOST($scope.usergame).then(function (data) {
+                    console.log(data);
+                    }, function (error) {
+                        toastr.error("Something went wrong retrieving your data. Here is the error message: " + error);
+                        $location.path("/dashboard");
+                    })
             };
 
             $scope.cancel = function () {

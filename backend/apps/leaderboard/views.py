@@ -16,6 +16,7 @@ from models import GameDetail, UserProfile, UserGameProfile
 from rest_framework import authentication, permissions
 from serializers import GameDetailSerializer, UserProfileSerializer, UserGameProfileSerializer, CommentSerializer
 from apps.leaderboard.tasks import send_contact_request_alert_task, send_contact_request_reply_task
+from apps.lol.tasks import get_id_then_update_stats
 
 class FacebookLogin(SocialLogin):
     adapter_class = FacebookOAuth2Adapter
@@ -64,13 +65,24 @@ class UserProfileUpdateView(generics.UpdateAPIView):
     def get_object(self):
         return UserProfile.objects.get(user=self.request.user)
 
-class UserGameProfileView(generics.ListAPIView):
+class UserGameProfileView(generics.ListCreateAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = UserGameProfileSerializer
 
     def get_queryset(self):
         return UserGameProfile.objects.filter(user=self.request.user).all()
+
+    def post(self, request, *args, **kwargs):
+        user = UserProfile.objects.get(user=self.request.user)
+        game = GameDetail.objects.filter(shorthand_name=request.data['game']['shorthand_name']).first()
+        serializer = UserGameProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            profile = serializer.create(serializer.validated_data, user=user, game=game)
+            get_id_then_update_stats.delay(request.data['game_user_name'], request.data['region'], profile)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class Comment(APIView):

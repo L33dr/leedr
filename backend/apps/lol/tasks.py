@@ -38,6 +38,7 @@ def get_LOL_id_by_username(username, region):
     if check_valid_response(request):
         data = yaml.load(request.content)
         return data[username]['id']
+
 @shared_task()
 def get_stats_by_id(user_id, game_profile):
     """
@@ -107,3 +108,8 @@ def find_LOL_users_to_update():
             user_id = game_profile.external_user_id
         get_stats_by_id.apply_async((user_id, game_profile), eta=next_update_time)
         next_update_time += timedelta(seconds=2.5)
+
+@shared_task()
+def get_id_then_update_stats(username, region, profile):
+    id = get_LOL_id_by_username(username, region)
+    get_stats_by_id(id, profile)

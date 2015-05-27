@@ -26,11 +26,22 @@ class UserSerializer(ModelSerializer):
 
 
 class UserGameProfileSerializer(ModelSerializer):
-    game = GameDetailSerializer(required=True, many=False)
+    game = GameDetailSerializer(many=False, read_only=False)
 
     class Meta:
         model = UserGameProfile
-        fields = ('game', 'game_user_name')
+        fields = ('game', 'game_user_name', 'region')
+
+    def create(self, validated_data, user, game):
+        game = GameDetail.objects.filter(shorthand_name=game.shorthand_name).first()
+        profile = UserGameProfile()
+        profile.game = game
+        profile.user = user
+        profile.game_user_name = self.data['game_user_name']
+        profile.region = self.data['region']
+        profile.save()
+        return profile
+
 
 class UserProfileSerializer(ModelSerializer):
     user = UserSerializer(required=True, many=False)
