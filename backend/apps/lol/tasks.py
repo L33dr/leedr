@@ -111,5 +111,6 @@ def find_LOL_users_to_update():
 
 @shared_task()
 def get_id_then_update_stats(username, region, profile):
-    id = get_LOL_id_by_username(username, region)
-    get_stats_by_id(id, profile)
+    profile.external_user_id = get_LOL_id_by_username(username, region)
+    profile.save()
+    get_stats_by_id(profile.external_user_id, profile)

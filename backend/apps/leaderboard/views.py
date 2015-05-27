@@ -78,9 +78,12 @@ class UserGameProfileView(generics.ListCreateAPIView):
         game = GameDetail.objects.filter(shorthand_name=request.data['game']['shorthand_name']).first()
         serializer = UserGameProfileSerializer(data=request.data)
         if serializer.is_valid():
-            profile = serializer.create(serializer.validated_data, user=user, game=game)
-            get_id_then_update_stats.delay(request.data['game_user_name'], request.data['region'], profile)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            try:
+                profile = serializer.create(serializer.validated_data, user=user, game=game)
+                get_id_then_update_stats.delay(request.data['game_user_name'], request.data['region'], profile)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            except ValueError:
+                return Response("You cannot add the same game profile twice!", status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
