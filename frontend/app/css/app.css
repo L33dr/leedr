@@ -1,3 +1,7 @@
+body {
+    color: white;
+}
+
 .navbar {
     margin-bottom: 0;
 }
@@ -22,22 +26,6 @@
     padding-left: 200px;
 }
 
-#sidebar-wrapper {
-    z-index: 1000;
-    margin-top: 51px;
-    position: fixed;
-    left: 200px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: #EBECEC;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
 #wrapper.toggled #sidebar-wrapper {
     width: 150px;
 }
@@ -53,6 +41,11 @@
     margin-right: -200px;
 }
 
+#login, #sign-up, #logout, #sidebar-wrapper, #sidebar-wrapper-sm {
+    background: #475967;
+}
+
+
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
@@ -61,7 +54,6 @@
     height: 100%;
     margin-left: -200px;
     overflow-y: auto;
-    background: #EBECEC;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -76,7 +68,6 @@
     height: 100%;
     margin-left: -200px;
     overflow-y: auto;
-    background: #EBECEC;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -122,8 +113,10 @@
 
 .li-arrow a:hover {
     text-decoration: none !important;
-    color: #16b7c2 !important;
     background: rgba(255, 255, 255, 0) !important;
+}
+
+#menu-toggle-in-nav {
 }
 
 .animate-show {
@@ -223,11 +216,9 @@ section {
 
 #logout {
     position: fixed;
-    top: 50px;
     left: -350px;
     height: 100%;
     width: 275px;
-    background-color: #ebecec;
     color: #3e3b40;
     transition: left .2s ease-in-out;
     z-index: 1;
@@ -237,13 +228,13 @@ section {
     left: 200px;
 }
 
+
+
 #login {
     position: fixed;
-    top: 50px;
     left: -300px;
     height: 100%;
     width: 275px;
-    background-color: #ebecec;
     color: #2f2b30;
     transition: left .2s ease-in-out;
     z-index: 1;
@@ -270,11 +261,9 @@ section {
 
 #sign-up {
     position: fixed;
-    top: 50px;
     left: -300px;
     height: 100%;
     width: 275px;
-    background-color: #ebecec;
     color: #2f2b30;
     transition: left .2s ease-in-out;
     z-index: 1;
@@ -302,9 +291,10 @@ label {
 }
 
 #menu-toggle-in-nav {
+    margin-right: 125px;
+    margin-left: -60px;
     float: left;
-    margin: auto;
-    left: 130px;
+    left: 60px;
     bottom: 50%;
     position: relative;
     -webkit-transition: all 0.2s ease;
@@ -317,7 +307,6 @@ label {
     color: #3e3b40;
     margin: auto;
     left: 5px;
-    top: 60px;
     position: relative;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -326,12 +315,11 @@ label {
 }
 
 #menu-toggle-in-nav-sm:hover {
-    color: #16b7c2;
+    color: white;
     background: rgba(255, 255, 255, 0);
 }
 
 #main-body {
-    padding-top: 50px;
     margin-left: 200px;
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
@@ -357,27 +345,30 @@ label {
     padding-right: 60px;
 }
 
-#supportedGames {
-    background-color: #484c4f;
+h1 {
+    color: #EDB300;
+}
+
+li > h3 {
+  color: rgb(237, 156, 61);
+}
+
+.modal {
+    color: #000;
+}
+
+#supportedGames, #about {
+    background-color: #484C4F;
 }
 
 #supportedGames h1 {
     font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 40px;
-    color: #16b7c2;
 }
 
-#supportedGames ul {
-    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #d6d6d6;
-}
 
 #supportedGames h4 {
     color: #d6d6d6;
-}
-
-#about {
-    background-color: #888c8d;
 }
 
 #about h1 {
@@ -385,22 +376,8 @@ label {
     color: #edb300;
 }
 
-#faq {
-    background-color: #10686f;
-}
-
-#faq h1 {
-    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #dae4e6;
-}
-
-#contact {
-    background-color: #484c4f;
-}
-
-#contact h1 {
-    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #edb300;
+#faq, #contact {
+    background-color: #595A56;
 }
 
 #contact label {
