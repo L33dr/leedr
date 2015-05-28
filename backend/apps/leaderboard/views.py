@@ -58,8 +58,8 @@ class UserProfileView(generics.ListAPIView):
         return UserProfile.objects.filter(user=self.request.user).all()
 
 class UserProfileUpdateView(generics.UpdateAPIView):
-    # authentication_classes = (authentication.TokenAuthentication,)
-    # permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
     serializer_class = UserProfileSerializer
 
     def get_object(self):
