@@ -320,7 +320,9 @@ label {
 }
 
 #main-body {
-    margin-left: 200px;
+    min-width: calc(100% + 200px);
+    min-width: -moz-calc(100% + 200px);
+    min-width: -webkit-calc(100% + 200px);
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
@@ -332,7 +334,7 @@ label {
 }
 
 #main-body.toggledPopOut {
-    margin-left: 470px;
+    padding-left: 470px;
 }
 
 #main-body. welcome-page li {
