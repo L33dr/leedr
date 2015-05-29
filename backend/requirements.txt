@@ -6,9 +6,10 @@ billiard==3.3.0.20
 celery==3.1.18
 certifi==2015.4.28
 coverage==3.7.1
-Django==1.8
+Django==1.7.8
 django-allauth==0.19.1
 django-cors-headers==1.0.0
+django-fixtureless==1.4.2.2
 django-rest-auth==0.4.0
 djangorestframework==3.1.1
 Flootty==3.1.3
