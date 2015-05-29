@@ -24,7 +24,7 @@ class UserProfile(models.Model):
 
     The game profile will contain game specific user identification (Game username, Game user_id, etc).
     """
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name="profile")
     premium = models.BooleanField()
 
     def is_premium(self):
@@ -54,7 +54,7 @@ class UserGameProfile(models.Model):
     updates_on_demand = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.game_user_name + "'s " + self.game.name + ' profile'
+        return self.game_user_name + "'s " + self.game.shorthand_name + ' profile'
 
 
 class Comment(models.Model):

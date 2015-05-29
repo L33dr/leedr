@@ -17,7 +17,7 @@
                     <h1 ng-show="user.username" class="animate-show">Welcome, {{ user.username }}!</h1>
                     <br>
 
-                    <p ng-if="hasGames">You have these games:</p>
+                    <p ng-show="hasGames">You have these games:</p>
                     <ul>
                         <li ng-repeat="usergame in user.games">
                             <img ng-src="{{ supportedGames[usergame.game.shorthand_name].thumbnail }}"
@@ -28,7 +28,7 @@
                         </li>
                     </ul>
 
-                    <p ng-if="!hasGames">Oh noes! You have no games! To get started click on the plus sign on the top right.</p>
+                    <p ng-show="!hasGames">Oh noes! You have no games! To get started click on the plus sign on the top right.</p>
                 </div>
             </div>
         </div>

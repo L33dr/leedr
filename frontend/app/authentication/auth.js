@@ -1,5 +1,5 @@
 angular.module('myApp.auth', ['ngRoute']).
-    service('Session', ['$rootScope', function ($rootScope) {
+    service('Session', ['$rootScope', 'Restangular', function ($rootScope, Restangular) {
         this.create = function (username, first_name, last_name, email, premium, games) {
             this.username = username;
             this.first_name = first_name;
@@ -78,6 +78,19 @@ angular.module('myApp.auth', ['ngRoute']).
         };
 
         authService.isAuthenticated = Session.username !== null && typeof Session.username !== 'undefined';
+
+
+        authService.updateUserInfo = function () {
+            return Restangular.all('leedr/user-profile').customGET().then(function (res) {
+                // Create session.
+                var user_data = res[0];
+                Session.create(user_data.user.username, user_data.user.first_name, user_data.user.last_name,
+                    user_data.user.email, user_data.premium, user_data.games);
+                Session.get();
+                return res;
+            });
+        };
+
         return authService;
     }])
     .service('RequireLogin', ['$rootScope', '$location', '$timeout', 'Restangular', 'localStorageService', 'Session', function ($rootScope, $location, $timeout, Restangular, localStorageService, Session) {

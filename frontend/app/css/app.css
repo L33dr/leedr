@@ -42,7 +42,7 @@ body {
 }
 
 #login, #sign-up, #logout, #sidebar-wrapper, #sidebar-wrapper-sm {
-    background: #475967;
+    background: #FFFDF5;
 }
 
 
@@ -286,6 +286,42 @@ label {
     float: right;
 }
 
+.btn-info {
+  color: #fff;
+  background-color: #436583;
+  border-color: #7F8890;
+}
+
+.btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-info:hover, .open>.dropdown-toggle.btn-info {
+  color: #fff;
+  background-color: #395771;
+  border-color: #7F8890;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #D36D19;
+  border-color: #C06216;
+}
+
+.btn-danger.active, .btn-danger.focus, .btn-danger:active, .btn-danger:focus, .btn-danger:hover, .open>.dropdown-toggle.btn-danger {
+  color: #fff;
+  background-color: #BD6620;
+  border-color: #B6590D;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #429642;
+}
+
+.btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:hover, .open>.dropdown-toggle.btn-success {
+  color: #fff;
+  background-color: #3D8C3D;
+  border-color: #398439;
+}
+
 .bring-button-down {
     margin-top: 50px;
 }
@@ -357,6 +393,14 @@ li > h3 {
 
 .modal {
     color: #000;
+}
+
+.centered {
+    text-align: center;
+}
+
+#remove-game {
+    margin-left: 15%;
 }
 
 #supportedGames, #about {

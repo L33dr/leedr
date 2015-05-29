@@ -9,25 +9,11 @@ angular.module('myApp.dashboardHome', ['ngRoute'])
         });
     }])
 
-    .controller('DashboardHomeCtrl', ['$scope', '$location', '$timeout', '$modal', 'Restangular', 'Session', 'gameService',
-        function ($scope, $location, $timeout, $modal, Restangular, Session, gameService) {
+    .controller('DashboardHomeCtrl', ['$scope', '$location', '$timeout', '$modal', '$interval', 'Restangular', 'Session',
+        'gameService', 'AuthService', function ($scope, $location, $timeout, $modal, $interval, Restangular, Session, gameService, AuthService) {
 
             $scope.supportedGames = gameService;
 
-            // User is required to be logged in before they can view this page.
-            try {
-                var username = $scope.user.username
-            } catch (ex) {
-
-            }
-
-            if (!username) {
-                // The likeliness of this being called is very slim.
-                // However, in the case that the user is not logged in or does not have the data on the scope it will call it here.
-                Restangular.all('/leedr/user-profile').customGET().then(function (data) {
-                    $scope.user = data[0];
-                });
-            }
 
             $scope.openSettings = function () {
                 $scope.closePopOuts();
@@ -36,7 +22,6 @@ angular.module('myApp.dashboardHome', ['ngRoute'])
                     controller: 'DashboardUserProfileCtrl',
                     size: 'lg'
                 });
-
             };
 
             $scope.openGameModal = function () {
@@ -46,13 +31,35 @@ angular.module('myApp.dashboardHome', ['ngRoute'])
                     controller: 'DashboardAddGameCtrl',
                     size: 'lg'
                 });
-            };
 
+                modalInstance.result.then(function () {
+                    $scope.hasGames = $scope.user.games != 0;
+                });
+
+            };
             try {
                 $scope.hasGames = $scope.user.games != 0;
             } catch (ex) {
                 // If the user has no games it will show undefined and throw an error.
             }
 
+            var updateProfile = function () {
+                var user = $scope.user;
+                AuthService.updateUserInfo().then(function () {
+                    if (user !== $scope.user) {
+                        $scope.hasGames = $scope.user.games != 0;
+                    }
+                });
+            };
 
+            updateProfile();
+
+            var stop = $interval(function () {
+                updateProfile();
+            }, 10000);
+
+
+            $scope.$on('$destroy', function () {
+                $interval.cancel(stop);
+            });
         }]);

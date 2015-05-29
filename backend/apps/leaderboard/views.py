@@ -83,10 +83,16 @@ class UserGameProfileView(generics.ListCreateAPIView):
                 get_id_then_update_stats.delay(request.data['game_user_name'], request.data['region'], profile)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             except ValueError:
-                return Response("You cannot add the same game profile twice!", status=status.HTTP_400_BAD_REQUEST)
+                return Response("You cannot have two profiles for the same game, yet!", status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class UserGameProfileDeleteView(generics.DestroyAPIView):
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = UserGameProfileSerializer
 
+    def get_object(self):
+        return UserGameProfile.objects.filter(user__user=self.request.user, game__shorthand_name=self.kwargs['game']).first()
 
 class Comment(APIView):
     def post(self, request, format=None):

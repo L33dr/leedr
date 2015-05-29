@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myApp.dashboardAddGame', ['ngRoute'])
-    .controller('DashboardAddGameCtrl', ['$scope', '$timeout', '$location', '$modalInstance', 'Restangular', 'gameService', 'Session',
-        function ($scope, $timeout, $location, $modalInstance, Restangular, gameService, Session) {
+    .controller('DashboardAddGameCtrl', ['$scope', '$timeout', '$location', '$modalInstance', 'Restangular', 'gameService', 'AuthService',
+        function ($scope, $timeout, $location, $modalInstance, Restangular, gameService, AuthService) {
             $scope.games = gameService;
             $scope.allGames = gameService;
             $scope.showRealm = false;
@@ -19,17 +19,11 @@ angular.module('myApp.dashboardAddGame', ['ngRoute'])
 
                 Restangular.all("leedr/user-game-profile").customPOST($scope.usergame).then(function (data) {
                     $timeout(function () {
-                            Restangular.all('/leedr/user-profile').customGET().then(function (data) {
-                                var user = data[0];
-                                Session.destroy();
-                                Session.create(user.user.username, user.user.first_name, user.user.last_name,
-                                    user.user.email, user.premium, user.games);
-                                Session.get();
-                                toastr.success("We have added your game. It may take a bit for stats to arrive!");
-                                $modalInstance.dismiss('cancel');
-                                $location.path('/dashboard');
-                            });
-                        }, 500);
+                        AuthService.updateUserInfo();
+                        toastr.success("We have added your game. It may take a bit for stats to arrive!");
+                        $modalInstance.close();
+                        $location.path('/dashboard');
+                    }, 500);
                 }, function (error) {
                     toastr.error("Something went wrong retrieving your data. Here is the error message: " + '"' + error.data + '"');
                 })
