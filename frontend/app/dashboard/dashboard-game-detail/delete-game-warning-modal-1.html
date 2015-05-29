@@ -1,0 +1,33 @@
+<div class="model-body">
+    <img ng-src="{{ game.thumbnail }}" width="75%" id="remove-game">
+    <br>
+
+    <p class="centered">
+        Are you <b>ABSOLUTELY</b> sure you want to remove the game "{{ game.name }}"?
+
+        Removing a game may be necessary if you misspelled your username or something along those lines.
+
+    <h3 style="text-align: center;">Removing a game cannot be undone!</h3>
+
+    <h3 style="text-align: center;">All data with that game will be deleted immediately!!</h3>
+    </p>
+    <div class="input-group col-lg-8 col-lg-offset-2" ng-hide="firstConfirm">
+        <input type="text" class="form-control" placeholder="Type game name to confirm!" ng-model="game.confirm">
+        <span class="input-group-btn">
+            <input type="submit" class="btn btn-danger" ng-disabled="game.name !== game.confirm"
+                   ng-click="firstConfirm = true"><i class="fa fa-trash"> Remove</i></input>
+        </span>
+    </div>
+    <br>
+
+</div>
+<div class="modal-footer">
+    <div ng-show="firstConfirm" style="text-align: center;">
+        <h1 style="color: red">Seriously DELETE all data?</h1>
+        <button class="btn btn-danger" ng-click="delete()">Yes, delete my data!</button>
+        <button class="btn btn-success" ng-click="cancel()">No, keep my data!</button>
+    </div>
+    <div ng-hide="firstConfirm">
+        <button class="btn btn-info" ng-click="cancel()">Cancel</button>
+    </div>
+</div>
