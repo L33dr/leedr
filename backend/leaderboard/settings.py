@@ -24,6 +24,9 @@ import config
 # LOL Request Limit: 10/Second and 500/10 Minutes
 LOL_API_KEY = config.LOL_API_KEY
 
+# SC2 Requests Limit: 100/Second and 36,000/Hour
+SC2_API_KEY = config.SC2_API_KEY
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
