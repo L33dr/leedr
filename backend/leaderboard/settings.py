@@ -11,10 +11,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from datetime import timedelta
 import config
-
-
-
 
 ########################################################################
 # API Keys
@@ -54,7 +52,7 @@ if DEBUG:
         'loggers': {
             'django.db.backends': {
                 'handlers': ['console'],
-                'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
+                'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
             },
             'django.request': {
                 'handlers': ['console'],
@@ -72,6 +70,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # `allauth` specific context processors
     'allauth.account.context_processors.account',
     'allauth.socialaccount.context_processors.socialaccount',
+    'django.contrib.auth.context_processors.auth',
 )
 
 INSTALLED_APPS = (
@@ -209,7 +208,7 @@ REST_SESSION_LOGIN = False
 if not DEBUG:
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
-SITE_ID = "2"
+SITE_ID = "1"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = ('email', 'username', 'username_email')
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -220,3 +219,10 @@ EMAIL_HOST_PASSWORD = config.EMAIL_HOST_PASSWORD
 EMAIL_HOST = config.EMAIL_HOST
 EMAIL_PORT = config.EMAIL_PORT
 EMAIL_USE_TLS = config.EMAIL_USE_TLS
+
+CELERYBEAT_SCHEDULE = {
+    'update_LOL_users' : {
+        'task': 'apps.lol.tasks.find_LOL_users_to_update',
+        'schedule': timedelta(hours=1),
+    }
+}
