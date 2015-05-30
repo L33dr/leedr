@@ -55,7 +55,7 @@ class UserProfileView(generics.ListAPIView):
     serializer_class = UserProfileSerializer
 
     def get_queryset(self):
-        return UserProfile.objects.filter(user=self.request.user).all()
+        return UserProfile.objects.filter(user=self.request.user)
 
 class UserProfileUpdateView(generics.UpdateAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
@@ -71,7 +71,7 @@ class UserGameProfileView(generics.ListCreateAPIView):
     serializer_class = UserGameProfileSerializer
 
     def get_queryset(self):
-        return UserGameProfile.objects.filter(user=self.request.user).all()
+        return UserGameProfile.objects.filter(user=self.request.user)
 
     def post(self, request, *args, **kwargs):
         user = UserProfile.objects.get(user=self.request.user)
