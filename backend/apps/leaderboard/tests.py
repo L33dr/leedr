@@ -118,7 +118,8 @@ class UserGameProfileTests(TestCase):
                              "shorthand_name": "LOL"
                          },
                          "game_user_name": "asmithgameprofile",
-                         "region": "na"
+                         "region": "na",
+                         "external_user_id": None
                      }]}]
         expected = json.dumps(expected)
         self.assertJSONEqual(response.content, expected)
@@ -127,43 +128,86 @@ class UserGameProfileTests(TestCase):
         token = Token.objects.get(user_id=1)
         c = APIClient(HTTP_AUTHORIZATION='Token ' + token.key)
         expected = dict({"game":
-                 {
-                     "name": "League Of Legends",
-                     "platform": "PC",
-                     "thumbnail": "",
-                     "shorthand_name": "LOL",
-                     "url": "/leedr/LOL/user-data"
-                 },
-             "game_user_name": "asmithgameprofile",
-             "region": "na"
-             })
+            {
+                "name": "League Of Legends",
+                "platform": "PC",
+                "thumbnail": "",
+                "shorthand_name": "LOL",
+                "url": "/leedr/LOL/user-data"
+            },
+            "game_user_name": "asmithgameprofile",
+            "region": "na",
+            "external_user_id": None
+        })
 
         response = c.post(reverse("game-profile"), expected, format="json")
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.content, '"You cannot have two profiles for the same game, yet!"')
+        self.assertEqual(UserGameProfile.objects.count(), 1)
 
     def test_post_to_create_game_profile(self):
         # Remove the existing game profile so we can re-create it and test the create function.
-        game = UserGameProfile.objects.get(pk=1)
-        game.delete()
+        game_profile = UserGameProfile.objects.get(pk=1)
+        game_profile.delete()
 
         token = Token.objects.get(user_id=1)
         c = APIClient(HTTP_AUTHORIZATION='Token ' + token.key)
         expected = dict({"game":
-                 {
-                     "name": "League Of Legends",
-                     "platform": "PC",
-                     "shorthand_name": "LOL",
-                 },
-             "game_user_name": "asmithgameprofile",
-             "region": "na"
-             })
+            {
+                "name": "League Of Legends",
+                "platform": "PC",
+                "shorthand_name": "LOL",
+            },
+            "game_user_name": "asmithgameprofile",
+            "region": "na",
+            'external_user_id': None
+        })
 
         response = c.post(reverse("game-profile"), expected, format="json")
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertJSONEqual(response.content, expected)
 
-        game = UserGameProfile.objects.get(pk=2)
-        self.assertEqual(game.user.user.username, "asmith")
+        game_profile = UserGameProfile.objects.get(pk=2)
+        game = GameDetail.objects.get(pk=1)
+
+        self.assertEqual(game_profile.user.user.username, "asmith")
+        self.assertEqual(game_profile.external_user_id, None)
+        self.assertEqual(game_profile.updates_on_demand, 1)
+        self.assertEqual(game_profile.game, game)
+        self.assertEqual(game_profile.is_in_error_state, False)
+        self.assertEqual(game_profile.region, "na")
+
+    def test_post_to_create_second_game_profile_same_user(self):
+        token = Token.objects.get(user_id=1)
+        game = GameDetail.objects.create(name="Star Craft 2", platform="PC", shorthand_name="SC2")
+
+        c = APIClient(HTTP_AUTHORIZATION='Token ' + token.key)
+        expected = dict({"game":
+            {
+                "name": "Star Craft 2",
+                "platform": "PC",
+                "shorthand_name": "SC2",
+            },
+            "game_user_name": "asmithgameprofile",
+            "region": "1",
+            "external_user_id": 999000
+        })
+
+        response = c.post(reverse("game-profile"), expected, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertJSONEqual(response.content, expected)
+
+        game_profile = UserGameProfile.objects.get(game=game)
+
+        self.assertEqual(game_profile.user.user.username, "asmith")
+        self.assertEqual(game_profile.external_user_id, 999000)
+        self.assertEqual(game_profile.updates_on_demand, 1)
+        self.assertEqual(game_profile.game, game)
+        self.assertEqual(game_profile.is_in_error_state, False)
+        self.assertEqual(game_profile.region, "1")
+
+        self.assertEqual(UserGameProfile.objects.count(), 2)
+
+

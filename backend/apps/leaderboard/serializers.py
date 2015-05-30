@@ -30,7 +30,7 @@ class UserGameProfileSerializer(ModelSerializer):
 
     class Meta:
         model = UserGameProfile
-        fields = ('game', 'game_user_name', 'region')
+        fields = ('game', 'game_user_name', 'region', 'external_user_id')
 
     def create(self, validated_data, user, game):
         try:
@@ -41,7 +41,10 @@ class UserGameProfileSerializer(ModelSerializer):
             profile.game = game
             profile.user = user
             profile.game_user_name = self.data['game_user_name']
-            profile.region = self.data['region']
+            if 'region' in self.data:
+                profile.region = self.data['region']
+            if 'external_user_id' in self.data:
+                profile.external_user_id = self.data['external_user_id']
             profile.save()
             return profile
         else:
