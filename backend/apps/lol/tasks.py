@@ -35,7 +35,10 @@ def get_LOL_id_by_username(username, region):
     request_URL = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + \
                   username + '?api_key=' + LOL_API_KEY
     request = get(request_URL)
-    if check_valid_response(request):
+
+    valid_response = check_valid_response(request)
+
+    if valid_response:
         data = yaml.load(request.content)
         return data[username]['id']
 
@@ -94,7 +97,7 @@ def find_LOL_users_to_update():
             try:
                 user_id = get_LOL_id_by_username(game_profile.game_user_name, game_profile.region)
                 game_profile.external_user_id = user_id
-            except NameError as e:
+            except NameError:
                 game_profile.is_in_error_state = True
                 continue
             except ServiceUnavailable as e:
@@ -103,7 +106,8 @@ def find_LOL_users_to_update():
                 continue
             except Exception as e:
                 print e
-            game_profile.save()
+            finally:
+                game_profile.save()
         else:
             user_id = game_profile.external_user_id
         get_stats_by_id.apply_async((user_id, game_profile), eta=next_update_time)
@@ -111,6 +115,13 @@ def find_LOL_users_to_update():
 
 @shared_task()
 def get_id_then_update_stats(username, region, profile):
-    profile.external_user_id = get_LOL_id_by_username(username, region)
-    profile.save()
+    profile = UserGameProfile.objects.get(profile)
+    try:
+        profile.external_user_id = get_LOL_id_by_username(username, region)
+    except NameError:
+        profile.is_in_error_state = True
+    finally:
+        profile.save()
+
+    print profile
     get_stats_by_id(profile.external_user_id, profile)
