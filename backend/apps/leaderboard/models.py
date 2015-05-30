@@ -25,7 +25,7 @@ class UserProfile(models.Model):
     The game profile will contain game specific user identification (Game username, Game user_id, etc).
     """
     user = models.OneToOneField(User, related_name="profile")
-    premium = models.BooleanField()
+    premium = models.BooleanField(default=False)
 
     def is_premium(self):
         return self.premium

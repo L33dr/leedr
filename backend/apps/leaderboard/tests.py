@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.authtoken.models import Token
+from rest_framework.test import APIClient
 
 from apps.leaderboard.models import GameDetail, UserProfile, UserGameProfile
 
@@ -122,23 +123,47 @@ class UserGameProfileTests(TestCase):
         expected = json.dumps(expected)
         self.assertJSONEqual(response.content, expected)
 
-    def test_post_to_create_game_profile(self):
+    def test_post_to_create_game_profile_failure_on_duplicate(self):
         token = Token.objects.get(user_id=1)
-        c = Client(HTTP_AUTHORIZATION='Token ' + token.key)
-        response = c.post(reverse("game-profile"))
+        c = APIClient(HTTP_AUTHORIZATION='Token ' + token.key)
+        expected = dict({"game":
+                 {
+                     "name": "League Of Legends",
+                     "platform": "PC",
+                     "thumbnail": "",
+                     "shorthand_name": "LOL",
+                     "url": "/leedr/LOL/user-data"
+                 },
+             "game_user_name": "asmithgameprofile",
+             "region": "na"
+             })
+
+        response = c.post(reverse("game-profile"), expected, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.content, '"You cannot have two profiles for the same game, yet!"')
+
+    def test_post_to_create_game_profile(self):
+        # Remove the existing game profile so we can re-create it and test the create function.
+        game = UserGameProfile.objects.get(pk=1)
+        game.delete()
+
+        token = Token.objects.get(user_id=1)
+        c = APIClient(HTTP_AUTHORIZATION='Token ' + token.key)
+        expected = dict({"game":
+                 {
+                     "name": "League Of Legends",
+                     "platform": "PC",
+                     "shorthand_name": "LOL",
+                 },
+             "game_user_name": "asmithgameprofile",
+             "region": "na"
+             })
+
+        response = c.post(reverse("game-profile"), expected, format="json")
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        expected = {"premium": False,
-                     "user": {"username": "asmith", "email": "", "first_name": "Alice", "last_name": "Smith"},
-                     "game":
-                         {
-                             "id": 1,
-                             "name": "League Of Legends",
-                             "platform": "PC",
-                             "shorthand_name": "LOL"
-                         },
-                     "game_user_name": "asmithgameprofile",
-                     "region": "na"
-                     }
-        expected = json.dumps(expected)
-        print expected
+        self.assertJSONEqual(response.content, expected)
+
+        game = UserGameProfile.objects.get(pk=2)
+        self.assertEqual(game.user.user.username, "asmith")

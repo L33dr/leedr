@@ -34,7 +34,7 @@ def check_valid_response(request):
     elif request.status_code in [429, 503]:
         raise ServiceUnavailable("Status code: {}".format(request.status_code))
     else:
-        raise Exception("LOL API returned status code: {} ".format(request.status_code))
+        raise Exception("API returned status code: {} ".format(request.status_code))
 
 
 
