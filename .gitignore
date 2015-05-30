@@ -14,3 +14,5 @@ migrations/
 config.py
 .floo*
 *.sh
+flower
+celerybeat-schedule
