@@ -122,7 +122,7 @@ class SC2GameData(models.Model):
     campaign = models.OneToOneField(Campaign)
     season = models.OneToOneField(Season)
     rewards = models.ManyToManyField(RewardsList)
-    achievements = models.ManyToManyField(UserAchievementList)
+    achievements = models.OneToOneField(UserAchievementList)
 
     def __str__(self):
         return str(self.user_game_profile) + "'s SC2 Game Data"
