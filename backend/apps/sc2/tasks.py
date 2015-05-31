@@ -12,7 +12,7 @@ from apps.leaderboard.models import UserGameProfile
 from apps.leaderboard.tasks import check_valid_response
 from apps.lol.tasks import camel_case_to_snake_case
 from apps.sc2.models import Campaign, SC2Career, Season, SwarmLevels, Zerg, Protoss, Terran, UserCategoryPoints, \
-    UserAchievement, UserAchievementPoints, UserAchievementList
+    UserAchievement, UserAchievementPoints, UserAchievementList, SC2GameData, RewardsList
 from leaderboard.settings import SC2_API_KEY
 
 
@@ -101,4 +101,27 @@ def get_SC2_stats(game_profile):
             ach.save()
         del data['achievements']
 
+        game_data = SC2GameData()
+        game_data.display_name = data['displayName']
+        game_data.realm = data['realm']
+        game_data.id = data['id']
+        game_data.clan_name = data['clanName']
+        game_data.clan_tag = data['clanTag']
+        game_data.profile_path = data['profilePath']
+        game_data.portrait_url = data['portrait']['url']
+        del data['displayName']
+        del data['realm']
+        del data['id']
+        del data['clanName']
+        del data['clanTag']
+        del data['profilePath']
+        del data['portrait']
+
+        rewards = RewardsList()
+        rewards.selected = data['rewards']['selected']
+        rewards.earned = data['rewards']['earned']
+        rewards.save()
+        del data['rewards']
+
         print data
+
