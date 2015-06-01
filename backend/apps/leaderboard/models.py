@@ -61,7 +61,7 @@ class Comment(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
     comment = models.CharField(max_length=2000)
-    ip_address = models.IPAddressField(default="0.0.0.0")
+    ip_address = models.GenericIPAddressField(default="0.0.0.0")
     date = models.DateField(auto_now_add=True)
 
 

@@ -221,8 +221,12 @@ EMAIL_PORT = config.EMAIL_PORT
 EMAIL_USE_TLS = config.EMAIL_USE_TLS
 
 CELERYBEAT_SCHEDULE = {
-    'update_LOL_users' : {
+    'update_LOL_users': {
         'task': 'apps.lol.tasks.find_LOL_users_to_update',
         'schedule': timedelta(hours=1),
+    },
+    'update_SC2_users': {
+        'task': 'apps.sc2.tasks.find_SC2_users_to_update',
+        'schedule': timedelta(hours=1)
     }
 }
