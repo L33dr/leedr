@@ -96,8 +96,11 @@ def get_SC2_stats(game_profile):
             ach.save()
 
         rewards = RewardsList()
-        rewards.selected = data['rewards']['selected']
-        rewards.earned = data['rewards']['earned']
+        if 'rewards' in data:
+            if 'selected' in data['rewards']:
+                rewards.selected = data['rewards']['selected']
+            if 'earned' in data['rewards']:
+                rewards.earned = data['rewards']['earned']
         rewards.save()
 
         game_data = SC2GameData()
@@ -120,6 +123,8 @@ def get_SC2_stats(game_profile):
         game_data.rewards.add(rewards)
         game_data.save()
         return True
+    else:
+        return False
 
 @shared_task()
 def find_SC2_users_to_update():
@@ -130,8 +135,10 @@ def find_SC2_users_to_update():
         if game_profile.is_in_error_state:
             print "In Error State: {}".format(game_profile)
             continue
-
-        print "Updating profile {}".format(game_profile.id)
-        # get_SC2_stats.apply_async((game_profile,), eta=next_update_time)
-        # next_update_time += timedelta(seconds=1)
-        get_SC2_stats.delay(game_profile)
+        try:
+            get_SC2_stats.apply_async((game_profile,), eta=next_update_time)
+        except NameError:
+            game_profile.is_in_error_state = True
+            game_profile.save()
+        finally:
+            next_update_time += timedelta(milliseconds=200)
