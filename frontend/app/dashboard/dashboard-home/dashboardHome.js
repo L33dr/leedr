@@ -56,7 +56,7 @@ angular.module('myApp.dashboardHome', ['ngRoute'])
 
             var stop = $interval(function () {
                 updateProfile();
-            }, 10000);
+            }, 60000);
 
 
             $scope.$on('$destroy', function () {
