@@ -142,3 +142,4 @@ def find_SC2_users_to_update():
             game_profile.save()
         finally:
             next_update_time += timedelta(milliseconds=200)
+
