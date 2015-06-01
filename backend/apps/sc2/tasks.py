@@ -118,10 +118,9 @@ def get_SC2_stats(game_profile):
         game_data.campaign = campaign
         game_data.season = season
         game_data.achievements = ach_list
+        game_data.rewards = rewards
         game_data.save()
 
-        game_data.rewards.add(rewards)
-        game_data.save()
         return True
     else:
         return False

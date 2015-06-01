@@ -121,7 +121,7 @@ class SC2GameData(models.Model):
     swarm_levels = models.OneToOneField(SwarmLevels)
     campaign = models.OneToOneField(Campaign)
     season = models.OneToOneField(Season)
-    rewards = models.ManyToManyField(RewardsList)
+    rewards = models.OneToOneField(RewardsList)
     achievements = models.OneToOneField(UserAchievementList)
 
     def __str__(self):

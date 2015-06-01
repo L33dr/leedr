@@ -93,8 +93,8 @@ class SC2GameDataSerializer(ModelSerializer):
     career = SC2CareerSerializer(required=True, many=False)
     swarm_levels = SwarmLevelsSerializer(required=True, many=False)
     campaign = CampaignSerializer(required=True, many=False)
-    rewards = RewardsListSerializer(required=True, many=True)
-    achievements = UserAchievementListSerializer(required=True, many=True)
+    rewards = RewardsListSerializer(required=False, many=False)
+    achievements = UserAchievementListSerializer(required=True, many=False)
 
     class Meta:
         model = SC2GameData
