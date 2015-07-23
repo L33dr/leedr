@@ -1,124 +1,40 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/font-awesome-animation.css">
-    <link rel="stylesheet" href="bower_components/toastr/toastr.min.css">
-    <link rel="stylesheet" href="css/app.css">
-
-    <title>Leedr</title>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body ng-controller="ApplicationCtrl">
-<div id="wrapper">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="li-arrow">
-                    <div>
+<body>
+  <ul class="menu">
+    <li><a href="#/view1">view1</a></li>
+    <li><a href="#/view2">view2</a></li>
+  </ul>
 
-                    <a href="" id="menu-toggle-in-nav" ng-click="toggleEntireNav()" class="animate-show" ng-hide="popoutNavOpen">
-                        Close
-                        <i class="fa fa-arrow-left fa-2x faa-horizontal animated"></i>
-                    </a>
-                </div></li>
-                <span style="margin: 50px; position:relative;"></span>
-                <li ng-if="user.username">
-                    <a href="#/dashboard">Dashboard</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#/home/#supportedGames" ng-click="closePopOuts()">Supported Games</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#/home/#faq" ng-click="closePopOuts()">FAQ</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#/home/#about" ng-click="closePopOuts()">About</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#/home/#contact" ng-click="closePopOuts()">Contact Info</a>
-                </li>
-                <li ng-if="!user.username">
-                    <a href="" ng-click="toggleLogin()">Login</a>
-                </li>
-                <li ng-if="user.username">
-                    <a href="" ng-click="toggleLogout()">Logout</a>
-                </li>
-                <li ng-if="!user.username" >
-                    <a href="" ng-click="toggleSignup()">Sign Up</a>
-                </li>
-            </ul>
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
 
-        </div>
+  <div ng-view></div>
 
-        <div id="sign-up" ng-class="{show: showSignup}" ng-include="url='authentication/register/register.html'"></div>
-        <div id="login" ng-class="{show: showLogin}" ng-include="url='authentication/login/login.html'"></div>
-        <div id="logout" ng-class="{show: showLogout}" ng-include="url='authentication/logout/logout.html'"></div>
-    </div>
+  <div>Angular seed app: v<span app-version></span></div>
 
-    <div id="wrapper-sm" class="toggled">
-        <div id="sidebar-wrapper-sm">
-            <a href="" id="menu-toggle-in-nav-sm" ng-click="toggleEntireNav()"><i class="fa fa-arrow-right fa-2x faa-horizontal animated"></i></a>
-        </div>
-    </div>
-
-<!-- NG-VIEW -- REQUIRED -->
-<div ng-view></div>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-animate.min.js"></script>
-<script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
-<script src="bower_components/lodash/lodash.min.js"></script>
-<script src="bower_components/restangular/dist/restangular.min.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/toastr/toastr.min.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/app.js"></script>
-<script src="js/main.js"></script>
-<script src="authentication/auth.js"></script>
-<script src="home/home.js"></script>
-<script src="test/test.js"></script>
-<script src="dashboard/gameService.js"></script>
-<script src="dashboard/dashboard-home/dashboardHome.js"></script>
-<script src="dashboard/dashboard-game-detail/dashboardGameDetail.js"></script>
-<script src="dashboard/dashboard-user-profile/dashboardUserProfile.js"></script>
-<script src="dashboard/dashboard-add-game/dashboardAddGame.js"></script>
-<script src="view1/view1.js"></script>
-<script src="authentication/register/register.js"></script>
-<script src="authentication/login/login.js"></script>
-<script src="authentication/logout/logout.js"></script>
-<script src="authentication/confirm-email/confirmEmail.js"></script>
-<script src="components/version/version.js"></script>
-<script src="components/version/version-directive.js"></script>
-<script src="components/version/interpolate-filter.js"></script>
-
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="view1/view1.js"></script>
+  <script src="view2/view2.js"></script>
 </body>
 </html>

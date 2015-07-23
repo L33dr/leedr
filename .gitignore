@@ -16,3 +16,5 @@ config.py
 *.sh
 flower
 celerybeat-schedule
+*.tmp/
+*dist/
